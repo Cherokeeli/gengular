@@ -1,11 +1,30 @@
 {
   "name": "gengular",
   "version": "1.0.0",
-  "description": "general angularjs 1.6.x framework",
+  "description": "general angularjs 1.6.x boilerplate",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules/.bin/webpack --config webpack.config.js",
+    "clean": "rm -rf dist/"
   },
   "author": "Cherokeeli",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.20",
+    "angular": "^1.6.10"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2015-ie": "^6.7.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "source-map-loader": "^0.2.4",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0"
+  }
 }

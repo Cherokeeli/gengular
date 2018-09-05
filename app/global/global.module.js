@@ -1,0 +1,1 @@
+export const GLOBAL_MODULE = angular.module('global', []);

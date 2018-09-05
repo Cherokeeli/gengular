@@ -1,4 +1,6 @@
 /.idea
 /node_modules
+/dist
+package-lock.json
 /.git
 /.DS_Store
