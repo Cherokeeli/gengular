@@ -1,9 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const htmlLoader = require('html-loader');
+const ngCache = require('ng-cache-loader');
+const styleLoader = require('style-loader');
+const cssLoader = require('css-loader');
+const lessLoader = require('less-loader');
 
-var DEV_SERVER = process.argv[1].indexOf('webpack-dev-server') !== -1;
-var DEV = DEV_SERVER || process.env.DEV;
+const DEV_SERVER = process.argv[1].indexOf('webpack-dev-server') !== -1;
+const DEV = DEV_SERVER || process.env.DEV;
 
 module.exports = {
     mode: DEV ? 'development' : 'production',
@@ -27,7 +31,7 @@ module.exports = {
     ],
 
     resolve: {
-        extensions: ['.js','.html']
+        extensions: ['.js', '.html', '.css', '.less']
     },
 
     optimization: {
@@ -56,6 +60,34 @@ module.exports = {
                         minimize: false
                     }
                 }
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: false,
+                            // sourceMap: true
+                        }
+                    }]
+            },
+            {
+                test: /\.less$/,
+                use: [{
+                    loader: 'style-loader'
+                }, {
+                    loader: 'css-loader',
+                    options: {
+                        modules: false,
+                        // sourceMap: true
+                    }
+                }, {
+                    loader: 'less-loader'
+                }]
             }
         ]
     },

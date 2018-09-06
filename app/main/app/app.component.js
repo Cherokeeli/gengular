@@ -1,4 +1,4 @@
-import appTemplate from './app.html';
+import appTemplate from './app.template.html';
 
 class AppController {
     constructor() {

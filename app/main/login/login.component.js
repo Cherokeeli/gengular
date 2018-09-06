@@ -3,11 +3,13 @@
  *  登录控制器
  */
 
-import loginTemplate from './login.html';
+import loginTemplate from './login.template.html';
+import * as style from './login.style.less';
 
 class LoginController {
     constructor() {
         console.info("loginController");
+        this.style = style;
     }
 }
 
