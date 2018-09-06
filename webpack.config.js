@@ -1,6 +1,6 @@
 const path = require('path');
-const htmlLoader = require('html-webpack-plugin');
-const HtmlWebpackPlugin = require('html-loader');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const htmlLoader = require('html-loader');
 
 var DEV_SERVER = process.argv[1].indexOf('webpack-dev-server') !== -1;
 var DEV = DEV_SERVER || process.env.DEV;
@@ -16,14 +16,14 @@ module.exports = {
 
     output: {
         path: path.join(__dirname, "dist"),
-        filename: "js/[name].js",
+        filename: "js/[name]-[hash].js",
     },
 
     plugins: [
-        /*new HtmlWebpackPlugin({
+        new HtmlWebpackPlugin({
             template: 'index.html',
             filename: 'index.html'
-        })*/
+        })
     ],
 
     resolve: {
@@ -53,7 +53,7 @@ module.exports = {
                 use: {
                     loader: 'html-loader?exportAsEs6Default',
                     options: {
-                        minimize: true
+                        minimize: false
                     }
                 }
             }

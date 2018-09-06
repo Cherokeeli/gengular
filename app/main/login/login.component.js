@@ -3,6 +3,8 @@
  *  登录控制器
  */
 
+import loginTemplate from './login.html';
+
 class LoginController {
     constructor() {
         console.info("loginController");
@@ -12,5 +14,5 @@ class LoginController {
 export const login = {
     binding: { returnTo: '<' },
     controller: LoginController,
-    template: `<h1>ads敖德萨实打实的</h1>`
+    template: loginTemplate
 };
