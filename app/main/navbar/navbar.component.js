@@ -1,5 +1,5 @@
 import navbarTemplate from './navbar.template.html';
-import * as style from './navbar.style.css';
+import * as style from './navbar.style.less';
 
 class NavbarController {
     constructor() {

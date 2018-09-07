@@ -15,9 +15,11 @@ import uiRouter from '@uirouter/angularjs';
 
 // 自定义模块
 import { MAIN_MODULE } from '../main/main.module';
+import { GLOBAL_MODULE } from "../global/global.module";
 
 export const ngmodule = angular.module('App', [
     uiRouter,
+    GLOBAL_MODULE.name,
     MAIN_MODULE.name
 ]);
 

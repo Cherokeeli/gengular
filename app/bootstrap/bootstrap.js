@@ -3,6 +3,6 @@
 * */
 
 
-// import '../global/global.module';
 import './ngmodule';
+import '../global/global.module';
 import '../main/main.module';

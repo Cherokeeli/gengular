@@ -3,6 +3,7 @@ import { app } from "./app/app.component";
 import { loginState, appState } from './main.state'
 import { navbar } from "./navbar/navbar.component";
 import { sidebar } from "./sidebar/sidebar.component";
+import { MainService } from "./main.service";
 
 export const MAIN_MODULE = angular.module('main', [
     // 在这写依赖模块诶
@@ -14,7 +15,6 @@ export const MAIN_MODULE = angular.module('main', [
 MAIN_MODULE.config(['$uiRouterProvider', function($uiRouter) {
     // $uiRouter.trace.enable(1);
 
-    // If the user enters a URL that doesn't match any known URL (state), send them to `/welcome`
     const $urlService = $uiRouter.urlService;
     $urlService.rules.otherwise({ state: 'login' });
 
@@ -24,9 +24,14 @@ MAIN_MODULE.config(['$uiRouterProvider', function($uiRouter) {
 }]);
 
 /**
- * 注册module下的component
+ * 注册模块下的component
  */
 MAIN_MODULE.component('app', app);
 MAIN_MODULE.component('login', login);
 MAIN_MODULE.component('navbar', navbar);
 MAIN_MODULE.component('sidebar', sidebar);
+
+/**
+ * 注册模块下的service
+ */
+MAIN_MODULE.service('MainService', MainService);
