@@ -10,5 +10,6 @@ class NavbarController {
 
 export const navbar = {
     controller: NavbarController,
+    controllerAs: 'navbar',
     template: navbarTemplate
 };

@@ -16,5 +16,6 @@ class LoginController {
 export const login = {
     binding: { returnTo: '<' },
     controller: LoginController,
+    controllerAs: 'login',
     template: loginTemplate
 };

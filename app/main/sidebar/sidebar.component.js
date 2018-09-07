@@ -7,5 +7,6 @@ class SidebarController {
 
 export const sidebar = {
     controller: SidebarController,
+    controllerAs: 'sidebar',
     template: sidebarTemplate
 };

@@ -8,5 +8,6 @@ class AppController {
 
 export const app = {
     controller: AppController,
+    controllerAs: 'app',
     template: appTemplate
 };
