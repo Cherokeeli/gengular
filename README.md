@@ -1,2 +1,2 @@
 ## gengular
-To develop auto generate webpage based on json instead of writing boring CURD webpage.
+To develop auto-generated webpages based on json instead of writing some boring CURD webpages.

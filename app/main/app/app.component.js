@@ -2,7 +2,14 @@ import appTemplate from './app.template.html';
 
 class AppController {
     constructor() {
-        console.info("AppController");
+        // 修复，ng-include的wrapper
+        angular.element(function () {
+            console.log('page loading completed');
+            let nodes = document.querySelectorAll('div[include-replace]');
+            Array.prototype.forEach.call(nodes, (node) => {
+                $(node).replaceWith($(node).children());
+            });
+        });
     }
 }
 

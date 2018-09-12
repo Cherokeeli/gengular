@@ -15,12 +15,12 @@
     <script src="core/html5-boilerplate/js/vendor/modernizr-2.8.3.min.js"></script>-->
 
 </head>
-<body>
+<body class="hold-transition skin-purple fixed sidebar-mini">
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div ui-view></div>
+<div class="wrapper" ui-view></div>
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
 -->
@@ -28,4 +28,16 @@
 <!--<script src="dist/vendors~App.js"></script>
 <script src="dist/App.js"></script>-->
 </body>
+<script type="text/ng-template" id="sidebar_item.html">
+    <li ng-class="{'header':config.hasOwnProperty('sectionHeader'),'treeview':config.children.length>0}" ng-repeat="config in subSidebarConfig">
+        <span ng-if="config.hasOwnProperty('sectionHeader')">{{::config.sectionHeader}}</span>
+        <a href="{{::config.icon}}" ng-if="config.hasOwnProperty('children')">
+            <i class="{{::config.icon}}"></i> <span>{{::config.title}}</span>
+            <span ng-if="config.children.length>0" class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+        </a>
+        <ul class="treeview-menu" ng-if="config.children.length>0" ng-init="subSidebarConfig=config.children">
+            <div ng-include="'sidebar_item.html'"></div>
+        </ul>
+    </li>
+</script>
 </html>

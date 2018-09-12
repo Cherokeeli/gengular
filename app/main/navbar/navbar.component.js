@@ -4,7 +4,6 @@ import * as style from './navbar.style.less';
 class NavbarController {
     constructor() {
         this.style = style;
-        console.log(style);
     }
 }
 

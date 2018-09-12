@@ -5,6 +5,8 @@ const ngCache = require('ng-cache-loader');
 const styleLoader = require('style-loader');
 const cssLoader = require('css-loader');
 const lessLoader = require('less-loader');
+const urlLoader = require('url-loader');
+const webpack = require('webpack');
 
 const DEV_SERVER = process.argv[1].indexOf('webpack-dev-server') !== -1;
 const DEV = DEV_SERVER || process.env.DEV;
@@ -24,9 +26,17 @@ module.exports = {
     },
 
     plugins: [
+        // 解析htmlh中的APP，和vendor路径
         new HtmlWebpackPlugin({
             template: 'index.html',
             filename: 'index.html'
+        }),
+
+        // 引入jquery
+        new webpack.ProvidePlugin({
+            "$": "jquery",
+            "jQuery": "jquery",
+            "window.jQuery": "jquery"
         })
     ],
 
@@ -51,16 +61,22 @@ module.exports = {
                 exclude: /(node_modules)/,
                 use: { loader: 'babel-loader' },
             },
+
+            // html解析loader
             {
                 test: /\.html$/,
                 // exclude: /(index.html)/,
                 use: {
-                    loader: 'html-loader?exportAsEs6Default',
+                    loader: 'html-loader',
                     options: {
-                        minimize: false
+                        minimize: true,
+                        attrs: [':ng-include']
+                        // removeComments: true
                     }
                 }
             },
+
+            // css解析loader
             {
                 test: /\.css$/,
                 use: [
@@ -75,6 +91,7 @@ module.exports = {
                         }
                     }]
             },
+            // less解析loader
             {
                 test: /\.less$/,
                 use: [{
@@ -88,6 +105,11 @@ module.exports = {
                 }, {
                     loader: 'less-loader'
                 }]
+            },
+            // 解析其它图片svg,字体文件等
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=100000'
             }
         ]
     },

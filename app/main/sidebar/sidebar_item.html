@@ -1,0 +1,12 @@
+<!--<script type="text/ng-template" id="sidebar_item.html">-->
+    <li ng-class="{'header':config.hasOwnProperty('sectionHeader'),'treeview':config.children.length>0}" ng-repeat="config in subSidebarConfig">
+        <span ng-if="config.hasOwnProperty('sectionHeader')">{{::config.sectionHeader}}</span>
+        <a href="{{::config.icon}}" ng-if="config.hasOwnProperty('children')">
+            <i class="{{::config.icon}}"></i> <span>{{::config.title}}</span>
+            <span ng-if="config.children.length>0" class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+        </a>
+        <ul class="treeview-menu" ng-if="config.children.length>0" ng-init="subSidebarConfig=config.children">
+            <div ng-include="'sidebar_item.html'"></div>
+        </ul>
+    </li>
+<!--</script>-->

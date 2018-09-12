@@ -10,6 +10,8 @@ class LoginController {
     constructor() {
         console.info("loginController");
         this.style = style;
+        this.logName = "";
+        this.password = "";
     }
 }
 
