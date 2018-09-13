@@ -2,7 +2,7 @@ import appTemplate from './app.template.html';
 
 class AppController {
     constructor() {
-        // 修复，ng-include的wrapper
+        // FIX 去掉ng-include的wrapper
         angular.element(function () {
             console.log('page loading completed');
             let nodes = document.querySelectorAll('div[include-replace]');
@@ -10,6 +10,7 @@ class AppController {
                 $(node).replaceWith($(node).children());
             });
         });
+        this.ctrlName = "AppCtrl";
     }
 }
 

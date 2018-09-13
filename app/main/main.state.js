@@ -13,7 +13,6 @@ export const dashboardState = {
 };
 
 export const loginState = {
-    parent: 'app',
     name: 'login',
     url: '/login',
     component: 'login'

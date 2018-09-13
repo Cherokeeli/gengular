@@ -2,7 +2,7 @@
  * global模块请求拦截器
  */
 
-export const globalInterceptor = ['$q', 'AppConfig', ($q, AppConfig) => {
+export const globalInterceptor = ['$q', 'AppConfig', '$state', ($q, AppConfig, $state) => {
     return {
         request(config) {
             console.log(config);
@@ -21,6 +21,9 @@ export const globalInterceptor = ['$q', 'AppConfig', ($q, AppConfig) => {
                 if (data.ok) {
                     return response;
                 } else {
+                    if (data.relogin) {
+                        $state.go('login', {reload: true});
+                    }
                     throw new Error("response is not ok");
                 }
             } else {

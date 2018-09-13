@@ -6,8 +6,6 @@ import { sidebar } from "./sidebar/sidebar.component";
 import { MainService } from "./main.service";
 import { dashboard } from "./dashboard/dashboard.component";
 
-import template from './sidebar/sidebar_item.html';
-
 export const MAIN_MODULE = angular.module('main', [
     // 在这写依赖模块诶
 ]);
@@ -40,3 +38,10 @@ MAIN_MODULE.component('dashboard', dashboard);
  * 注册模块下的service
  */
 MAIN_MODULE.service('MainService', MainService);
+MAIN_MODULE.factory('Store', () => {
+    return {
+        data: {
+            config: {}
+        }
+    };
+});

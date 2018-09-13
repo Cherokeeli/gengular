@@ -5,6 +5,8 @@
 // angularjs主文件
 import * as angular from 'angular';
 
+import '../app.style.less';
+
 // jquery主文件
 // import 'jquery';
 
@@ -32,6 +34,8 @@ import '../../core/ui-framework/dist/js/adminlte.min';
 // angularjs插件
 import uiRouter from '@uirouter/angularjs';
 import uiBootstrap from 'angular-ui-bootstrap';
+import 'angular-ui-tree/dist/angular-ui-tree.css';
+import uiAngularTree from 'angular-ui-tree';
 
 // 自定义模块
 import { MAIN_MODULE } from '../main/main.module';
@@ -40,6 +44,7 @@ import { GLOBAL_MODULE } from "../global/global.module";
 export const ngmodule = angular.module('App', [
     uiRouter,
     uiBootstrap,
+    uiAngularTree,
     GLOBAL_MODULE.name,
     MAIN_MODULE.name
 ]);

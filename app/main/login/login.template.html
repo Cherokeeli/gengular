@@ -1,10 +1,34 @@
-<div id="{{login.style.cssModuleName}}" class="col-xs-6">
-    <h1 class="smallHeading">登录</h1>
-    <input type="text" ng-model="login.logName">
-    {{login.logName}}
-    <input type="password" ng-model="login.password">
-    {{login.password}}
-    <i class="fa fa-camera-retro fa-4x"></i> fa-camera-retro
-    <i class="icon ion-md-heart"></i>
-</div>
+<div id="{{login.style.cssModuleName}}">
+    <div class="login-box">
+        <div class="login-logo">
+            <a ui-sref="dashboard" ui-sref-opts="{reload: true}"><b>Management</b>System</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Sign in to start your session</p>
 
+            <form name="login.loginForm" method="post">
+                <div class="form-group has-feedback">
+                    <span uib-tooltip="Hello!" tooltip-is-open="true" tooltip-placement="top" tooltip-class="tooltip-danger">
+                    <input ng-model="login.user.username" ng-required="true" required name="username" type="text" class="form-control" placeholder="Username">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <span uib-tooltip="Hello!" tooltip-is-open="true" tooltip-placement="top" tooltip-class="tooltip-danger">
+                    <input ng-model="login.user.password" ng-required="true" required name="password" type="password" class="form-control" placeholder="Password">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+
+                    <!-- /.col -->
+                    <div class="col-xs-4 pull-right">
+                        <button ng-click="login.logIn()" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+</div>

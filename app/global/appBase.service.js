@@ -25,12 +25,12 @@ export class AppBaseService {
         options.url = url;
         options.params = params;
         // options.method = 'GET';
-        return this.$http.get(options)
-            .then((...response) => {
-                return that.$q.resolve(...response);
+        return this.$http.get(url, options)
+            .then((response) => {
+                return that.$q.resolve(response);
             })
             .catch((err) => {
-                throw new Error(err);
+                throw new Error(JSON.stringify(err));
             });
     }
 
@@ -46,12 +46,12 @@ export class AppBaseService {
         options.url = url;
         options.data = data;
         // options.method = 'POST';
-        return this.$http.post(options)
-            .then((...response) => {
-                return that.$q.resolve(...response);
+        return this.$http.post(url, options)
+            .then((response) => {
+                return that.$q.resolve(response);
             })
             .catch((err) => {
-                throw new Error(err);
+                throw new Error(JSON.stringify(err));
             });
 
     }
@@ -68,12 +68,12 @@ export class AppBaseService {
         options.url = url;
         options.data = data;
         // options.method = 'POST';
-        return this.$http.put(options)
-            .then((...response) => {
-                return that.$q.resolve(...response);
+        return this.$http.put(url, options)
+            .then((response) => {
+                return that.$q.resolve(response);
             })
             .catch((err) => {
-                throw new Error(err);
+                throw new Error(JSON.stringify(err));
             });
     }
 
@@ -87,12 +87,12 @@ export class AppBaseService {
         options.url = url;
         options.data = data;
         // options.method = 'POST';
-        return this.$http.delete(options)
-            .then((...response) => {
-                return that.$q.resolve(...response);
+        return this.$http.delete(url, options)
+            .then((response) => {
+                return that.$q.resolve(response);
             })
             .catch((err) => {
-                throw new Error(err);
+                throw new Error(JSON.stringify(err));
             });
     }
 
