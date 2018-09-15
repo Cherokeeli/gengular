@@ -1,0 +1,18 @@
+<div id="{{menuTree.style.cssModuleName}}">
+    <script type="text/ng-template" id="nodes_renderer.html">
+            <div ui-tree-handle class="tree-node angular-ui-tree-handle tree-node-content">
+                <i class="{{::node.icon}}"></i><span>{{::node.title}}</span>
+            </div>
+
+        <ol class="angular-ui-tree-nodes" ui-tree-nodes="" ng-model="node.children">
+            <li ng-repeat="node in node.children" class="angular-ui-tree-node" ui-tree-node ng-include="'nodes_renderer.html'">
+            </li>
+        </ol>
+    </script>
+    <div ui-tree class="angular-ui-tree">
+        <ol class="angular-ui-tree-nodes" ui-tree-nodes="" ng-model="menuTree.menuConfig" id="tree-root">
+            <li class="angular-ui-tree-node" ng-if="node.hasOwnProperty('href')" ng-repeat="node in menuTree.menuConfig" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+        </ol>
+    </div>
+</div>
+
