@@ -1,0 +1,133 @@
+<h2 class="page-header">User detail</h2>
+
+<div class="row" ng-init="tabIndex=1">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li ng-class="{active: tabIndex==1}"><a href="" ng-click="tabIndex=1" data-toggle="tab">Info</a></li>
+                <li ng-class="{active: tabIndex==2}"><a href="" ng-click="tabIndex=2" data-toggle="tab">Role</a></li>
+                <li ng-class="{active: tabIndex==3}"><a href="" ng-click="tabIndex=3" data-toggle="tab">Department</a></li>
+                <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+            </ul>
+            <div class="tab-content">
+                <div ng-class="{active: tabIndex==1}" class="tab-pane" id="tab_1">
+                    <form class="form-horizontal">
+                        <div class="box-body">
+                            <div class="form-group-inline col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <label for="Username" class="col-sm-4 control-label">Username:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Username" placeholder="Username">
+                                </div>
+                            </div>
+                            <div class="form-group-inline col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <label for="LogName" class="col-sm-4 control-label">LogName:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="LogName" placeholder="LogName">
+                                </div>
+                            </div>
+                            <div class="form-group-inline col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <label for="Contacts" class="col-sm-4 control-label">Contacts:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Contacts" placeholder="Contacts">
+                                </div>
+                            </div>
+                            <div class="form-group-inline col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <label for="Password" class="col-sm-4 control-label">Password:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Password" placeholder="Password">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-default">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                        <!-- /.box-footer -->
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div ng-class="{active: tabIndex==2}" class="tab-pane" id="tab_2">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="dataTables_length" id="example1_length">
+                                        <label>Show <select name="example1_length" aria-controls="example1"
+                                                            class="form-control input-sm">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> entries</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div id="example1_filter" class="dataTables_filter">
+                                        <label>Search:<input type="search" class="form-control input-sm" placeholder=""
+                                                             aria-controls="example1"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-bordered table-striped dataTable" role="grid">
+                                        <thead>
+                                        <tr role="row">
+                                            <th>index</th>
+                                            <th>Role ID</th>
+                                            <th>Role name</th>
+                                            <th class="col-xs-2">Operation</th>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="($userindex, user) in userDetail.roleList" role="row">
+                                            <td>{{$userindex+1}}</td>
+                                            <td>{{user.id}}</td>
+                                            <td>{{user.roleName}}</td>
+                                            <td>
+                                                <input ng-model="user.checked" type="checkbox">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    Showing 1 to 10 of 57 entries
+                                </div>
+                                <div class="col-sm-7">
+                                    <ul class="pagination pull-right" uib-pagination total-items="users.totalCount"
+                                        ng-model="users.bigCurrentPage" items-per-page="users.itemsPerPage" class="pagination-sm"
+                                        ng-change="users.queryPage(users)"
+                                        boundary-link-numbers="true" rotate="true" boundary-links="true"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.tab-pane -->
+                <div ng-class="{active: tabIndex==3}" class="tab-pane" id="tab_3">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    It has survived not only five centuries, but also the leap into electronic typesetting,
+                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                    sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                    like Aldus PageMaker including versions of Lorem Ipsum.
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+</div>

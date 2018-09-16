@@ -20,6 +20,10 @@ class LoginController {
             console.log(res);
         });
     }
+
+    validateFormRequired(form, formEle) {
+        return form[formEle].$dirty && form[formEle].$invalid;
+    }
 }
 
 LoginController.$inject = ['MainService'];

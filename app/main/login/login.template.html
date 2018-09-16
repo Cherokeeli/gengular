@@ -7,21 +7,25 @@
         <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
-            <form name="login.loginForm" method="post">
-                <div class="form-group has-feedback">
-                    <span uib-tooltip="Hello!" tooltip-is-open="true" tooltip-placement="top" tooltip-class="tooltip-danger">
+            <form novalidate name="login.loginForm" method="post">
+                <div ng-class="{'has-error': login.validateFormRequired(login.loginForm, 'username')}" class="form-group has-feedback">
+                    <!--<label class="control-label"><i class="fa fa-times-circle-o"></i> Input with
+                        error</label>-->
                     <input ng-model="login.user.username" ng-required="true" required name="username" type="text" class="form-control" placeholder="Username">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    <label ng-show="login.validateFormRequired(login.loginForm, 'username')" class="control-label"><i class="fa fa-times-circle-o"></i> Input with
+                        error</label>
                 </div>
-                <div class="form-group has-feedback">
-                    <span uib-tooltip="Hello!" tooltip-is-open="true" tooltip-placement="top" tooltip-class="tooltip-danger">
+                <div ng-class="{'has-error': login.validateFormRequired(login.loginForm, 'password')}" class="form-group has-feedback">
                     <input ng-model="login.user.password" ng-required="true" required name="password" type="password" class="form-control" placeholder="Password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <label ng-show="login.validateFormRequired(login.loginForm, 'password')" class="control-label"><i class="fa fa-times-circle-o"></i> Input with
+                        error</label>
                 </div>
                 <div class="row">
-
                     <!-- /.col -->
                     <div class="col-xs-4 pull-right">
+
                         <button ng-click="login.logIn()" class="btn btn-primary btn-block btn-flat">Sign In</button>
                     </div>
                     <!-- /.col -->
