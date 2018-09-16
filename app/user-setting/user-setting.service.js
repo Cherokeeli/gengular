@@ -1,7 +1,7 @@
-export class SystemSettingService {
+export class UserSettingService {
     constructor(AppBaseService) {
         this.appBaseService = AppBaseService;
     }
 }
 
-SystemSettingService.$inject = ['AppBaseService'];
+UserSettingService.$inject = ['AppBaseService'];

@@ -1,11 +1,12 @@
-import sidebarTemplate from './sidebar.template.html';
-import * as style from './sidebar.style.less';
+import treeTemplate from './menu-tree.template.html';
+import * as style from './menu-tree.style.less';
 
-class SidebarController {
-    constructor(Store, $timeout) {
+export class MenuTreeController {
+    constructor(Store, $timeout, $ngConfirm) {
         console.log(Store.data);
+        this.$ngConfirm = $ngConfirm;
         this.data = Store.data;
-        this.data.config = [
+        this.menuConfig = [
             {
                 title: 'SETTINGS',
                 icon: 'fa fa-dashboard'
@@ -74,14 +75,57 @@ class SidebarController {
             }
         ];
 
+        this.data.config = this.menuConfig;
+
         this.style = style;
+    }
+
+    addNode(scope) {
+        console.log(scope);
+        let list = scope.$modelValue;
+        list.children.unshift({
+            title: 'New node',
+            href: '',
+            icon: '',
+            children: []
+        })
+    }
+
+    removeNode(scope) {
+        let that = this;
+        that.$ngConfirm({
+            icon: 'fa fa-warning',
+            theme: 'material',
+            type: 'orange',
+            title: 'Delete?',
+            animation: 'zoom',
+            closeAnimation: 'zoom',
+            animationSpeed: 200,
+            content: 'This operation cannot be rollbacked',
+            autoClose: 'cancel|5000',
+            buttons: {
+                deleteUser: {
+                    text: 'YES',
+                    btnClass: 'btn-orange',
+                    action: function () {
+                        scope.remove();
+                    }
+                },
+                cancel: {
+                    text: 'NO',
+                    action:  function () {
+
+                    }
+                }
+            }
+        });
     }
 }
 
-SidebarController.$inject=['Store', '$timeout'];
+MenuTreeController.$inject=['Store', '$timeout', '$ngConfirm'];
 
-export const sidebar = {
-    controller: SidebarController,
-    controllerAs: 'sidebar',
-    template: sidebarTemplate
+export const menuTree = {
+    controller: MenuTreeController,
+    controllerAs: 'menuTree',
+    template: treeTemplate
 };

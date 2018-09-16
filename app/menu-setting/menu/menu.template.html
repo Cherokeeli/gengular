@@ -1,0 +1,24 @@
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Feature setting</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+                <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
+                    title="Remove">
+                <i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <div class="box-body col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <menutree></menutree>
+        </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <button ng-click="menuConfig.submitFlag=true;menuConfig.save()" ng-disabled="menuConfig.submitFlag" class="btn btn-primary"><i ng-if="menuConfig.submitFlag" class="fa fa-spinner fa-spin"></i>SAVE</button>
+    </div>
+    <!-- /.box-footer-->
+</div>

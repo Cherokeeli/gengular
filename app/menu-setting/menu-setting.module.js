@@ -1,36 +1,35 @@
-import {appState, dashboardState, loginState} from "../main/main.state";
-import {MAIN_MODULE} from "../main/main.module";
-import {userState} from "./user-setting.state";
+import { menuState } from "./menu-setting.state";
+import { menu } from "./menu/menu.component";
+import { MenuSettingService } from "./menu-setting.service";
+import { menuTree } from "./menu-tree/menu-tree.component";
 
-export const USER_SETTING_MODULE = angular.module('systemSetting', [
-
+export const MENU_SETTING_MODULE = angular.module('menuSetting', [
 ]);
 
 /**
  * 注册该模块下的routes
  */
-USER_SETTING_MODULE.config(['$uiRouterProvider', function($uiRouter) {
+MENU_SETTING_MODULE.config(['$uiRouterProvider', function($uiRouter) {
     // $uiRouter.trace.enable(1);
 
     const $urlService = $uiRouter.urlService;
-    $urlService.rules.otherwise({ state: 'dashboard' });
+    $urlService.rules.otherwise({ state: 'menuConfig' });
 
     const $stateRegistry = $uiRouter.stateRegistry;
-    $stateRegistry.register(appState);
-    $stateRegistry.register(loginState);
-    $stateRegistry.register(dashboardState);
+    $stateRegistry.register(menuState);
 }]);
 
 /**
  * 注册模块下的component
  */
-USER_SETTING_MODULE.component('app', app);
+MENU_SETTING_MODULE.component('menuconfig', menu);
+MENU_SETTING_MODULE.component('menutree', menuTree);
 
 /**
  * 注册模块下的service
  */
-USER_SETTING_MODULE.service('MainService', MainService);
-USER_SETTING_MODULE.factory('Store', () => {
+MENU_SETTING_MODULE.service('MenuSettingService', MenuSettingService);
+MENU_SETTING_MODULE.factory('Store', () => {
     return {
         data: {
             config: {}

@@ -2,10 +2,20 @@
     <script type="text/ng-template" id="nodes_renderer.html">
         <div class="tree-node tree-node-content">
             <div ui-tree-handle class="angular-ui-tree-handle">
-                <i class="{{::node.icon}}"></i>
+                <i class="{{node.icon}}"></i>
             </div>
             <div class="tree-node-content">
-                <span>{{::node.title}}</span>
+                <label class="light-label">Title：<span contenteditable="true" class="editable-span" ng-model="node.title" ng-bind="node.title"></span></label>
+                <label class="light-label">Href：<span contenteditable="true" class="editable-span" ng-model="node.href" ng-bind="node.href"></span></label>
+                <label class="light-label">Icon：<span contenteditable="true" class="editable-span" ng-model="node.icon" ng-bind="node.icon"></span></label>
+                <div class="pull-right">
+                    <span ng-click="menuTree.addNode(this)" class="icon-button">
+                        <i class="fa fa-plus-circle"></i>
+                    </span>
+                    <span ng-click="menuTree.removeNode(this)" class="icon-button">
+                        <i class="fa fa-trash"></i>
+                    </span>
+                </div>
             </div>
         </div>
 

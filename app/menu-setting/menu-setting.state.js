@@ -1,12 +1,6 @@
-export const userState = {
-    name: 'user',
-    url: '/user',
-    component: 'user'
-};
-
-export const listState = {
-    name: 'user.list',
-    url: '/list',
-    parent: 'user',
-    component: 'userTable'
+export const menuState = {
+    name: 'menuConfig',
+    url: '/menu_config',
+    parent: 'app',
+    component: 'menuconfig'
 };

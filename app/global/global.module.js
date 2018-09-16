@@ -2,6 +2,7 @@ import { AppConfig } from "./appConfig.service";
 import { globalInterceptor } from "./globalInterceptors";
 import { includeReplace } from "./directive/includeReplace.directive";
 import { AppBaseService } from "./appBase.service";
+import { contenteditable } from "./directive/contenteditable.directive";
 
 export const GLOBAL_MODULE = angular.module('global', [
     // 在这写模块依赖诶
@@ -14,6 +15,7 @@ GLOBAL_MODULE.config(['$httpProvider', ($httpProvider) => {
 }]);
 
 GLOBAL_MODULE.directive('includeReplace', includeReplace);
+GLOBAL_MODULE.directive('contenteditable', contenteditable);
 
 GLOBAL_MODULE.service('AppConfig', AppConfig);
 GLOBAL_MODULE.service('AppBaseService', AppBaseService);

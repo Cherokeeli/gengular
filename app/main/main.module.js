@@ -5,9 +5,12 @@ import { navbar } from "./navbar/navbar.component";
 import { sidebar } from "./sidebar/sidebar.component";
 import { MainService } from "./main.service";
 import { dashboard } from "./dashboard/dashboard.component";
+import { MENU_SETTING_MODULE } from "../menu-setting/menu-setting.module";
 
 export const MAIN_MODULE = angular.module('main', [
     // 在这写依赖模块诶
+    MENU_SETTING_MODULE.name,
+    // USER_SETTING_MODULE.name
 ]);
 
 /**

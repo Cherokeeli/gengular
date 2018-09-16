@@ -76,20 +76,7 @@
             </div>
         </div>
         <div class="box-body">
-            <script type="text/ng-template" id="nodes_renderer.html">
-                <div ui-tree-handle class="tree-node tree-node-content angular-ui-tree-handle">
-                    <i class="{{::node.icon}}"></i> <span>{{::node.title}}</span>
-                </div>
-                <ol class="angular-ui-tree-nodes" ui-tree-nodes="" ng-model="node.children">
-                    <li ng-repeat="node in node.children" class="angular-ui-tree-node" ui-tree-node ng-include="'nodes_renderer.html'">
-                    </li>
-                </ol>
-            </script>
-            <div ui-tree class="angular-ui-tree">
-                <ol class="angular-ui-tree-nodes" ui-tree-nodes="" ng-model="dashboard.list" id="tree-root">
-                    <li class="angular-ui-tree-node" ng-if="node.hasOwnProperty('href')" ng-repeat="node in dashboard.list" ui-tree-node ng-include="'nodes_renderer.html'"></li>
-                </ol>
-            </div>
+
         </div>
         <!-- /.box-body -->
         <div class="box-footer">

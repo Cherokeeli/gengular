@@ -20,6 +20,7 @@
   color: #7c9eb2;
   padding: 10px 10px;
   float: left;
+  z-index: 9999;
 }
 
 .angular-ui-tree-handle:hover {
@@ -76,5 +77,37 @@ tr.angular-ui-tree-empty {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+
+span[contenteditable].editable-span {
+  border: none;
+  display: inline-block;
+  min-width: 1em;
+  padding: 0 5px;
+  //transition: all ease-in-out 0.5s;
+  &:hover {
+    outline: solid 2px #8DB8FF;
+  }
+
+}
+
+.light-label {
+  margin: 0;
+}
+
+.icon-button {
+  padding: 0 5px;
+  margin: 0 .5em;
+  cursor: pointer;
+}
+
+.ui-notification {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.alert.alert-dismissible {
+  margin-bottom: 0;
 }
       

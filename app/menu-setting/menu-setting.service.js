@@ -1,7 +1,7 @@
-export class UserSettingService {
+export class MenuSettingService {
     constructor(AppBaseService) {
         this.appBaseService = AppBaseService;
     }
 }
 
-SystemSettingService.$inject = ['AppBaseService'];
+MenuSettingService.$inject = ['AppBaseService'];

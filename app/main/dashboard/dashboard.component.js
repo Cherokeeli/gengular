@@ -19,7 +19,7 @@ class DashboardController {
             }
         };*/
         console.log(this.sidebarCtrl);
-        this.list = [
+        /*this.list = [
             {
                 title: 'MAIN FEATURES',
                 icon: 'fa fa-dashboard'
@@ -81,8 +81,8 @@ class DashboardController {
                     }
                 ]
             }
-        ];
-        this.data.config = this.list;
+        ];*/
+        // this.data.config = this.list;
     }
 }
 
