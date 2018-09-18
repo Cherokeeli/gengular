@@ -14,7 +14,7 @@ USER_SETTING_MODULE.config(['$uiRouterProvider', function($uiRouter) {
     // $uiRouter.trace.enable(1);
 
     const $urlService = $uiRouter.urlService;
-    $urlService.rules.otherwise({ state: 'users' });
+    // $urlService.rules.otherwise({ state: 'users' });
 
     const $stateRegistry = $uiRouter.stateRegistry;
     $stateRegistry.register(usersState);

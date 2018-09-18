@@ -17,6 +17,19 @@ module.exports = {
         "App": "./app/bootstrap/bootstrap.js",
     },
 
+    devServer: {
+        // allowedHosts: ['http://10.119.18.21:83'],
+        hot: true,
+        // contentBase: './',
+        proxy: {
+            '/oshoms/': {
+                target :'http://10.119.18.21:83',
+                secure: false,
+                changeOrigin: true
+            }
+        }
+    },
+
     devtool: DEV ? 'eval' :'source-map',
 
 
@@ -37,7 +50,9 @@ module.exports = {
             "$": "jquery",
             "jQuery": "jquery",
             "window.jQuery": "jquery"
-        })
+        }),
+
+        new webpack.HotModuleReplacementPlugin()
     ],
 
     resolve: {

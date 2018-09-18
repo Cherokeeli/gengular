@@ -4,7 +4,7 @@ export class MainService {
     }
 
     logIn(param) {
-        let url = 'api/login.do';
+        let url = '/admin/login';
         return this.appBaseService.post(url, param);
     }
 

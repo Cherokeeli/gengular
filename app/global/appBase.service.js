@@ -6,6 +6,7 @@ export class AppBaseService {
     constructor($http, $q, AppConfig) {
         this.$http = $http;
         this.$q = $q;
+        this.appConfig = AppConfig;
         this._options = {
             timeout: AppConfig.requestTimeout,
             headers: {
@@ -22,10 +23,11 @@ export class AppBaseService {
     get(url, params) {
         let options = this._options;
         let that = this;
+        url = `/${this.appConfig.requestPrefix}${url}`;
         options.url = url;
         options.params = params;
-        // options.method = 'GET';
-        return this.$http.get(url, options)
+        options.method = 'GET';
+        return this.$http(params)
             .then((response) => {
                 return that.$q.resolve(response);
             })
@@ -43,10 +45,11 @@ export class AppBaseService {
     post(url, data) {
         let options = this._options;
         let that = this;
-        options.url = url;
+        url = `/${this.appConfig.requestPrefix}${url}`;
+        options.url = url
         options.data = data;
-        // options.method = 'POST';
-        return this.$http.post(url, options)
+        options.method = 'POST';
+        return this.$http(options)
             .then((response) => {
                 return that.$q.resolve(response);
             })
@@ -65,10 +68,11 @@ export class AppBaseService {
     put(url, data) {
         let options = this._options;
         let that = this;
+        url = `/${this.appConfig.requestPrefix}${url}`;
         options.url = url;
         options.data = data;
-        // options.method = 'POST';
-        return this.$http.put(url, options)
+        options.method = 'PUT';
+        return this.$http(options)
             .then((response) => {
                 return that.$q.resolve(response);
             })
@@ -84,10 +88,11 @@ export class AppBaseService {
     delete() {
         let options = this._options;
         let that = this;
+        url = `/${this.appConfig.requestPrefix}${url}`;
         options.url = url;
         options.data = data;
-        // options.method = 'POST';
-        return this.$http.delete(url, options)
+        options.method = 'DELETE';
+        return this.$http(options)
             .then((response) => {
                 return that.$q.resolve(response);
             })
