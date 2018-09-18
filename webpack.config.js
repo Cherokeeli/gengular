@@ -20,12 +20,16 @@ module.exports = {
     devServer: {
         // allowedHosts: ['http://10.119.18.21:83'],
         hot: true,
+        port: 8080,
+        host: '0.0.0.0',
         // contentBase: './',
         proxy: {
-            '/oshoms/': {
-                target :'http://10.119.18.21:83',
+            '/oshoms': {
+                // 孙雨大佬
+                target :'http://IQSZ-L3314:8088',
                 secure: false,
-                changeOrigin: true
+                changeOrigin: true,
+                clientLogLevel: 'debug'
             }
         }
     },
