@@ -13,17 +13,24 @@
                         error</label>-->
                     <input ng-model="login.user.username" ng-required="true" required name="username" type="text" class="form-control" placeholder="Username">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                    <label ng-show="login.validateFormRequired(login.loginForm, 'username')" class="control-label"><i class="fa fa-times-circle-o"></i> Input with
-                        error</label>
+                    <span ng-show="login.validateFormRequired(login.loginForm, 'username')" class="help-block">Please input username</span>
+
+                    <!--<label ng-show="login.validateFormRequired(login.loginForm, 'username')" class="control-label"><i class="fa fa-times-circle-o"></i> Input with
+                        error</label>-->
                 </div>
                 <div ng-class="{'has-error': login.validateFormRequired(login.loginForm, 'password')}" class="form-group has-feedback">
                     <input ng-model="login.user.password" ng-required="true" required name="password" type="password" class="form-control" placeholder="Password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    <label ng-show="login.validateFormRequired(login.loginForm, 'password')" class="control-label"><i class="fa fa-times-circle-o"></i> Input with
-                        error</label>
+                    <span ng-show="login.validateFormRequired(login.loginForm, 'password')" class="help-block">Please input password</span>
+                    <!--<label ng-show="login.validateFormRequired(login.loginForm, 'password')" class="control-label"><i class="fa fa-times-circle-o"></i> Input with
+                        error</label>-->
                 </div>
                 <div class="row">
                     <!-- /.col -->
+
+                    <div class="col-xs-8 has-error">
+                        <label ng-if="!login.logSuccess" class="control-label"><i class="fa fa-times-circle-o"></i> Invalid username or password</label>
+                    </div>
                     <div class="col-xs-4 pull-right">
 
                         <button ng-click="login.logIn()" class="btn btn-primary btn-block btn-flat">Sign In</button>
