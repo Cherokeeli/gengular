@@ -19,12 +19,14 @@ export const globalInterceptor = ['$q', 'AppConfig', '$state', ($q, AppConfig, $
             let { data, status, headers, config, statusText, xhrStatus } = response;
             if (config.url.indexOf(AppConfig.requestPrefix) > -1) {
                 if (data.ok) {
-                    return response;
+                    return response.data;
                 } else {
                     if (data.relogin) {
                         $state.go('login', {reload: true});
+                    } else {
+                        return response.data;
                     }
-                    throw new Error("response is not ok");
+                    // throw new Error("response is not ok");
                 }
             } else {
                 return response;

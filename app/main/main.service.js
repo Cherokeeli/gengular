@@ -1,6 +1,7 @@
 export class MainService {
-    constructor(AppBaseService) {
+    constructor(AppBaseService, $q) {
         this.appBaseService = AppBaseService;
+        this.$q = $q;
     }
 
     logIn(param) {
@@ -10,4 +11,4 @@ export class MainService {
 
 }
 
-MainService.$inject = ['AppBaseService'];
+MainService.$inject = ['AppBaseService', '$q'];

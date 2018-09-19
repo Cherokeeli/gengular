@@ -10,7 +10,7 @@ export class AppBaseService {
         this._options = {
             timeout: AppConfig.requestTimeout,
             headers: {
-                'Content-Type': undefined
+                'Content-Type': 'application/json'
             }
         }
     }
@@ -23,16 +23,16 @@ export class AppBaseService {
     get(url, params) {
         let options = this._options;
         let that = this;
-        url = `/${this.appConfig.requestPrefix}${url}`;
-        options.url = url;
+        options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.params = params;
         options.method = 'GET';
-        return this.$http(params)
-            .then((response) => {
-                return that.$q.resolve(response);
-            })
-            .catch((err) => {
-                throw new Error(JSON.stringify(err));
+        return this.$http(options)
+            .then(response => {
+                if(response.ok) {
+                    return that.$q.resolve(response.data);
+                } else {
+                    return this.$q.reject(response.tips);
+                }
             });
     }
 
@@ -45,16 +45,16 @@ export class AppBaseService {
     post(url, data) {
         let options = this._options;
         let that = this;
-        url = `/${this.appConfig.requestPrefix}${url}`;
-        options.url = url
+        options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.data = data;
         options.method = 'POST';
         return this.$http(options)
-            .then((response) => {
-                return that.$q.resolve(response);
-            })
-            .catch((err) => {
-                throw new Error(JSON.stringify(err));
+            .then(response => {
+                if(response.ok) {
+                    return that.$q.resolve(response);
+                } else {
+                    return this.$q.reject(response);
+                }
             });
 
     }
@@ -68,16 +68,16 @@ export class AppBaseService {
     put(url, data) {
         let options = this._options;
         let that = this;
-        url = `/${this.appConfig.requestPrefix}${url}`;
-        options.url = url;
+        options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.data = data;
         options.method = 'PUT';
         return this.$http(options)
-            .then((response) => {
-                return that.$q.resolve(response);
-            })
-            .catch((err) => {
-                throw new Error(JSON.stringify(err));
+            .then(response => {
+                if(response.ok) {
+                    return that.$q.resolve(response.data);
+                } else {
+                    return this.$q.reject(response.tips);
+                }
             });
     }
 
@@ -88,16 +88,16 @@ export class AppBaseService {
     delete() {
         let options = this._options;
         let that = this;
-        url = `/${this.appConfig.requestPrefix}${url}`;
-        options.url = url;
+        options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.data = data;
         options.method = 'DELETE';
         return this.$http(options)
-            .then((response) => {
-                return that.$q.resolve(response);
-            })
-            .catch((err) => {
-                throw new Error(JSON.stringify(err));
+            .then(response => {
+                if(response.ok) {
+                    return this.$q.resolve(response.data);
+                } else {
+                    return this.$q.reject(response.tips);
+                }
             });
     }
 
