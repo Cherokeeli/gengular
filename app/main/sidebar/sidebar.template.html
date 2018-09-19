@@ -13,7 +13,7 @@
             </div>
         </div>-->
             <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
+            <form method="get" class="sidebar-form">
                 <div class="input-group">
                     <input type="text" name="q" class="form-control" placeholder="Search...">
                     <span class="input-group-btn">
@@ -26,19 +26,19 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
 
-                <li ng-class="{'header':!config.hasOwnProperty('href'),'treeview':config.children.length>0}"
-                    ng-repeat="config in sidebar.data.config">
-                    <span ng-if="!config.hasOwnProperty('href')">{{::config.title}}</span>
-                    <a href="" ui-sref="{{config.href}}" ng-if="config.hasOwnProperty('children')">
-                        <i class="{{::config.icon}}"></i> <span>{{::config.title}}</span>
-                        <span ng-if="config.children.length>0" class="pull-right-container"><i
+                <li ng-class="{'header':!config.hasOwnProperty('url'),'treeview':config.list.length>0}"
+                    ng-repeat="config in sidebar.menuConfig">
+                    <span ng-if="!config.hasOwnProperty('url')">{{::config.name}}</span>
+                    <a href="" ui-sref="{{::config.url}}" ng-if="config.hasOwnProperty('list')">
+                        <i class="{{::config.icon}}"></i> <span>{{::config.name}}</span>
+                        <span ng-if="config.list.length>0" class="pull-right-container"><i
                                 class="fa fa-angle-left pull-right"></i></span>
                     </a>
-                    <ul class="treeview-menu" ng-if="config.children.length>0"
-                        ng-init="subSidebarConfig=config.children">
+                    <ul class="treeview-menu" ng-if="config.list.length>0"
+                        ng-init="subSidebarConfig=config.list">
                         <!--<div include-replace ng-include="'sidebar_item'"></div>-->
                         <li ng-include="'sidebar_item'"
-                            ng-class="{'header':config.hasOwnProperty('sectionHeader'),'treeview':config.children.length>0}"
+                            ng-class="{'header':config.hasOwnProperty('sectionHeader'),'treeview':config.list.length>0}"
                             ng-repeat="config in subSidebarConfig">
                         </li>
 
@@ -57,13 +57,13 @@
 <!--单行模版start-->
 <script type="text/ng-template" id="sidebar_item">
     <span ng-if="config.hasOwnProperty('sectionHeader')">{{::config.sectionHeader}}</span>
-    <a href="" ui-sref="{{config.href}}" ng-if="config.hasOwnProperty('children')">
-        <i class="{{::config.icon}}"></i> <span>{{::config.title}}</span>
-        <span ng-if="config.children.length>0" class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+    <a href="" ui-sref="{{::config.url}}" ng-if="config.hasOwnProperty('list')">
+        <i class="{{::config.icon}}"></i> <span>{{::config.name}}</span>
+        <span ng-if="config.list.length>0" class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
     </a>
-    <ul class="treeview-menu" ng-if="config.children.length>0" ng-init="subSidebarConfig=config.children">
+    <ul class="treeview-menu" ng-if="config.list.length>0" ng-init="subSidebarConfig=config.list">
         <li ng-include="'sidebar_item'"
-            ng-class="{'header':config.hasOwnProperty('sectionHeader'),'treeview':config.children.length>0}"
+            ng-class="{'header':config.hasOwnProperty('sectionHeader'),'treeview':config.list.length>0}"
             ng-repeat="config in subSidebarConfig">
         </li>
     </ul>

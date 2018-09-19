@@ -102,8 +102,8 @@
                         </ul>
                     </li>
                     <!-- User Account: style can be found in dropdown.less -->
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <li ng-init="toggleUser=false" ng-class="{open: toggleUser}" ng-click="toggleUser=!toggleUser" class="dropdown user user-menu">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
                             <!--<img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
                             <span class="hidden-xs">Cherokeeli</span>
                         </a>
@@ -118,7 +118,7 @@
                                 </p>
                             </li>
                             <!-- Menu Body -->
-                            <li class="user-body">
+                            <!--<li class="user-body">
                                 <div class="row">
                                     <div class="col-xs-4 text-center">
                                         <a href="#">Followers</a>
@@ -130,15 +130,15 @@
                                         <a href="#">Friends</a>
                                     </div>
                                 </div>
-                                <!-- /.row -->
-                            </li>
+                                &lt;!&ndash; /.row &ndash;&gt;
+                            </li>-->
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    <!--<a href="#" class="btn btn-default btn-flat">Profile</a>-->
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="" ng-click="navbar.signOut()" class="btn btn-default btn-flat">Sign out</a>
                                 </div>
                             </li>
                         </ul>

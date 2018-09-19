@@ -2,83 +2,95 @@ import sidebarTemplate from './sidebar.template.html';
 import * as style from './sidebar.style.less';
 
 class SidebarController {
-    constructor(Store, $timeout) {
+    constructor(Store, $timeout, MainService) {
         console.log(Store.data);
-        this.data = Store.data;
-        this.data.config = [
-            {
-                title: 'SETTINGS',
-                icon: 'fa fa-dashboard'
-            },
-            {
+        this.globalData = Store.data;
+        this.mainService = MainService;
+        // this.menuConfig = [
+        //     {
+        //         name: 'SETTINGS',
+        //         icon: 'fa fa-dashboard'
+        //     },
+        //     {
+        //
+        //         name: 'Dashboard',
+        //         url: 'dashboard',
+        //         icon: 'fa fa-dashboard',
+        //         children: []
+        //     },
+        //     {
+        //         name: 'System Setting',
+        //         url: '#',
+        //         icon: 'fa fa-gear',
+        //         children: [
+        //         ]
+        //     },
+        //
+        //     {
+        //         name: 'Role Setting',
+        //         url: 'role_setting',
+        //         icon: 'fa fa-users',
+        //         children: []
+        //     },
+        //     {
+        //         name: 'Feature Setting',
+        //         url: 'menuConfig',
+        //         icon: 'fa fa-cubes',
+        //         children: []
+        //     },
+        //     {
+        //         name: 'User Setting',
+        //         url: 'users',
+        //         icon: 'fa fa-user',
+        //         children: []
+        //     },
+        //
+        //     {
+        //         name: 'MAIN FEATURES',
+        //         icon: 'fa fa-dashboard'
+        //     },
+        //     {
+        //         name: 'Source Data',
+        //         url: '#',
+        //         icon: 'fa fa-database',
+        //         children: [
+        //             {
+        //                 name: 'Position',
+        //                 url: 'position',
+        //                 icon: 'fa fa-table',
+        //                 children: []
+        //             },
+        //             {
+        //                 name: 'Cash Balance',
+        //                 url: 'cash_banlance',
+        //                 icon: 'fa fa-table',
+        //                 children: []
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         name: 'Quartz Job',
+        //         url: 'quartz_job',
+        //         icon: 'fa fa-clock-o',
+        //         children: []
+        //     }
+        // ];
+        this.menuConfig = [];
 
-                title: 'Dashboard',
-                href: 'dashboard',
-                icon: 'fa fa-dashboard',
-                children: []
-            },
-            {
-                title: 'System Setting',
-                href: '',
-                icon: 'fa fa-gear',
-                children: [
-                    {
-                        title: 'Role Setting',
-                        href: 'role_setting',
-                        icon: 'fa fa-users',
-                        children: []
-                    },
-                    {
-                        title: 'Feature Setting',
-                        href: 'menuConfig',
-                        icon: 'fa fa-cubes',
-                        children: []
-                    },
-                    {
-                        title: 'User Setting',
-                        href: 'users',
-                        icon: 'fa fa-user',
-                        children: []
-                    }
-                ]
-            },
+        this.mainService.getNavList().then(res => {
+            console.log(res);
+            this.menuConfig = res;
+        }, err => {
+            console.info(err);
+        });
 
-            {
-                title: 'MAIN FEATURES',
-                icon: 'fa fa-dashboard'
-            },
-            {
-                title: 'Source Data',
-                href: '',
-                icon: 'fa fa-database',
-                children: [
-                    {
-                        title: 'Position',
-                        href: 'position',
-                        icon: 'fa fa-table',
-                        children: []
-                    },
-                    {
-                        title: 'Cash Balance',
-                        href: 'cash_banlance',
-                        icon: 'fa fa-table',
-                        children: []
-                    }
-                ]
-            },
-            {
-                title: 'Quartz Job',
-                href: 'quartz_job',
-                icon: 'fa fa-clock-o',
-                children: []
-            }
-        ];
+
 
         this.style = style;
     }
 }
 
-SidebarController.$inject=['Store', '$timeout'];
+SidebarController.$inject=['Store', '$timeout', 'MainService'];
 
 export const sidebar = {
     controller: SidebarController,
