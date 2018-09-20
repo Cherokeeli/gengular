@@ -1,15 +1,16 @@
 /**
- * 认证模块
+ * 认证模块Service
  */
 
 export class AuthService {
-    constructor() {
-
+    constructor(AppBaseService) {
+        this.appBaseService = AppBaseService;
     }
 
-    md5WithSalt() {
-
+    getPermissions() {
+        let url = '/sysUsers/authorities';
+        return this.appBaseService.get(url, {});
     }
 }
 
-AuthService.$inject(['$http']);
+AuthService.$inject = ['AppBaseService'];
