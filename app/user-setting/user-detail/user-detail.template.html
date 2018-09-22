@@ -17,32 +17,32 @@
                             <div class="form-group-inline col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                 <label for="Username" class="col-sm-4 control-label">Username:</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="Username" placeholder="Username">
+                                    <input ng-disabled="userDetail.uneditable" ng-model="userDetail.user.username" type="text" class="form-control" id="Username" placeholder="Username">
                                 </div>
                             </div>
                             <div class="form-group-inline col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                <label for="LogName" class="col-sm-4 control-label">LogName:</label>
+                                <label for="Mobile" class="col-sm-4 control-label">Mobile:</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="LogName" placeholder="LogName">
+                                    <input ng-disabled="userDetail.uneditable" ng-model="userDetail.user.mobile" type="text" class="form-control" id="Mobile" placeholder="Mobile">
                                 </div>
                             </div>
                             <div class="form-group-inline col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                <label for="Contacts" class="col-sm-4 control-label">Contacts:</label>
+                                <label for="Email" class="col-sm-4 control-label">Email:</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="Contacts" placeholder="Contacts">
+                                    <input ng-disabled="userDetail.uneditable" ng-model="userDetail.user.email" type="text" class="form-control" id="Email" placeholder="Email">
                                 </div>
                             </div>
-                            <div class="form-group-inline col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <!--<div class="form-group-inline col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                 <label for="Password" class="col-sm-4 control-label">Password:</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="Password" placeholder="Password">
+                                    <input ng-model="userDetail.user.password" type="password" class="form-control" id="Password" placeholder="Password">
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
                             <button type="submit" class="btn btn-default">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button auth-opt="sys:user:update" ng-if="!userDetail.uneditable" ng-click="userDetail.submitForm()" type="submit" class="btn btn-primary">Save</button>
                         </div>
                         <!-- /.box-footer -->
                     </form>

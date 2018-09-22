@@ -35,7 +35,7 @@ class LoginController {
 LoginController.$inject = ['MainService', '$state'];
 
 export const login = {
-    binding: { returnTo: '<' },
+    bindings: { returnTo: '<' },
     controller: LoginController,
     controllerAs: 'login',
     template: loginTemplate

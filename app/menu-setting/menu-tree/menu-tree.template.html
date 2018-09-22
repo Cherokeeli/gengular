@@ -1,18 +1,22 @@
 <div id="{{menuTree.style.cssModuleName}}">
-    <script type="text/ng-template" id="nodes_renderer.html">
+    <script type="text/ng-template" id="nodes_renderer">
         <div class="tree-node tree-node-content">
             <div ui-tree-handle class="angular-ui-tree-handle">
                 <i class="{{node.icon}}"></i>
             </div>
             <div class="tree-node-content">
-                <label class="light-label">Title：<span contenteditable="true" class="editable-span" ng-model="node.title" ng-bind="node.title"></span></label>
-                <label class="light-label">Href：<span contenteditable="true" class="editable-span" ng-model="node.href" ng-bind="node.href"></span></label>
+                <label class="light-label">Id：<span class="editable-span" ng-bind="node.id"></span></label>
+                <span>|</span>
+                <label class="light-label">Title：<span contenteditable="true" class="editable-span" ng-model="node.name" ng-bind="node.name"></span></label>
+                <span>|</span>
+                <label class="light-label">Href：<span contenteditable="true" class="editable-span" ng-model="node.url" ng-bind="node.url"></span></label>
+                <span>|</span>
                 <label class="light-label">Icon：<span contenteditable="true" class="editable-span" ng-model="node.icon" ng-bind="node.icon"></span></label>
                 <div class="pull-right">
-                    <span ng-click="menuTree.addNode(this)" class="icon-button">
+                    <span auth-opt="sys:menu:select" ng-click="menuTree.addNode(this)" class="icon-button">
                         <i class="fa fa-plus-circle"></i>
                     </span>
-                    <span ng-click="menuTree.removeNode(this)" class="icon-button">
+                    <span auth-opt="sys:menu:delete" ng-click="menuTree.removeNode(this)" class="icon-button">
                         <i class="fa fa-trash"></i>
                     </span>
                 </div>
@@ -20,13 +24,13 @@
         </div>
 
         <ol class="angular-ui-tree-nodes" ui-tree-nodes="" ng-model="node.children">
-            <li ng-repeat="node in node.children" class="angular-ui-tree-node" ui-tree-node ng-include="'nodes_renderer.html'">
+            <li ng-repeat="node in node.children" class="angular-ui-tree-node" ui-tree-node ng-include="'nodes_renderer'">
             </li>
         </ol>
     </script>
     <div ui-tree class="angular-ui-tree">
         <ol class="angular-ui-tree-nodes" ui-tree-nodes="" ng-model="menuTree.menuConfig" id="tree-root">
-            <li class="angular-ui-tree-node" ng-if="node.hasOwnProperty('href')" ng-repeat="node in menuTree.menuConfig" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+            <li class="angular-ui-tree-node" ng-if="node.hasOwnProperty('url')" ng-repeat="node in menuTree.menuConfig" ui-tree-node ng-include="'nodes_renderer'"></li>
         </ol>
     </div>
 </div>

@@ -5,12 +5,12 @@ class MenuConfigController {
         this.$ngConfirm = $ngConfirm;
         this.notification = Notification;
         this.$timeout = $timeout;
-        this.data = Store.data;
+        this.globalData = Store.data;
     }
 
     save() {
         let that = this;
-
+        console.log(this);
         this.$timeout( _ => {
             this.submitFlag = false;
             this.notification(
@@ -24,8 +24,12 @@ class MenuConfigController {
         }, 3000);
 
         // TODO 菜单json调接口保存
-        console.log(this.data.config);
+        console.log(this.globalData.menuConfig);
 
+    }
+
+    $onInit() {
+        console.log(this.authPermission);
     }
 }
 
@@ -33,6 +37,9 @@ MenuConfigController.$inject = ['$ngConfirm', 'Notification', '$timeout', 'Store
 
 export const menu = {
     controller: MenuConfigController,
+    bindings: {
+        authPermission: '<'
+    },
     controllerAs: 'menuConfig',
     template: menuConfigTemplate
 };

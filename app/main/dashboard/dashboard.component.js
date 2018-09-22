@@ -13,12 +13,12 @@ class DashboardController {
         this.logName = "";
         this.password = "";
         let that = this;
+        console.log(this.authPermission);
         /*this.treeOptions = {
             dropped(event) {
                 Store.set({config: that.list});
             }
         };*/
-        console.log(this.sidebarCtrl);
         /*this.list = [
             {
                 title: 'MAIN FEATURES',
@@ -84,13 +84,18 @@ class DashboardController {
         ];*/
         // this.data.config = this.list;
     }
+
+    $onInit() {
+        console.log(this.authPermission);
+    }
 }
 
 DashboardController.$inject = ['Store'];
 
 export const dashboard = {
-    binding: {
+    bindings: {
         menuConfig: '<',
+        authPermission: '<',
         onViewChange: '&'
     },
     controller: DashboardController,

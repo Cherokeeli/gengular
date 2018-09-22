@@ -16,6 +16,9 @@ class AppController {
 
 export const app = {
     controller: AppController,
+    bindings: {
+        authPermission: '<'
+    },
     controllerAs: 'app',
     template: appTemplate
 };

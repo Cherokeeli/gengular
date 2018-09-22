@@ -32,7 +32,7 @@ MENU_SETTING_MODULE.service('MenuSettingService', MenuSettingService);
 MENU_SETTING_MODULE.factory('Store', () => {
     return {
         data: {
-            config: {}
+            menuConfig: {}
         }
     };
 });

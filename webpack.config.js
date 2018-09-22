@@ -19,8 +19,8 @@ module.exports = {
 
     devServer: {
         // allowedHosts: ['http://10.119.18.21:83'],
-        hot: true,
-        port: 8080,
+        // hot: true,
+        // port: 8080,
         host: '0.0.0.0',
         // contentBase: './',
         proxy: {
@@ -56,7 +56,7 @@ module.exports = {
             "window.jQuery": "jquery"
         }),
 
-        new webpack.HotModuleReplacementPlugin()
+        // new webpack.HotModuleReplacementPlugin()
     ],
 
     resolve: {

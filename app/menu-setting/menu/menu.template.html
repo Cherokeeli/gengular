@@ -18,7 +18,7 @@
     </div>
     <!-- /.box-body -->
     <div class="box-footer">
-        <button ng-click="menuConfig.submitFlag=true;menuConfig.save()" ng-disabled="menuConfig.submitFlag" class="btn btn-primary"><i ng-if="menuConfig.submitFlag" class="fa fa-spinner fa-spin"></i>SAVE</button>
+        <button auth-opt="sys:menu:save" ng-click="menuConfig.submitFlag=true;menuConfig.save()" ng-disabled="menuConfig.submitFlag" class="btn btn-primary"><i ng-if="menuConfig.submitFlag" class="fa fa-spinner fa-spin"></i>SAVE</button>
     </div>
     <!-- /.box-footer-->
 </div>

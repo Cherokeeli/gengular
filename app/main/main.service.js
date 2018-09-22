@@ -9,6 +9,16 @@ export class MainService {
         return this.appBaseService.post(url, param);
     }
 
+    logOut() {
+        let url = '/admin/login/logout';
+        return this.appBaseService.post(url, {});
+    }
+
+    getNavList() {
+        let url = '/sysMenu/nav';
+        return this.appBaseService.get(url, {});
+    }
+
 }
 
 MainService.$inject = ['AppBaseService', '$q'];

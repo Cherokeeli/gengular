@@ -1,6 +1,6 @@
 import { login } from './login/login.component';
 import { app } from "./app/app.component";
-import { loginState, appState, dashboardState } from './main.state'
+import {loginState, appState, dashboardState, authState} from './main.state'
 import { navbar } from "./navbar/navbar.component";
 import { sidebar } from "./sidebar/sidebar.component";
 import { MainService } from "./main.service";
@@ -20,12 +20,13 @@ MAIN_MODULE.config(['$uiRouterProvider', function($uiRouter) {
     // $uiRouter.trace.enable(1);
 
     const $urlService = $uiRouter.urlService;
-    $urlService.rules.otherwise({ state: 'dashboard' });
+    // $urlService.rules.otherwise({ state: 'dashboard' });
 
     const $stateRegistry = $uiRouter.stateRegistry;
     $stateRegistry.register(appState);
     $stateRegistry.register(loginState);
     $stateRegistry.register(dashboardState);
+    $stateRegistry.register(authState);
 }]);
 
 /**

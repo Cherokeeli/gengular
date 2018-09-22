@@ -1,10 +1,6 @@
 import template from './users.template.html';
+import { OPT_TYPE } from '../../global/global.enum';
 
-const OPT_TYPE = {
-    EDIT: 1,
-    VIEW: 2,
-    DELETE: 3
-};
 
 class UsersController {
     constructor($ngConfirm, Notification, $timeout, Store, UserSettingService, $state) {
@@ -14,64 +10,45 @@ class UsersController {
         this.userSettingService = UserSettingService;
         this.itemsPerPage = 2;
         this.$state = $state;
-        this.userList = [
-            {
-                id: 1,
-                userName: 'QUANLI1',
-                logName: 'quanli422',
-                contacts: [
-                    'quanlime@gmail.com',
-                    '13530088648'
-                ]
-            },
-            {
-                id: 2,
-                userName: 'QUANLI2',
-                logName: 'quanli422',
-                contacts: [
-                    'quanlime@gmail.com',
-                    '13530088648'
-                ]
-            },
-            {
-                id: 3,
-                userName: 'QUANLI3',
-                logName: 'quanli422',
-                contacts: [
-                    'quanlime@gmail.com',
-                    '13530088648'
-                ]
-            },
-            {
-                id: 4,
-                userName: 'QUANLI4',
-                logName: 'quanli422',
-                contacts: [
-                    'quanlime@gmail.com',
-                    '13530088648'
-                ]
-            }
-        ];
+        this.globalData = Store.data;
+        this.userList = [];
         this.totalCount = this.userList.length;
+        this.bigCurrentPage = 1;
     }
 
     queryPage() {
-        this.userSettingService.getUsers().then(res=> {
-            this.userList = res.data;
+        let param = {
+            pageNo: this.bigCurrentPage,
+            pageSize: this.itemsPerPage
+        };
+        this.userSettingService.getUsers(param).then(res => {
+            this.userList = res.records;
+            this.totalCount = res.count;
+        }, err => {
+            console.info(err);
         });
     }
 
+    tblOptAdd() {
+        // console.log(id);
+        this.$state.go('user.add', {opt: OPT_TYPE.ADD});
+    }
+
     tblOptEdit(id) {
-        console.log(id);
-        this.$state.go('user', {id: id, opt: OPT_TYPE.EDIT});
+        // console.log(id);
+        this.$state.go('user.edit', {id: id, opt: OPT_TYPE.EDIT});
     }
 
     tblOptView(id) {
-        this.$state.go('user', {id: id, opt: OPT_TYPE.VIEW});
+        this.$state.go('user.view', {id: id, opt: OPT_TYPE.VIEW});
     }
 
     tblOptDelete(id) {
         this.$state.go('user', {id: id, opt: ''});
+    }
+
+    $onInit() {
+        this.queryPage();
     }
 }
 

@@ -1,4 +1,11 @@
-import {userDetailState, usersState} from "./user-setting.state";
+import {
+    userAddState,
+    userDetailAddState,
+    userDetailState,
+    userDetailUpdateOrViewState,
+    userEditState,
+    usersState, userViewState
+} from "./user-setting.state";
 import { UserSettingService } from "./user-setting.service";
 import { users } from "./users/users.component";
 import { userDetail } from "./user-detail/user-detail.component";
@@ -19,6 +26,9 @@ USER_SETTING_MODULE.config(['$uiRouterProvider', function($uiRouter) {
     const $stateRegistry = $uiRouter.stateRegistry;
     $stateRegistry.register(usersState);
     $stateRegistry.register(userDetailState);
+    $stateRegistry.register(userEditState);
+    $stateRegistry.register(userViewState);
+    $stateRegistry.register(userAddState);
 }]);
 
 /**
@@ -34,7 +44,7 @@ USER_SETTING_MODULE.service('UserSettingService', UserSettingService);
 USER_SETTING_MODULE.factory('Store', () => {
     return {
         data: {
-            config: {}
+            optType: ""
         }
     };
 });
