@@ -59,11 +59,10 @@
             </div>
             <div class="row">
                 <div class="col-sm-5">
-                    Showing 1 to 10 of {{users.totalCount}} entries
+                    Showing {{(users.bigCurrentPage-1)*users.itemsPerPage || 1}} to {{(users.bigCurrentPage)*users.itemsPerPage}} of {{users.totalCount}} entries
                 </div>
                 <div class="col-sm-7">
                     <ul class="pagination pull-right" uib-pagination total-items="users.totalCount"
-                        max-size="users.itemsPerPage"
                         ng-model="users.bigCurrentPage" items-per-page="users.itemsPerPage" class="pagination-sm"
                         ng-change="users.queryPage(users)"
                         boundary-link-numbers="true" rotate="true" boundary-links="true"></ul>

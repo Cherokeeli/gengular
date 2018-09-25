@@ -40,10 +40,7 @@
                             </div>-->
                         </div>
                         <!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-default">Cancel</button>
-                            <button auth-opt="sys:user:update" ng-if="!userDetail.uneditable" ng-click="userDetail.submitForm()" type="submit" class="btn btn-primary">Save</button>
-                        </div>
+
                         <!-- /.box-footer -->
                     </form>
                 </div>
@@ -51,65 +48,7 @@
                 <div ng-class="{active: tabIndex==2}" class="tab-pane" id="tab_2">
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="dataTables_length" id="example1_length">
-                                        <label>Show <select name="example1_length" aria-controls="example1"
-                                                            class="form-control input-sm">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select> entries</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div id="example1_filter" class="dataTables_filter">
-                                        <label>Search:<input type="search" class="form-control input-sm" placeholder=""
-                                                             aria-controls="example1"></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="table table-bordered table-striped dataTable" role="grid">
-                                        <thead>
-                                        <tr role="row">
-                                            <th>index</th>
-                                            <th>Role ID</th>
-                                            <th>Role name</th>
-                                            <th class="col-xs-2">Operation</th>
-                                        </thead>
-                                        <tbody>
-                                        <tr ng-repeat="($userindex, user) in userDetail.roleList" role="row">
-                                            <td>{{$userindex+1}}</td>
-                                            <td>{{user.id}}</td>
-                                            <td>{{user.roleName}}</td>
-                                            <td>
-                                                <input ng-model="user.checked" type="checkbox">
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    Showing 1 to 10 of 57 entries
-                                </div>
-                                <div class="col-sm-7">
-                                    <ul class="pagination pull-right" uib-pagination total-items="users.totalCount"
-                                        ng-model="users.bigCurrentPage" items-per-page="users.itemsPerPage" class="pagination-sm"
-                                        ng-change="users.queryPage(users)"
-                                        boundary-link-numbers="true" rotate="true" boundary-links="true"></ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <roles checktool="true" pagesizetool="false" addtool="false" searchtool="false" checkedids="userDetail.user.roleIdList"></roles>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -124,6 +63,10 @@
                     like Aldus PageMaker including versions of Lorem Ipsum.
                 </div>
                 <!-- /.tab-pane -->
+                <div class="box-footer">
+                    <button ng-click="userDetail.back()" type="submit" class="btn btn-default">Cancel</button>
+                    <button auth-opt="sys:user:update" ng-if="!userDetail.uneditable" ng-click="userDetail.submitForm()" type="submit" class="btn btn-primary">Save</button>
+                </div>
             </div>
             <!-- /.tab-content -->
         </div>

@@ -54,7 +54,7 @@ export const ngmodule = angular.module('App', [
     'cp.ngConfirm',
     GLOBAL_MODULE.name,
     MAIN_MODULE.name,
-    USER_SETTING_MODULE.name
+    // USER_SETTING_MODULE.name
 ]);
 
 ngmodule.config(['$uiRouterProvider', '$locationProvider', 'NotificationProvider', ($uiRouterProvider, $locationProvider, NotificationProvider) => {

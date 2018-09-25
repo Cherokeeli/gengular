@@ -7,16 +7,17 @@
             <div class="tree-node-content">
                 <label class="light-label">Id：<span class="editable-span" ng-bind="node.id"></span></label>
                 <span>|</span>
-                <label class="light-label">Title：<span contenteditable="true" class="editable-span" ng-model="node.name" ng-bind="node.name"></span></label>
+                <label class="light-label">Title：<span contenteditable="{{menuTree.editable}}" class="editable-span" ng-model="node.name" ng-bind="node.name"></span></label>
                 <span>|</span>
-                <label class="light-label">Href：<span contenteditable="true" class="editable-span" ng-model="node.url" ng-bind="node.url"></span></label>
+                <label class="light-label">Href：<span contenteditable="{{menuTree.editable}}" class="editable-span" ng-model="node.url" ng-bind="node.url"></span></label>
                 <span>|</span>
-                <label class="light-label">Icon：<span contenteditable="true" class="editable-span" ng-model="node.icon" ng-bind="node.icon"></span></label>
+                <label class="light-label">Icon：<span contenteditable="{{menuTree.editable}}" class="editable-span" ng-model="node.icon" ng-bind="node.icon"></span></label>
                 <div class="pull-right">
-                    <span auth-opt="sys:menu:select" ng-click="menuTree.addNode(this)" class="icon-button">
+                    <input ng-if="menuTree.radiotool" ng-disabled="!menuTree.checkable" ng-click="menuTree.checkItem(node)" type="checkbox" ng-model="node.checked">
+                    <span ng-if="menuTree.addtool" auth-opt="sys:menu:select" ng-click="menuTree.addNode(this)" class="icon-button">
                         <i class="fa fa-plus-circle"></i>
                     </span>
-                    <span auth-opt="sys:menu:delete" ng-click="menuTree.removeNode(this)" class="icon-button">
+                    <span ng-if="menuTree.deletetool" auth-opt="sys:menu:delete" ng-click="menuTree.removeNode(this)" class="icon-button">
                         <i class="fa fa-trash"></i>
                     </span>
                 </div>

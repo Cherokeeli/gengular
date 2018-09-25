@@ -9,6 +9,7 @@ export class UserSettingService {
         return this.appBaseService.get(url, param);
     }
 
+
     getUserById(id) {
         let url = `/sysUsers/userId/${id}`;
         return this.appBaseService.get(url, {});
@@ -22,6 +23,11 @@ export class UserSettingService {
     addUser(param) {
         let url = '/sysUsers';
         return this.appBaseService.post(url, param);
+    }
+
+    deleteUser(param) {
+        let url = '/sysUsers';
+        return this.appBaseService.delete(url, param);
     }
 }
 

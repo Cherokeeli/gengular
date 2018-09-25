@@ -23,7 +23,7 @@ class UsersController {
         };
         this.userSettingService.getUsers(param).then(res => {
             this.userList = res.records;
-            this.totalCount = res.count;
+            this.totalCount = res.total;
         }, err => {
             console.info(err);
         });
@@ -44,7 +44,41 @@ class UsersController {
     }
 
     tblOptDelete(id) {
-        this.$state.go('user', {id: id, opt: ''});
+        let that = this;
+        this.$ngConfirm({
+            icon: 'fa fa-warning',
+            theme: 'material',
+            type: 'orange',
+            title: 'Delete?',
+            animation: 'zoom',
+            closeAnimation: 'zoom',
+            animationSpeed: 200,
+            content: 'This operation cannot be rollbacked',
+            autoClose: 'cancel|5000',
+            buttons: {
+                deleteUser: {
+                    text: 'YES',
+                    btnClass: 'btn-orange',
+                    action: function () {
+                        let param = {
+                            id: id
+                        };
+                        that.userSettingService.deleteUser(param).then(res => {
+                            console.log(res);
+                            that.queryPage();
+                        }, err => {
+
+                        });
+                    }
+                },
+                cancel: {
+                    text: 'NO',
+                    action:  function () {
+
+                    }
+                }
+            }
+        });
     }
 
     $onInit() {

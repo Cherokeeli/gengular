@@ -85,7 +85,7 @@ export class AppBaseService {
      *
      * @returns {angular.IPromise<T | never>}
      */
-    delete() {
+    delete(url, data) {
         let options = this._options;
         let that = this;
         options.url = `/${this.appConfig.requestPrefix}${url}`;

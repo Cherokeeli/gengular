@@ -1,5 +1,6 @@
 import treeTemplate from './menu-tree.template.html';
 import * as style from './menu-tree.style.less';
+import { objectIndexOf } from "../../utils/utils";
 
 export class MenuTreeController {
     constructor(Store, $timeout, $ngConfirm, MenuSettingService) {
@@ -7,6 +8,8 @@ export class MenuTreeController {
         this.$ngConfirm = $ngConfirm;
         this.globalData = Store.data;
         this.menuSettingService = MenuSettingService;
+        this.checkednodes = [];
+        this.checkedids = [];
         // this.menuConfig = [
         //     {
         //         title: 'SETTINGS',
@@ -85,6 +88,13 @@ export class MenuTreeController {
                 dict.set(item.id, item);
             });
 
+            console.log(Array.isArray(this.checkedids), this.checkedids);
+            if(Array.isArray(this.checkedids)) {
+                this.checkedids.map(id => {
+                    dict.get(id).checked = true;
+                });
+            }
+
             res.forEach(item => {
                 if(item.parentId !== '0') {
                     dict.get(item.parentId).children.push(item);
@@ -106,6 +116,9 @@ export class MenuTreeController {
 
 
         this.style = style;
+    }
+
+    $onInit() {
     }
 
     addNode(scope) {
@@ -148,6 +161,23 @@ export class MenuTreeController {
             }
         });
     }
+
+    checkItem(node) {
+        console.log(this);
+        if(!Array.isArray(this.checkedids)) {
+            this.checkedids = []
+        }
+        let index = this.checkedids.indexOf(node.id);
+        if (node.checked) {
+            if (index === -1) {
+                this.checkedids.push(node.id);
+            }
+        } else {
+            if (index > -1) {
+                this.checkedids.splice(index, 1);
+            }
+        }
+    }
 }
 
 MenuTreeController.$inject=['Store', '$timeout', '$ngConfirm', 'MenuSettingService'];
@@ -155,5 +185,13 @@ MenuTreeController.$inject=['Store', '$timeout', '$ngConfirm', 'MenuSettingServi
 export const menuTree = {
     controller: MenuTreeController,
     controllerAs: 'menuTree',
+    bindings: {
+        checkedids: '=',
+        checkable: '<',
+        editable: '<',
+        radiotool: '<',
+        addtool: '<',
+        deletetool: '<'
+    },
     template: treeTemplate
 };

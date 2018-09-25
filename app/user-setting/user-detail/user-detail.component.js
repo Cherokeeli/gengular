@@ -3,13 +3,13 @@ import * as style from './user-detail.style.less';
 import { OPT_TYPE } from '../../global/global.enum';
 
 export class UserDetailController {
-    constructor(Store, $timeout, $ngConfirm, $stateParams, UserSettingService) {
-        console.log(Store.data);
+    constructor(Store, $timeout, $ngConfirm, $stateParams, UserSettingService, $state) {
         this.$ngConfirm = $ngConfirm;
         this.$stateParams = $stateParams;
         this.userSettingService = UserSettingService;
         this.data = Store.data;
         this.style = style;
+        this.$state = $state;
 
         this.roleList = [
             {
@@ -34,13 +34,15 @@ export class UserDetailController {
 
     $onInit() {
         let currentStatus = this.$stateParams.opt;
+        let that = this;
         if(this.$stateParams.id) {
-            this.userSettingService.getUserById(this.$stateParams.id).then(res => {
-                console.log(res);
-                this.user = res;
-            }, err => {
-                console.info(err);
-            });
+            that.userSettingService.getUserById(this.$stateParams.id)
+                .then(res => {
+                    console.log(res);
+                    this.user = res;
+                }, err => {
+                    console.info(err);
+                });
 
             switch (currentStatus) {
                 case OPT_TYPE.EDIT:
@@ -74,12 +76,16 @@ export class UserDetailController {
         };
     }
 
+    back() {
+        this.$state.go('users');
+    }
+
     viewPageInit() {
         this.uneditable  = true;
     }
 }
 
-UserDetailController.$inject=['Store', '$timeout', '$ngConfirm', '$stateParams', 'UserSettingService'];
+UserDetailController.$inject=['Store', '$timeout', '$ngConfirm', '$stateParams', 'UserSettingService', '$state'];
 
 export const userDetail = {
     controller: UserDetailController,
