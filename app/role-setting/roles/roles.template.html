@@ -1,0 +1,64 @@
+<div class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div ng-if="roles.pagesizetool" class="dataTables_length">
+                        <label>Show <select name="example1_length" aria-controls="example1"
+                                            class="form-control input-sm">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select> entries</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="dataTables_filter" ng-if="roles.searchtool">
+                        <label>Search:<input type="search" class="form-control input-sm" placeholder=""
+                                             aria-controls="example1"></label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <button ng-if="roles.addtool" ng-click="roles.tblOptAdd()" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>New</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered table-striped dataTable" role="grid"
+                           aria-describedby="example1_info">
+                        <thead>
+                        <tr role="row">
+                            <th>Index</th>
+                            <th>Role name</th>
+                            <th>Authorities</th>
+                            <th>Remark</th>
+                            <th class="col-xs-2">Operation</th>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="($roleIndex, role) in roles.roleList" role="row">
+                            <td>{{$roleIndex+1}}</td>
+                            <td>{{role.roleName}}</td>
+                            <td>{{role.menuIdList}}</td>
+                            <td>{{role.remark}}</td>
+                            <td>
+                                <input ng-if="roles.checktool" type="checkbox" ng-click="roles.checkItem(role)" ng-model="role.checked">
+                                <span ng-if="roles.edittool" auth-opt="sys:user:update" ng-click="roles.tblOptEdit(role.id)" class="table-control-btn" title="Edit"><i class="fa fa-pencil"></i></span>
+                                <span ng-if="roles.viewtool" auth-opt="sys:user:info" ng-click="roles.tblOptView(role.id)" class="table-control-btn" title="View"><i class="fa fa-television"></i></span>
+                                <span ng-if="roles.deletetool" auth-opt="sys:user:delete" ng-click="roles.tblOptDelete(role.id)" class="table-control-btn" title="Delete"><i class="fa fa-trash"></i></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    Showing {{(roles.bigCurrentPage-1)*roles.itemsPerPage || 1}} to {{(roles.bigCurrentPage)*roles.itemsPerPage}} of {{roles.totalCount}} entries
+                </div>
+                <div class="col-sm-7">
+                    <ul class="pagination pull-right" uib-pagination total-items="roles.totalCount"
+                        ng-model="roles.bigCurrentPage" items-per-page="roles.itemsPerPage" class="pagination-sm"
+                        ng-change="roles.queryPage(roles)"
+                        boundary-link-numbers="true" rotate="true" boundary-links="true"></ul>
+                </div>
+            </div>
+        </div>
