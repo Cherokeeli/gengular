@@ -22,7 +22,7 @@ export function includeReplace() {
         /*link: function (scope, element, attrs) {
             console.log(element[0].childNodes)
         }*/
-        compile: function (tElement, tAttrs) {
+        compile: (tElement, tAttrs) => {
             console.log(tElement);
             tElement.replaceWith(tElement.children());
             return {

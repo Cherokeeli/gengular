@@ -83,7 +83,7 @@ class RoleDetailController {
     }
 
     back() {
-        this.$state.go('users');
+        this.$state.go('roles');
     }
 
     viewPageInit() {

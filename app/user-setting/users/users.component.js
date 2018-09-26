@@ -1,16 +1,18 @@
 import template from './users.template.html';
 import { OPT_TYPE } from '../../global/global.enum';
+import {TemplateHelper} from "../../global/templateHelper.service";
 
 
 class UsersController {
-    constructor($ngConfirm, Notification, $timeout, Store, UserSettingService, $state) {
+    constructor($ngConfirm, Notification, $timeout, Store, UserSettingService, $state, TemplateHelper) {
+        console.log(this);
         this.$ngConfirm = $ngConfirm;
         this.notification = Notification;
         this.$timeout = $timeout;
         this.userSettingService = UserSettingService;
-        this.itemsPerPage = 2;
         this.$state = $state;
         this.globalData = Store.data;
+        this.templateHelper = TemplateHelper;
         this.userList = [];
         this.totalCount = this.userList.length;
         this.bigCurrentPage = 1;
@@ -19,7 +21,7 @@ class UsersController {
     queryPage() {
         let param = {
             pageNo: this.bigCurrentPage,
-            pageSize: this.itemsPerPage
+            pageSize: this.itemsperpage || 10
         };
         this.userSettingService.getUsers(param).then(res => {
             this.userList = res.records;
@@ -86,10 +88,22 @@ class UsersController {
     }
 }
 
-UsersController.$inject = ['$ngConfirm', 'Notification', '$timeout', 'Store', 'UserSettingService', '$state'];
+UsersController.$inject = ['$ngConfirm', 'Notification', '$timeout', 'Store', 'UserSettingService', '$state', 'TemplateHelper'];
 
 export const users = {
     controller: UsersController,
     controllerAs: 'users',
+    bindings: {
+        checkable: '<',
+        checkedids: '=',
+        checktool: '<',
+        edittool: '<',
+        viewtool: '<',
+        deletetool: '<',
+        addtool: '<',
+        searchtool: '<',
+        pagesizetool: '<',
+        itemsperpage: '<'
+    },
     template: template
 };

@@ -10,18 +10,21 @@ class RolesController {
         this.notification = Notification;
         this.$timeout = $timeout;
         this.roleSettingService = RoleSettingService;
-        this.itemsPerPage = 2;
+        // this.itemsPerPage = 2;
         this.$state = $state;
         this.globalData = Store.data;
         this.roleList = [];
         // this.totalCount = this.userList.length;
         this.bigCurrentPage = 1;
+        console.log(this.addtool, this.checktool);
     }
 
     queryPage() {
+        console.log(this.checkedids);
+
         let param = {
             pageNo: this.bigCurrentPage,
-            pageSize: this.itemsPerPage
+            pageSize: this.itemsperpage || 10
         };
         this.roleSettingService.getRoles(param).then(res => {
             this.roleList = res.records;
@@ -121,11 +124,16 @@ export const roles = {
     controller: RolesController,
     controllerAs: 'roles',
     bindings: {
+        checkable: '<',
         checkedids: '=',
         checktool: '<',
         edittool: '<',
         viewtool: '<',
-        deletetool: '<'
+        deletetool: '<',
+        addtool: '<',
+        searchtool: '<',
+        pagesizetool: '<',
+        itemsperpage: '<'
     },
     template: template
 };

@@ -3,11 +3,12 @@ import * as style from './menu-tree.style.less';
 import { objectIndexOf } from "../../utils/utils";
 
 export class MenuTreeController {
-    constructor(Store, $timeout, $ngConfirm, MenuSettingService) {
+    constructor(Store, $timeout, $ngConfirm, MenuSettingService, $state) {
         console.log(Store.data);
         this.$ngConfirm = $ngConfirm;
         this.globalData = Store.data;
         this.menuSettingService = MenuSettingService;
+        this.$state = $state;
         this.checkednodes = [];
         this.checkedids = [];
         // this.menuConfig = [
@@ -134,6 +135,8 @@ export class MenuTreeController {
 
     removeNode(scope) {
         let that = this;
+        let node = scope.$modelValue;
+        console.log(scope);
         that.$ngConfirm({
             icon: 'fa fa-warning',
             theme: 'material',
@@ -149,7 +152,13 @@ export class MenuTreeController {
                     text: 'YES',
                     btnClass: 'btn-orange',
                     action: function () {
-                        scope.remove();
+                        that.menuSettingService.deleteMenuItem(node).then(res => {
+                            console.log(res);
+                            scope.remove();
+                        }, err => {
+
+                        });
+
                     }
                 },
                 cancel: {
@@ -159,6 +168,16 @@ export class MenuTreeController {
                     }
                 }
             }
+        });
+    }
+
+    updateNode(scope, formName) {
+        let node = scope.$modelValue;
+        this.menuSettingService.updateMenuItem(node).then(res => {
+            console.log(res, this[formName]);
+            this[formName].$setPristine();
+        }, err => {
+            console.log(err);
         });
     }
 
@@ -180,7 +199,7 @@ export class MenuTreeController {
     }
 }
 
-MenuTreeController.$inject=['Store', '$timeout', '$ngConfirm', 'MenuSettingService'];
+MenuTreeController.$inject=['Store', '$timeout', '$ngConfirm', 'MenuSettingService', '$state'];
 
 export const menuTree = {
     controller: MenuTreeController,

@@ -1,7 +1,7 @@
 export function contenteditable() {
     return {
         require: '?ngModel',
-        link: function (scope, element, attrs, ctrl) {
+        link: (scope, element, attrs, ctrl) => {
             element.bind('keyup', function (event) {
                 scope.$apply(_=> {
                     let html = element.text().replace(/\<(S*?)[^\>]*\>.*?|\<.*?\/>/g,"");

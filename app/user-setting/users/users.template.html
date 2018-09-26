@@ -1,13 +1,7 @@
-<div class="box">
-    <div class="box-header">
-        <h3 class="box-title">User setting</h3>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-        <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+<div class="dataTables_wrapper form-inline dt-bootstrap">
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="dataTables_length" id="example1_length">
+                    <div ng-if="users.pagesizetool" class="dataTables_length" id="example1_length">
                         <label>Show <select name="example1_length" aria-controls="example1"
                                             class="form-control input-sm">
                             <option value="10">10</option>
@@ -18,13 +12,13 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="dataTables_filter">
+                    <div ng-if="users.searchtool" class="dataTables_filter">
                         <label>Search:<input type="search" class="form-control input-sm" placeholder=""
                                              aria-controls="example1"></label>
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <button ng-click="users.tblOptAdd()" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>New</button>
+                    <button ng-if="users.addtool" ng-click="users.tblOptAdd()" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>New</button>
                 </div>
             </div>
             <div class="row">
@@ -45,12 +39,13 @@
                             <td>{{$userindex+1}}</td>
                             <td>{{user.username}}</td>
                             <td>{{user.email}}</td>
-                            <td>{{user.role}}</td>
+                            <td>{{user.roleNameList.join(',')}}</td>
                             <td>{{user.mobile}}</td>
                             <td>
-                                <span auth-opt="sys:user:update" ng-click="users.tblOptEdit(user.id)" class="table-control-btn" title="Edit"><i class="fa fa-pencil"></i></span>
-                                <span auth-opt="sys:user:info" ng-click="users.tblOptView(user.id)" class="table-control-btn" title="View"><i class="fa fa-television"></i></span>
-                                <span auth-opt="sys:user:delete" ng-click="users.tblOptDelete(user.id)" class="table-control-btn" title="Delete"><i class="fa fa-trash"></i></span>
+                                <input ng-if="users.checktool" ng-disabled="!users.checkable" ng-model="user.checked" type="checkbox">
+                                <span ng-if="users.edittool" auth-opt="sys:user:update" ng-click="users.tblOptEdit(user.id)" class="table-control-btn" title="Edit"><i class="fa fa-pencil"></i></span>
+                                <span ng-if="users.viewtool" auth-opt="sys:user:info" ng-click="users.tblOptView(user.id)" class="table-control-btn" title="View"><i class="fa fa-television"></i></span>
+                                <span ng-if="users.deletetool" auth-opt="sys:user:delete" ng-click="users.tblOptDelete(user.id)" class="table-control-btn" title="Delete"><i class="fa fa-trash"></i></span>
                             </td>
                         </tr>
                         </tbody>
@@ -59,16 +54,13 @@
             </div>
             <div class="row">
                 <div class="col-sm-5">
-                    Showing {{(users.bigCurrentPage-1)*users.itemsPerPage || 1}} to {{(users.bigCurrentPage)*users.itemsPerPage}} of {{users.totalCount}} entries
+                    Showing {{(users.bigCurrentPage-1)*users.itemsperpage || 1}} to {{templateHelper.minVal((users.bigCurrentPage)*users.itemsperpage, users.totalCount)}} of {{users.totalCount}} entries
                 </div>
-                <div class="col-sm-7">
+                <div ng-if="users.totalCount/users.itemsperpage > 1" class="col-sm-7">
                     <ul class="pagination pull-right" uib-pagination total-items="users.totalCount"
-                        ng-model="users.bigCurrentPage" items-per-page="users.itemsPerPage" class="pagination-sm"
+                        ng-model="users.bigCurrentPage" items-per-page="users.itemsperpage" class="pagination-sm"
                         ng-change="users.queryPage(users)"
                         boundary-link-numbers="true" rotate="true" boundary-links="true"></ul>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- /.box-body -->
-</div>

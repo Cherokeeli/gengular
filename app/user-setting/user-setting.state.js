@@ -4,7 +4,8 @@ export const usersState = {
     name: 'users',
     url: '/users',
     parent: 'app',
-    component: 'users',
+    // component: 'users',
+    templateUrl: 'app/user-setting/user-overview.template.html'
 };
 
 export const userDetailState = {

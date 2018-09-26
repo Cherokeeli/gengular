@@ -40,7 +40,7 @@
                             <td>{{role.menuIdList}}</td>
                             <td>{{role.remark}}</td>
                             <td>
-                                <input ng-if="roles.checktool" type="checkbox" ng-click="roles.checkItem(role)" ng-model="role.checked">
+                                <input ng-if="roles.checktool" ng-disabled="!roles.checkable" type="checkbox" ng-click="roles.checkItem(role)" ng-model="role.checked">
                                 <span ng-if="roles.edittool" auth-opt="sys:user:update" ng-click="roles.tblOptEdit(role.id)" class="table-control-btn" title="Edit"><i class="fa fa-pencil"></i></span>
                                 <span ng-if="roles.viewtool" auth-opt="sys:user:info" ng-click="roles.tblOptView(role.id)" class="table-control-btn" title="View"><i class="fa fa-television"></i></span>
                                 <span ng-if="roles.deletetool" auth-opt="sys:user:delete" ng-click="roles.tblOptDelete(role.id)" class="table-control-btn" title="Delete"><i class="fa fa-trash"></i></span>
@@ -52,11 +52,11 @@
             </div>
             <div class="row">
                 <div class="col-sm-5">
-                    Showing {{(roles.bigCurrentPage-1)*roles.itemsPerPage || 1}} to {{(roles.bigCurrentPage)*roles.itemsPerPage}} of {{roles.totalCount}} entries
+                    Showing {{(roles.bigCurrentPage-1)*roles.itemsperpage || 1}} to {{(roles.bigCurrentPage)*roles.itemsperpage}} of {{roles.totalCount}} entries
                 </div>
-                <div class="col-sm-7">
+                <div ng-if="roles.totalCount/roles.itemsperpage > 1" class="col-sm-7">
                     <ul class="pagination pull-right" uib-pagination total-items="roles.totalCount"
-                        ng-model="roles.bigCurrentPage" items-per-page="roles.itemsPerPage" class="pagination-sm"
+                        ng-model="roles.bigCurrentPage" items-per-page="roles.itemsperpage" class="pagination-sm"
                         ng-change="roles.queryPage(roles)"
                         boundary-link-numbers="true" rotate="true" boundary-links="true"></ul>
                 </div>

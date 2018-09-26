@@ -10,6 +10,7 @@ export class UserDetailController {
         this.data = Store.data;
         this.style = style;
         this.$state = $state;
+        console.log($state);
 
         this.roleList = [
             {

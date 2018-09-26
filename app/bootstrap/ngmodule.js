@@ -44,7 +44,6 @@ import 'angular-ui-notification/dist/angular-ui-notification.min.css';
 // 自定义模块
 import { MAIN_MODULE } from '../main/main.module';
 import { GLOBAL_MODULE } from "../global/global.module";
-import { USER_SETTING_MODULE } from "../user-setting/user-setting.module";
 
 export const ngmodule = angular.module('App', [
     uiRouter,
@@ -54,7 +53,6 @@ export const ngmodule = angular.module('App', [
     'cp.ngConfirm',
     GLOBAL_MODULE.name,
     MAIN_MODULE.name,
-    // USER_SETTING_MODULE.name
 ]);
 
 ngmodule.config(['$uiRouterProvider', '$locationProvider', 'NotificationProvider', ($uiRouterProvider, $locationProvider, NotificationProvider) => {
