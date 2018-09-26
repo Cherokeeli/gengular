@@ -1,0 +1,68 @@
+<div class="dataTables_wrapper form-inline dt-bootstrap">
+    <div class="row">
+        <div class="col-sm-6">
+            <div ng-if="quartz.pagesizetool" class="dataTables_length">
+                <label>Show <select name="example1_length" aria-controls="example1"
+                                    class="form-control input-sm">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select> entries</label>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="dataTables_filter" ng-if="quartz.searchtool">
+                <label>Search:<input type="search" class="form-control input-sm" placeholder=""
+                                     aria-controls="example1"></label>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <button ng-if="quartz.addtool" ng-click="quartz.tblOptAdd()" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>New</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-bordered table-striped dataTable" role="grid"
+                   aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                    <th>Index</th>
+                    <th>Bean name</th>
+                    <th>Method name</th>
+                    <th>Parameters</th>
+                    <th>Cron Expression</th>
+                    <th>Remark</th>
+                    <th class="col-xs-2">Operation</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="($taskIndex, task) in quartz.taskList" role="row">
+                    <td>{{$taskIndex+1}}</td>
+                    <td>{{task.beanName}}</td>
+                    <td>{{task.methodName}}</td>
+                    <td>{{task.params}}</td>
+                    <td>{{task.cronExpression}}</td>
+                    <td>{{task.remark}}</td>
+                    <td>
+                        <input ng-if="quartz.checktool" ng-disabled="!quartz.checkable" type="checkbox" ng-click="quartz.checkItem(task)" ng-model="task.checked">
+                        <span ng-if="quartz.edittool" auth-opt="sys:user:update" ng-click="quartz.tblOptEdit(task.id)" class="table-control-btn" title="Edit"><i class="fa fa-pencil"></i></span>
+                        <span ng-if="quartz.viewtool" auth-opt="sys:user:info" ng-click="quartz.tblOptView(task.id)" class="table-control-btn" title="View"><i class="fa fa-television"></i></span>
+                        <span ng-if="quartz.deletetool" auth-opt="sys:user:delete" ng-click="quartz.tblOptDelete(task.id)" class="table-control-btn" title="Delete"><i class="fa fa-trash"></i></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            Showing {{(quartz.bigCurrentPage-1)*quartz.itemsperpage || 1}} to {{(quartz.bigCurrentPage)*quartz.itemsperpage > quartz.totalCount?(quartz.bigCurrentPage)*quartz.itemsperpage:quartz.totalCount}} of {{quartz.totalCount}} entries
+        </div>
+        <div ng-if="quartz.totalCount/quartz.itemsperpage > 1" class="col-sm-7">
+            <ul class="pagination pull-right" uib-pagination total-items="quartz.totalCount"
+                ng-model="quartz.bigCurrentPage" items-per-page="quartz.itemsperpage" class="pagination-sm"
+                ng-change="quartz.queryPage(quartz)"
+                boundary-link-numbers="true" rotate="true" boundary-links="true"></ul>
+        </div>
+    </div>
+</div>
