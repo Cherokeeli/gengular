@@ -2,6 +2,7 @@
 export const authState = {
     name: 'root',
     url: '/',
+    abstract: true,
     resolve: {
         // 获取权限信息
         authPermission: ['AuthService', 'AuthStore', (AuthService, AuthStore) => {

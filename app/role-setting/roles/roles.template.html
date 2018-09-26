@@ -52,7 +52,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-5">
-                    Showing {{(roles.bigCurrentPage-1)*roles.itemsperpage || 1}} to {{(roles.bigCurrentPage)*roles.itemsperpage}} of {{roles.totalCount}} entries
+                    Showing {{(roles.bigCurrentPage-1)*roles.itemsperpage || 1}} to {{(roles.bigCurrentPage)*roles.itemsperpage > roles.totalCount?(roles.bigCurrentPage)*roles.itemsperpage:roles.totalCount}} of {{roles.totalCount}} entries
                 </div>
                 <div ng-if="roles.totalCount/roles.itemsperpage > 1" class="col-sm-7">
                     <ul class="pagination pull-right" uib-pagination total-items="roles.totalCount"

@@ -128,7 +128,9 @@ export class MenuTreeController {
         list.children.unshift({
             title: 'New node',
             href: '',
+            parentId: list.id,
             icon: '',
+            isNew: true,
             children: []
         })
     }
@@ -173,12 +175,21 @@ export class MenuTreeController {
 
     updateNode(scope, formName) {
         let node = scope.$modelValue;
-        this.menuSettingService.updateMenuItem(node).then(res => {
-            console.log(res, this[formName]);
-            this[formName].$setPristine();
-        }, err => {
-            console.log(err);
-        });
+        if(node.isNew) {
+            this.menuSettingService.addMenuItem(node).then(res=> {
+                console.log(res);
+                this[formName].$setPristine();
+            }, err => {
+                console.log(err);
+            });
+        } else {
+            this.menuSettingService.updateMenuItem(node).then(res => {
+                console.log(res, this[formName]);
+                this[formName].$setPristine();
+            }, err => {
+                console.log(err);
+            });
+        }
     }
 
     checkItem(node) {

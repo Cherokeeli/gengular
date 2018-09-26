@@ -8,12 +8,14 @@ import { dashboard } from "./dashboard/dashboard.component";
 import { MENU_SETTING_MODULE } from "../menu-setting/menu-setting.module";
 import { ROLE_SETTING_MODULE } from "../role-setting/role-setting.module";
 import { USER_SETTING_MODULE } from "../user-setting/user-setting.module";
+import {QUARTZ_SETTING_MODULE} from "../quartz-setting/quartz-setting.module";
 
 export const MAIN_MODULE = angular.module('main', [
     // 在这写依赖模块诶
     MENU_SETTING_MODULE.name,
     USER_SETTING_MODULE.name,
-    ROLE_SETTING_MODULE.name
+    ROLE_SETTING_MODULE.name,
+    QUARTZ_SETTING_MODULE.name
 ]);
 
 /**
@@ -23,7 +25,7 @@ MAIN_MODULE.config(['$uiRouterProvider', function($uiRouter) {
     // $uiRouter.trace.enable(1);
 
     const $urlService = $uiRouter.urlService;
-    // $urlService.rules.otherwise({ state: 'dashboard' });
+    $urlService.rules.otherwise({ state: 'login' });
 
     const $stateRegistry = $uiRouter.stateRegistry;
     $stateRegistry.register(appState);

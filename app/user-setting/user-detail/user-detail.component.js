@@ -12,25 +12,6 @@ export class UserDetailController {
         this.$state = $state;
         console.log($state);
 
-        this.roleList = [
-            {
-                id: 1,
-                roleName: 'CIO'
-            },
-            {
-                id: 2,
-                roleName: 'CEO'
-            },
-            {
-                id: 3,
-                roleName: 'CTO'
-            },
-            {
-                id: 4,
-                roleName: 'COO'
-            }
-        ];
-
     }
 
     $onInit() {

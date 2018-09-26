@@ -21,7 +21,8 @@ module.exports = {
         // allowedHosts: ['http://10.119.18.21:83'],
         // hot: true,
         // port: 8080,
-        host: '0.0.0.0',
+        // host: '0.0.0.0',
+        open: true,
         // contentBase: './',
         proxy: {
             '/oshoms': {

@@ -54,7 +54,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-5">
-                    Showing {{(users.bigCurrentPage-1)*users.itemsperpage || 1}} to {{templateHelper.minVal((users.bigCurrentPage)*users.itemsperpage, users.totalCount)}} of {{users.totalCount}} entries
+                    Showing {{(users.bigCurrentPage-1)*users.itemsperpage || 1}} to {{(users.bigCurrentPage)*users.itemsperpage > users.totalCount?(users.bigCurrentPage)*users.itemsperpage:users.totalCount}} of {{users.totalCount}} entries
                 </div>
                 <div ng-if="users.totalCount/users.itemsperpage > 1" class="col-sm-7">
                     <ul class="pagination pull-right" uib-pagination total-items="users.totalCount"
