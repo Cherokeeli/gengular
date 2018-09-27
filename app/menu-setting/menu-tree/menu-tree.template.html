@@ -13,6 +13,11 @@
                     <label class="light-label">Href：<span contenteditable="{{menuTree.editable}}" name="editUrl" class="editable-span" ng-model="node.url" ng-bind="node.url"></span></label>
                     <span>|</span>
                     <label class="light-label">Icon：<span contenteditable="{{menuTree.editable}}" name="editIcon" class="editable-span" ng-model="node.icon" ng-bind="node.icon"></span></label>
+                    <div class="btn-group btn-group-sm btn-group-default">
+                        <label class="btn btn-default" ng-model="node.type" uib-btn-radio="0">Content</label>
+                        <label class="btn btn-default" ng-model="node.type" uib-btn-radio="1">Page</label>
+                        <label class="btn btn-default" ng-model="node.type" uib-btn-radio="2">Button</label>
+                    </div>
                     <div class="pull-right">
                         <input ng-if="menuTree.radiotool" ng-disabled="!menuTree.checkable" ng-click="menuTree.checkItem(node)" type="checkbox" ng-model="node.checked">
                         <span ng-if="menuTree[formName+$nodeIndex].$dirty && node.isNew" ng-click="menuTree.saveNode(this, formName+$nodeIndex)" auth-opt="sys:menu:save" class="icon-button" title="Save">

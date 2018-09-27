@@ -27,9 +27,10 @@ export class AppBaseService {
         options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.params = params;
         options.method = 'GET';
-        this.alertToasterService.popup("Fetching", "Fetching data...").pending();
+        let pendingPop = this.alertToasterService.popup("Fetching", "Fetching data...").pending();
         return this.$http(options)
             .then(response => {
+                pendingPop.then(pop=>pop.kill());
                 if(response.ok) {
                     this.alertToasterService.popup("Success!", "Fetch data successfully").success();
                     return that.$q.resolve(response.data);
@@ -52,9 +53,10 @@ export class AppBaseService {
         options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.data = data;
         options.method = 'POST';
-        this.alertToasterService.popup("Submitting", "Submitting data...").pending();
+        let pendingPop = this.alertToasterService.popup("Submitting", "Submitting data...").pending();
         return this.$http(options)
             .then(response => {
+                pendingPop.then(pop=>pop.kill());
                 if(response.ok) {
                     this.alertToasterService.popup("Success!", "Submit data successfully").success();
                     return that.$q.resolve(response);
@@ -78,9 +80,10 @@ export class AppBaseService {
         options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.data = data;
         options.method = 'PUT';
-        this.alertToasterService.popup("Updating", "Updating data...").pending();
+        let pendingPop = this.alertToasterService.popup("Updating", "Updating data...").pending();
         return this.$http(options)
             .then(response => {
+                pendingPop.then(pop=>pop.kill());
                 if(response.ok) {
                     this.alertToasterService.popup("Success!", "Update data successfully").success();
                     return that.$q.resolve(response.data);
@@ -101,9 +104,10 @@ export class AppBaseService {
         options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.data = data;
         options.method = 'DELETE';
-        this.alertToasterService.popup("Deleting", "Deleting data...").pending();
+        let pendingPop = this.alertToasterService.popup("Deleting", "Deleting data...").pending();
         return this.$http(options)
             .then(response => {
+                pendingPop.then(pop=>pop.kill());
                 if(response.ok) {
                     this.alertToasterService.popup("Success!", "Delete data successfully").success();
                     return this.$q.resolve(response.data);

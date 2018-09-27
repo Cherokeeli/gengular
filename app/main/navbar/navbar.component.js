@@ -15,6 +15,14 @@ class NavbarController {
             console.info('Logout failed',err);
         })
     }
+
+    $onInit() {
+        this.mainService.getLogInfo().then(res => {
+            this.user = res;
+        }, err => {
+            console.info(err);
+        })
+    }
 }
 
 NavbarController.$inject = ['MainService', '$state'];

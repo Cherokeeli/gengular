@@ -30,7 +30,7 @@ export class AlertToasterService {
             error() {
                 return that.Notification(
                     {
-                        replaceMessage: true,
+                        // replaceMessage: true,
                         message: `<div class="alert alert-danger alert-dismissible">
                                 <h4><i class="icon fa fa-close"></i>${title || 'Error!'}</h4>
                                  ${content || ''}</div>`
