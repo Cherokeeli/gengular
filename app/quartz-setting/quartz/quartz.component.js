@@ -115,6 +115,33 @@ class QuartzController {
             }
         }
     }
+
+    quartzOptRun(task) {
+        this.quartzSettingService.runTask(task).then(res => {
+            console.log(res);
+            this.$state.reload();
+        }, err => {
+            console.log(err);
+        });
+    }
+
+    quartzOptResume(task) {
+        this.quartzSettingService.resumeTask(task).then(res => {
+            console.log(res);
+            this.$state.reload();
+        }, err => {
+            console.log(err);
+        });
+    }
+
+    quartzOptPause(task) {
+        this.quartzSettingService.pauseTask(task).then(res => {
+            console.log(res);
+            this.$state.reload();
+        }, err => {
+            console.log(err);
+        });
+    }
 }
 
 QuartzController.$inject = ['$ngConfirm', 'Notification', '$timeout', 'Store', 'QuartzSettingService', '$state'];

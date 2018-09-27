@@ -125,6 +125,7 @@ export class MenuTreeController {
     addNode(scope) {
         console.log(scope);
         let list = scope.$modelValue;
+        // 新增的节点加入一个isNew字段判断之后调用保存还是更新方法
         list.children.unshift({
             title: 'New node',
             href: '',
@@ -173,23 +174,24 @@ export class MenuTreeController {
         });
     }
 
+    saveNode(scope, formName) {
+        let node = scope.$modelValue;
+        this.menuSettingService.addMenuItem(node).then(res=> {
+            console.log(res);
+            this[formName].$setPristine();
+        }, err => {
+            console.log(err);
+        });
+    }
+
     updateNode(scope, formName) {
         let node = scope.$modelValue;
-        if(node.isNew) {
-            this.menuSettingService.addMenuItem(node).then(res=> {
-                console.log(res);
-                this[formName].$setPristine();
-            }, err => {
-                console.log(err);
-            });
-        } else {
-            this.menuSettingService.updateMenuItem(node).then(res => {
-                console.log(res, this[formName]);
-                this[formName].$setPristine();
-            }, err => {
-                console.log(err);
-            });
-        }
+        this.menuSettingService.updateMenuItem(node).then(res => {
+            console.log(res, this[formName]);
+            this[formName].$setPristine();
+        }, err => {
+            console.log(err);
+        });
     }
 
     checkItem(node) {

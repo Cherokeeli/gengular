@@ -32,6 +32,7 @@
                     <th>Method name</th>
                     <th>Parameters</th>
                     <th>Cron Expression</th>
+                    <th>Status</th>
                     <th>Remark</th>
                     <th class="col-xs-2">Operation</th>
                 </thead>
@@ -42,12 +43,16 @@
                     <td>{{task.methodName}}</td>
                     <td>{{task.params}}</td>
                     <td>{{task.cronExpression}}</td>
+                    <td>{{ {'0':'Running', '1': 'Stopping'}[task.status]}}</td>
                     <td>{{task.remark}}</td>
                     <td>
                         <input ng-if="quartz.checktool" ng-disabled="!quartz.checkable" type="checkbox" ng-click="quartz.checkItem(task)" ng-model="task.checked">
-                        <span ng-if="quartz.edittool" auth-opt="sys:user:update" ng-click="quartz.tblOptEdit(task.id)" class="table-control-btn" title="Edit"><i class="fa fa-pencil"></i></span>
-                        <span ng-if="quartz.viewtool" auth-opt="sys:user:info" ng-click="quartz.tblOptView(task.id)" class="table-control-btn" title="View"><i class="fa fa-television"></i></span>
-                        <span ng-if="quartz.deletetool" auth-opt="sys:user:delete" ng-click="quartz.tblOptDelete(task.id)" class="table-control-btn" title="Delete"><i class="fa fa-trash"></i></span>
+                        <span auth-opt="sys:schedule:pause" title="Pause" ng-click="quartz.quartzOptPause(task)" class="table-control-btn"><i class="fa fa-pause-circle-o"></i></span>
+                        <span auth-opt="sys:schedule:resume" title="Resume" ng-click="quartz.quartzOptResume(task)" class="table-control-btn"><i class="fa fa-play-circle-o"></i></span>
+                        <span auth-opt="sys:schedule:run" title="Run" ng-click="quartz.quartzOptRun(task)" class="table-control-btn"><i class="fa fa-play"></i></span>
+                        <span ng-if="quartz.edittool" auth-opt="sys:schedule:update" ng-click="quartz.tblOptEdit(task.id)" class="table-control-btn" title="Edit"><i class="fa fa-pencil"></i></span>
+                        <span ng-if="quartz.viewtool" auth-opt="sys:schedule:info" ng-click="quartz.tblOptView(task.id)" class="table-control-btn" title="View"><i class="fa fa-television"></i></span>
+                        <span ng-if="quartz.deletetool" auth-opt="sys:schedule:delete" ng-click="quartz.tblOptDelete(task.id)" class="table-control-btn" title="Delete"><i class="fa fa-trash"></i></span>
                     </td>
                 </tr>
                 </tbody>
