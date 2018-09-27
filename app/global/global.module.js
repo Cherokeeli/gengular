@@ -8,6 +8,7 @@ import { authOpt } from "./directive/authOpt.directive";
 import { qlIf } from "./directive/qlIf.directive";
 import { TemplateHelper } from "./templateHelper.service";
 import { dirtyAndHide } from "./directive/dirtyAndHide.directive";
+import {AlertToasterService} from "./alertToaster.service";
 
 export const GLOBAL_MODULE = angular.module('global', [
     // 在这写模块依赖诶
@@ -29,6 +30,7 @@ GLOBAL_MODULE.service('AppConfig', AppConfig);
 GLOBAL_MODULE.service('AppBaseService', AppBaseService);
 GLOBAL_MODULE.service('AuthService', AuthService);
 GLOBAL_MODULE.service('TemplateHelper', TemplateHelper);
+GLOBAL_MODULE.service('AlertToasterService', AlertToasterService);
 
 GLOBAL_MODULE.factory('AuthStore', () => {
     return {
