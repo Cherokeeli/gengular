@@ -40,6 +40,7 @@ export class AlertToasterService {
             pending() {
                 return that.Notification(
                     {
+                        replaceMessage: true,
                         delay: 99999999,
                         message: `<div class="alert alert-info alert-dismissible">
                                 <h4><i class="icon fa fa-cog fa-spin"></i>${title || 'Error!'}</h4>
@@ -47,40 +48,6 @@ export class AlertToasterService {
                     });
             }
         };
-        /*switch (type) {
-            case "success":
-                return this.Notification(
-                    {
-                        replaceMessage: true,
-                        message: `<div class="alert alert-success alert-dismissible">
-                                <h4><i class="icon fa fa-check"></i>${title || 'Success!'}</h4>
-                                 ${content || ''}</div>`
-                    });
-            case "warning":
-                return this.Notification(
-                    {
-                        replaceMessage: true,
-                        message: `<div class="alert alert-warning alert-dismissible">
-                                <h4><i class="icon fa fa-info"></i>${title || 'Warning!'}</h4>
-                                 ${content || ''}</div>`
-                    });
-            case "error":
-                return this.Notification(
-                    {
-                        replaceMessage: true,
-                        message: `<div class="alert alert-danger alert-dismissible">
-                                <h4><i class="icon fa fa-close"></i>${title || 'Error!'}</h4>
-                                 ${content || ''}</div>`
-                    });
-            case "pending":
-                return this.Notification(
-                    {
-                        delay: 99999999,
-                        message: `<div class="alert alert-info alert-dismissible">
-                                <h4><i class="icon fa fa-cog fa-spin"></i>${title || 'Error!'}</h4>
-                                 ${content || ''}</div>`
-                    });
-        }*/
     }
 
     dialog(type, title, content) {

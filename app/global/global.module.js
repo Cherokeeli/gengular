@@ -8,7 +8,7 @@ import { authOpt } from "./directive/authOpt.directive";
 import { qlIf } from "./directive/qlIf.directive";
 import { TemplateHelper } from "./templateHelper.service";
 import { dirtyAndHide } from "./directive/dirtyAndHide.directive";
-import {AlertToasterService} from "./alertToaster.service";
+import { AlertToasterService } from "./alertToaster.service";
 
 export const GLOBAL_MODULE = angular.module('global', [
     // 在这写模块依赖诶

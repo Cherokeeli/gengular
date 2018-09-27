@@ -3,10 +3,11 @@
  */
 
 export class AppBaseService {
-    constructor($http, $q, AppConfig) {
+    constructor($http, $q, AppConfig, AlertToasterService) {
         this.$http = $http;
         this.$q = $q;
         this.appConfig = AppConfig;
+        this.alertToasterService = AlertToasterService;
         this._options = {
             timeout: AppConfig.requestTimeout,
             headers: {
@@ -26,11 +27,14 @@ export class AppBaseService {
         options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.params = params;
         options.method = 'GET';
+        this.alertToasterService.popup("Fetching", "Fetching data...").pending();
         return this.$http(options)
             .then(response => {
                 if(response.ok) {
+                    this.alertToasterService.popup("Success!", "Fetch data successfully").success();
                     return that.$q.resolve(response.data);
                 } else {
+                    this.alertToasterService.popup("Error!", response.tips).error();
                     return this.$q.reject(response.tips);
                 }
             });
@@ -48,11 +52,14 @@ export class AppBaseService {
         options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.data = data;
         options.method = 'POST';
+        this.alertToasterService.popup("Submitting", "Submitting data...").pending();
         return this.$http(options)
             .then(response => {
                 if(response.ok) {
+                    this.alertToasterService.popup("Success!", "Submit data successfully").success();
                     return that.$q.resolve(response);
                 } else {
+                    this.alertToasterService.popup("Error!", response.tips).error();
                     return this.$q.reject(response);
                 }
             });
@@ -71,11 +78,14 @@ export class AppBaseService {
         options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.data = data;
         options.method = 'PUT';
+        this.alertToasterService.popup("Updating", "Updating data...").pending();
         return this.$http(options)
             .then(response => {
                 if(response.ok) {
+                    this.alertToasterService.popup("Success!", "Update data successfully").success();
                     return that.$q.resolve(response.data);
                 } else {
+                    this.alertToasterService.popup("Error!", response.tips).error();
                     return this.$q.reject(response.tips);
                 }
             });
@@ -91,11 +101,14 @@ export class AppBaseService {
         options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.data = data;
         options.method = 'DELETE';
+        this.alertToasterService.popup("Deleting", "Deleting data...").pending();
         return this.$http(options)
             .then(response => {
                 if(response.ok) {
+                    this.alertToasterService.popup("Success!", "Delete data successfully").success();
                     return this.$q.resolve(response.data);
                 } else {
+                    this.alertToasterService.popup("Error!", response.tips).error();
                     return this.$q.reject(response.tips);
                 }
             });
@@ -103,4 +116,4 @@ export class AppBaseService {
 
 }
 
-AppBaseService.$inject = ['$http', '$q', 'AppConfig'];
+AppBaseService.$inject = ['$http', '$q', 'AppConfig', 'AlertToasterService'];

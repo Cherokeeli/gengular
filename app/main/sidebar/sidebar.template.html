@@ -30,7 +30,7 @@
                     class="active"
                     ng-repeat="config in sidebar.menuConfig">
                     <span ng-if="!config.hasOwnProperty('url')">{{::config.name}}</span>
-                    <a href="" ui-sref="{{::config.url}}" ng-if="config.hasOwnProperty('list')">
+                    <a href="" ui-sref="{{::config.url}}" ui-sref-opts="{reload:true}" ng-if="config.hasOwnProperty('list')">
                         <i class="{{::config.icon}}"></i> <span>{{::config.name}}</span>
                         <span ng-if="config.list.length>0" class="pull-right-container"><i
                                 class="fa fa-angle-left pull-right"></i></span>

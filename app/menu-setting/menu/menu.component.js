@@ -9,14 +9,13 @@ class MenuConfigController {
 
     save() {
         let that = this;
-        console.log(this);
-        let pend = this.alertToasterService.popup('pending', 'Pending!', 'Saving Data...');
+        let pend = this.alertToasterService.popup('Pending!', 'Saving Data...').pending();
         this.$timeout( _ => {
             this.submitFlag = false;
             /*pend.then(noti => {
                 noti.kill();
             });*/
-            this.alertToasterService.popup('success', 'Success!', 'Saving Successfully');
+            this.alertToasterService.popup('Success!', 'Saving Successfully').success();
         }, 3000);
 
         // TODO 菜单json调接口保存
