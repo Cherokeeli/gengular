@@ -1,57 +1,33 @@
 import template from './users.template.html';
-import { OPT_TYPE } from '../../global/global.enum';
-import {TemplateHelper} from "../../global/templateHelper.service";
-import {objectIndexOf} from "../../utils/utils";
+import { TemplateHelper } from "../../global/templateHelper.service";
+import { Component } from "../../global/decorator/Component";
+import { StandardList } from "../../global/decorator/StandardList";
 
+@Component({
+    inject: ['$ngConfirm', 'Notification', '$timeout', 'UserSettingService', '$state', 'TemplateHelper'],
+    as: 'users',
+    template: template
+})
+@StandardList({
+    service: 'userSettingService',
+    listModel: 'userList',
+    delete: 'deleteUser',
+    list: 'getUsers',
+    addState: 'user.add',
+    editState: 'user.edit',
+    viewState: 'user.view',
+})
+export class UsersController {
 
-class UsersController {
-    constructor($ngConfirm, Notification, $timeout, Store, UserSettingService, $state, TemplateHelper) {
-        console.log(this);
-        this.$ngConfirm = $ngConfirm;
-        this.notification = Notification;
-        this.$timeout = $timeout;
-        this.userSettingService = UserSettingService;
-        this.$state = $state;
-        this.globalData = Store.data;
-        this.templateHelper = TemplateHelper;
+    afterInjectHook() {
         this.userList = [];
         this.totalCount = this.userList.length;
         this.bigCurrentPage = 1;
+        // console.error(666);
     }
 
-    queryPage() {
-        let param = {
-            pageNo: this.bigCurrentPage,
-            pageSize: this.itemsperpage || 10
-        };
-        this.userSettingService.getUsers(param).then(res => {
-            this.userList = res.records;
-            if(Array.isArray(this.inputids)) {
-                this.inputids.map(id => {
-                    let index = objectIndexOf(this.userList, 'id', id);
-                    if(index > -1) {
-                        this.userList[index].checked = true;
-                    }
-                });
-            }
-            this.totalCount = res.total;
-        }, err => {
-            console.info(err);
-        });
-    }
+    $onInitHook() {
 
-    tblOptAdd() {
-        // console.log(id);
-        this.$state.go('user.add', {opt: OPT_TYPE.ADD});
-    }
-
-    tblOptEdit(id) {
-        // console.log(id);
-        this.$state.go('user.edit', {id: id, opt: OPT_TYPE.EDIT});
-    }
-
-    tblOptView(id) {
-        this.$state.go('user.view', {id: id, opt: OPT_TYPE.VIEW});
     }
 
     tblOptDelete(id) {
@@ -91,35 +67,5 @@ class UsersController {
             }
         });
     }
-
-    $onInit() {
-        this.queryPage();
-    }
-
-    $onChanges(changes) {
-        if(changes.inputids.currentValue) {
-            this.queryPage();
-        }
-    }
 }
 
-UsersController.$inject = ['$ngConfirm', 'Notification', '$timeout', 'Store', 'UserSettingService', '$state', 'TemplateHelper'];
-
-export const users = {
-    controller: UsersController,
-    controllerAs: 'users',
-    bindings: {
-        inputids: '<',
-        checkable: '<',
-        checkedids: '=',
-        checktool: '<',
-        edittool: '<',
-        viewtool: '<',
-        deletetool: '<',
-        addtool: '<',
-        searchtool: '<',
-        pagesizetool: '<',
-        itemsperpage: '<'
-    },
-    template: template
-};

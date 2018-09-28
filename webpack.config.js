@@ -22,7 +22,7 @@ module.exports = {
         // hot: true,
         // port: 8080,
         // host: '0.0.0.0',
-        open: true,
+        // open: true,
         // contentBase: './',
         proxy: {
             '/oshoms': {
@@ -79,7 +79,15 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
-                use: { loader: 'babel-loader' },
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        plugins: [
+                            // 得用legacy，不然decorator function只能获取class的descriptors
+                            ['@babel/plugin-proposal-decorators', {"legacy": true}]
+                        ]
+                    }
+                },
             },
 
             // html解析loader
