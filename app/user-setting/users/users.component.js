@@ -1,6 +1,7 @@
 import template from './users.template.html';
 import { OPT_TYPE } from '../../global/global.enum';
 import {TemplateHelper} from "../../global/templateHelper.service";
+import {objectIndexOf} from "../../utils/utils";
 
 
 class UsersController {
@@ -25,6 +26,14 @@ class UsersController {
         };
         this.userSettingService.getUsers(param).then(res => {
             this.userList = res.records;
+            if(Array.isArray(this.inputids)) {
+                this.inputids.map(id => {
+                    let index = objectIndexOf(this.userList, 'id', id);
+                    if(index > -1) {
+                        this.userList[index].checked = true;
+                    }
+                });
+            }
             this.totalCount = res.total;
         }, err => {
             console.info(err);
@@ -86,6 +95,12 @@ class UsersController {
     $onInit() {
         this.queryPage();
     }
+
+    $onChanges(changes) {
+        if(changes.inputids.currentValue) {
+            this.queryPage();
+        }
+    }
 }
 
 UsersController.$inject = ['$ngConfirm', 'Notification', '$timeout', 'Store', 'UserSettingService', '$state', 'TemplateHelper'];
@@ -94,6 +109,7 @@ export const users = {
     controller: UsersController,
     controllerAs: 'users',
     bindings: {
+        inputids: '<',
         checkable: '<',
         checkedids: '=',
         checktool: '<',

@@ -17,10 +17,6 @@ class MenuConfigController {
             });*/
             this.alertToasterService.popup('Success!', 'Saving Successfully').success();
         }, 3000);
-
-        // TODO 菜单json调接口保存
-        console.log(this.globalData.menuConfig);
-
     }
 
     $onInit() {

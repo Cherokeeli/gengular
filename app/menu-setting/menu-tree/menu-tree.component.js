@@ -1,6 +1,6 @@
 import treeTemplate from './menu-tree.template.html';
 import * as style from './menu-tree.style.less';
-import { objectIndexOf } from "../../utils/utils";
+import { objectGetProperty, objectIndexOf } from "../../utils/utils";
 
 export class MenuTreeController {
     constructor(Store, $timeout, $ngConfirm, MenuSettingService, $state) {
@@ -9,78 +9,37 @@ export class MenuTreeController {
         this.globalData = Store.data;
         this.menuSettingService = MenuSettingService;
         this.$state = $state;
+        this.$timeout = $timeout;
         this.checkednodes = [];
         this.checkedids = [];
-        // this.menuConfig = [
-        //     {
-        //         title: 'SETTINGS',
-        //         icon: 'fa fa-dashboard'
-        //     },
-        //     {
-        //
-        //         title: 'Dashboard',
-        //         href: 'dashboard',
-        //         icon: 'fa fa-dashboard',
-        //         children: []
-        //     },
-        //     {
-        //         title: 'System Setting',
-        //         href: '',
-        //         icon: 'fa fa-gear',
-        //         children: [
-        //             {
-        //                 title: 'Role Setting',
-        //                 href: 'role_setting',
-        //                 icon: 'fa fa-users',
-        //                 children: []
-        //             },
-        //             {
-        //                 title: 'Feature Setting',
-        //                 href: 'menuConfig',
-        //                 icon: 'fa fa-cubes',
-        //                 children: []
-        //             },
-        //             {
-        //                 title: 'User Setting',
-        //                 href: 'users',
-        //                 icon: 'fa fa-user',
-        //                 children: []
-        //             }
-        //         ]
-        //     },
-        //
-        //     {
-        //         title: 'MAIN FEATURES',
-        //         icon: 'fa fa-dashboard'
-        //     },
-        //     {
-        //         title: 'Source Data',
-        //         href: '',
-        //         icon: 'fa fa-database',
-        //         children: [
-        //             {
-        //                 title: 'Position',
-        //                 href: 'position',
-        //                 icon: 'fa fa-table',
-        //                 children: []
-        //             },
-        //             {
-        //                 title: 'Cash Balance',
-        //                 href: 'cash_banlance',
-        //                 icon: 'fa fa-table',
-        //                 children: []
-        //             }
-        //         ]
-        //     },
-        //     {
-        //         title: 'Quartz Job',
-        //         href: 'quartz_job',
-        //         icon: 'fa fa-clock-o',
-        //         children: []
-        //     }
-        // ];
+        this.tree = {};
+        let that = this;
+        this.menuTreeOption = {
+            dropped(event) {
+                console.log(event);
+                console.log(that.menuConfig);
+                if (objectGetProperty(event.dest.nodesScope,'$parent.$modelValue.id')) {
+                    event.source.nodeScope.$modelValue.parentId = event.dest.nodesScope.$parent.$modelValue.id;
+                } else {
+                    event.source.nodeScope.$modelValue.parentId = '0';
+                }
+                // 通过source获取原始的hashkey，然后在在dest里获取对应的formName,这样不行，因为放下去之后form重新命名了
+                // let hashKay = event.source.nodeScope.$modelValue.$$hashKey;
+                // console.log(event.dest.nodesScope.$nodesMap[hashKay].$childNodesScope.formName);
+                // that[event.dest.nodesScope.$nodesMap[hashKay].$childNodesScope.formName].$setDirty();
+                /*that.$timeout(_ => {
+                    that[event.dest.nodesScope.$nodesMap[hashKay].$childNodesScope.formName].$setDirty();
+                },0);*/
+                console.log();
+                that.$timeout( _ => {
+                    event.source.nodeScope.$element.find('[contenteditable]').eq(0).controller('ngModel').$$parentForm.$setDirty();
+                }, 0);
+            }
+        };
+        this.style = style;
+    }
 
-
+    queryPage() {
         this.menuSettingService.getMenuList().then(res => {
             console.log(res);
             let dict = new Map();
@@ -89,9 +48,8 @@ export class MenuTreeController {
                 dict.set(item.id, item);
             });
 
-            console.log(Array.isArray(this.checkedids), this.checkedids);
-            if(Array.isArray(this.checkedids)) {
-                this.checkedids.map(id => {
+            if(Array.isArray(this.inputids)) {
+                this.inputids.map(id => {
                     dict.get(id).checked = true;
                 });
             }
@@ -109,17 +67,21 @@ export class MenuTreeController {
             });
 
             this.menuConfig = Array.from(dict.values());
-            this.globalData.menuConfig = this.menuConfig;
+            // this.globalData.menuConfig = this.menuConfig;
 
         }, err => {
             console.info(err);
         });
-
-
-        this.style = style;
     }
 
     $onInit() {
+        this.queryPage();
+    }
+
+    $onChanges(changes) {
+        if(changes.inputids.currentValue) {
+            this.queryPage();
+        }
     }
 
     addNode(scope) {
@@ -128,7 +90,8 @@ export class MenuTreeController {
         // 新增的节点加入一个isNew字段判断之后调用保存还是更新方法
         list.children.unshift({
             title: 'New node',
-            href: '',
+            url: '#',
+            type: 0,
             parentId: list.id,
             icon: '',
             isNew: true,
@@ -218,12 +181,14 @@ export const menuTree = {
     controller: MenuTreeController,
     controllerAs: 'menuTree',
     bindings: {
+        inputids: '<',
         checkedids: '=',
         checkable: '<',
         editable: '<',
         radiotool: '<',
         addtool: '<',
-        deletetool: '<'
+        deletetool: '<',
+        typetool: '<'
     },
     template: treeTemplate
 };

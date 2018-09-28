@@ -21,7 +21,7 @@ export const objectGetProperty = (object, path, defaultValue) => {
         // 先判断对象内有没有这个属性变量，如果没有则再判断有没变量，再否则就返回undefined
         if (typeof((obj || {})[key]) !== 'undefined') {
             key = key;
-        } else if (eval('typeof("+key+")') !== 'undefined') { // 判断变量存不存在,如果存在就把Key换成对应变量的值
+        } else if (eval("typeof("+key+")") !== 'undefined') { // 判断变量存不存在,如果存在就把Key换成对应变量的值
             key = eval(key);
         }
         return (obj || {})[key];

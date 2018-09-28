@@ -14,6 +14,7 @@ class RolesController {
         this.$state = $state;
         this.globalData = Store.data;
         this.roleList = [];
+        this.checkedids = [];
         // this.totalCount = this.userList.length;
         this.bigCurrentPage = 1;
         console.log(this.addtool, this.checktool);
@@ -28,8 +29,8 @@ class RolesController {
         };
         this.roleSettingService.getRoles(param).then(res => {
             this.roleList = res.records;
-            if(Array.isArray(this.checkedids)) {
-                this.checkedids.map(id => {
+            if(Array.isArray(this.inputids)) {
+                this.inputids.map(id => {
                     let index = objectIndexOf(this.roleList, 'id', id);
                     if(index > -1) {
                         this.roleList[index].checked = true;
@@ -95,9 +96,22 @@ class RolesController {
     }
 
     $onInit() {
+        /*console.log(this);
+        this.$watch('checkedids', _ => {
+            this.queryPage();
+        });*/
         this.queryPage();
     }
 
+    $doCheck() {
+        // this.queryPage();
+    }
+
+    $onChanges(changes) {
+        if(changes.inputids.currentValue) {
+            this.queryPage();
+        }
+    }
 
     checkItem(node) {
         console.log(this);
@@ -126,6 +140,7 @@ export const roles = {
     bindings: {
         checkable: '<',
         checkedids: '=',
+        inputids: '<',
         checktool: '<',
         edittool: '<',
         viewtool: '<',
