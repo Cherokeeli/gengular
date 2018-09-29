@@ -5,10 +5,10 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:dev": "npm run clean && node_modules/.bin/webpack --config webpack.config.js",
-    "start:dev": "node_modules/.bin/webpack-dev-server",
-    "start:dev-hot": "node_modules/.bin/webpack-dev-server",
-    "build:prod": "npm run clean && node_modules/.bin/webpack --config webpack.config.js",
+    "build:dev": "npm run clean && node_modules/.bin/webpack --config webpack.development.config.js",
+    "start:dev:local": "node_modules/.bin/webpack-dev-server --config webpack.development.config.js --open",
+    "start:dev:host": "node_modules/.bin/webpack-dev-server --config webpack.development.config.js --host 0.0.0.0",
+    "build:prd": "npm run clean && node_modules/.bin/webpack --config webpack.production.config.js",
     "clean": "rm -rf dist/"
   },
   "author": "Cherokeeli",

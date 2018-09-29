@@ -1,29 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const htmlLoader = require('html-loader');
-const ngCache = require('ng-cache-loader');
-const styleLoader = require('style-loader');
-const cssLoader = require('css-loader');
-const lessLoader = require('less-loader');
-const urlLoader = require('url-loader');
 const webpack = require('webpack');
 
-const DEV_SERVER = process.argv[1].indexOf('webpack-dev-server') !== -1;
-const DEV = DEV_SERVER || process.env.DEV;
-
 module.exports = {
-    mode: DEV ? 'development' : 'production',
+    mode: 'development',
     entry: {
         "App": "./app/bootstrap/bootstrap.js",
     },
 
+    // devServer，内置编译至内存的服务
     devServer: {
-        // allowedHosts: ['http://10.119.18.21:83'],
-        // hot: true,
-        // port: 8080,
-        // host: '0.0.0.0',
-        // open: true,
-        // contentBase: './',
+        hot: true,
         proxy: {
             '/oshoms': {
                 // 孙雨大佬
@@ -35,8 +22,7 @@ module.exports = {
         }
     },
 
-    devtool: DEV ? 'eval' :'source-map',
-
+    devtool: 'source-map',
 
     output: {
         path: path.join(__dirname, "dist"),
@@ -57,7 +43,7 @@ module.exports = {
             "window.jQuery": "jquery"
         }),
 
-        // new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin()
     ],
 
     resolve: {
@@ -115,7 +101,7 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             modules: false,
-                            // sourceMap: true
+                            sourceMap: true
                         }
                     }]
             },
@@ -128,7 +114,7 @@ module.exports = {
                     loader: 'css-loader',
                     options: {
                         modules: false,
-                        // sourceMap: true
+                        sourceMap: true
                     }
                 }, {
                     loader: 'less-loader'
