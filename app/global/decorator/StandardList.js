@@ -1,5 +1,5 @@
 import {OPT_TYPE} from "../global.enum";
-import {copyPropertiesTo} from "../../utils/utils";
+import {copyPropertiesTo, objectIndexOf} from "../../utils/utils";
 
 export function StandardList(options) {
     return (targetClass) => {
@@ -82,9 +82,9 @@ export function StandardList(options) {
                 this[listModel] = res.records;
                 if(Array.isArray(this.inputids)) {
                     this.inputids.map(id => {
-                        let index = objectIndexOf(this.userList, 'id', id);
+                        let index = objectIndexOf(this[listModel], 'id', id);
                         if(index > -1) {
-                            this.userList[index].checked = true;
+                            this[listModel][index].checked = true;
                         }
                     });
                 }
