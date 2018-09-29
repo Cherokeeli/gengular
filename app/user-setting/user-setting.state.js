@@ -1,11 +1,12 @@
 import {OPT_TYPE} from "../global/global.enum";
+import overviewTemplate from './user-overview.template.html';
 
 export const usersState = {
     name: 'users',
     url: '/users',
     parent: 'app',
     // component: 'users',
-    templateUrl: 'app/user-setting/user-overview.template.html'
+    template: overviewTemplate
 };
 
 export const userDetailState = {

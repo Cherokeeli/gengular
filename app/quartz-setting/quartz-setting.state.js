@@ -1,10 +1,11 @@
 import {OPT_TYPE} from "../global/global.enum";
+import overviewTemplate from './quartz-overview.template.html'
 
 export const quartzState = {
     name: 'quartzes',
     url: '/quartzes',
     parent: 'app',
-    templateUrl: 'app/quartz-setting/quartz-overview.template.html'
+    template: overviewTemplate
 };
 
 export const quartzDetailState = {

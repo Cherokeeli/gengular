@@ -1,10 +1,11 @@
 import {OPT_TYPE} from "../global/global.enum";
+import overviewTemplate from './role-overview.template.html';
 
 export const rolesState = {
     name: 'roles',
     url: '/roles',
     parent: 'app',
-    templateUrl: './app/role-setting/role-overview.template.html'
+    template: overviewTemplate
 };
 
 export const roleDetailState = {
