@@ -32,7 +32,7 @@ export class AppBaseService {
             .then(response => {
                 pendingPop.then(pop=>pop.kill());
                 if(response.ok) {
-                    this.alertToasterService.popup("Success!", "Fetch data successfully").success();
+                    // this.alertToasterService.popup("Success!", "Fetch data successfully").success();
                     return that.$q.resolve(response.data);
                 } else {
                     this.alertToasterService.popup("Error!", response.tips).error();
@@ -58,7 +58,7 @@ export class AppBaseService {
             .then(response => {
                 pendingPop.then(pop=>pop.kill());
                 if(response.ok) {
-                    this.alertToasterService.popup("Success!", "Submit data successfully").success();
+                    // this.alertToasterService.popup("Success!", "Submit data successfully").success();
                     return that.$q.resolve(response);
                 } else {
                     this.alertToasterService.popup("Error!", response.tips).error();
@@ -85,7 +85,7 @@ export class AppBaseService {
             .then(response => {
                 pendingPop.then(pop=>pop.kill());
                 if(response.ok) {
-                    this.alertToasterService.popup("Success!", "Update data successfully").success();
+                    // this.alertToasterService.popup("Success!", "Update data successfully").success();
                     return that.$q.resolve(response.data);
                 } else {
                     this.alertToasterService.popup("Error!", response.tips).error();
@@ -109,7 +109,7 @@ export class AppBaseService {
             .then(response => {
                 pendingPop.then(pop=>pop.kill());
                 if(response.ok) {
-                    this.alertToasterService.popup("Success!", "Delete data successfully").success();
+                    // this.alertToasterService.popup("Success!", "Delete data successfully").success();
                     return this.$q.resolve(response.data);
                 } else {
                     this.alertToasterService.popup("Error!", response.tips).error();
