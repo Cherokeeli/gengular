@@ -104,7 +104,7 @@ export class RolesController {
                         let param = {
                             id: id
                         };
-                        that.roleSettingService.deleteUser(param).then(res => {
+                        that.roleSettingService.deleteRole(param).then(res => {
                             console.log(res);
                             that.queryPage();
                         }, err => {

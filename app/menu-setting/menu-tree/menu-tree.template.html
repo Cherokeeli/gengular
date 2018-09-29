@@ -26,7 +26,7 @@
                         <span ng-if="menuTree[formName+$nodeIndex].$dirty && !node.isNew" ng-click="menuTree.updateNode(this, formName+$nodeIndex)" auth-opt="sys:menu:update" class="icon-button" title="Save">
                             <i class="fa fa-save"></i>
                         </span>
-                        <span ng-if="menuTree.addtool" auth-opt="sys:menu:select" ng-click="menuTree.addNode(this)" class="icon-button">
+                        <span ng-if="menuTree.addtool" auth-opt="sys:menu:save" ng-click="menuTree.addNode(this)" class="icon-button">
                             <i class="fa fa-plus-circle"></i>
                         </span>
                         <span ng-if="menuTree.deletetool" auth-opt="sys:menu:delete" ng-click="menuTree.removeNode(this)" class="icon-button">
