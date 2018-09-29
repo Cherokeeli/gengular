@@ -32,12 +32,17 @@ import '../../core/ui-framework/dist/js/adminlte.min';
 
 
 // angularjs插件
+// ui-router插件
 import uiRouter from '@uirouter/angularjs';
+// bootstrap的angularjs实现
 import uiBootstrap from 'angular-ui-bootstrap';
+// angularjs树形结构插件
 import 'angular-ui-tree/dist/angular-ui-tree.css';
 import uiAngularTree from 'angular-ui-tree';
+// 确认框插件
 import 'angular-confirm1/dist/angular-confirm.min';
 import 'angular-confirm1/dist/angular-confirm.min.css';
+// toaster插件
 import 'angular-ui-notification/dist/angular-ui-notification.min';
 import 'angular-ui-notification/dist/angular-ui-notification.min.css';
 

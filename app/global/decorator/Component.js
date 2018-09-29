@@ -14,8 +14,10 @@ import {copyPropertiesTo} from "../../utils/utils";
 export function Component(option) {
     return (targetClass) => {
         console.log(targetClass.prototype);
-        /*这段代码重写了Class的constructor,通过inject属性直接将依赖注入到constructor里面，依赖如果是大写开头，则注入到this是小写开头，
-        * 如SampleService => this.sampleServce, 最后调用afterInjectHook钩子函数来做注入之后的动作*/
+        /**
+         * 这段代码重写了Class的constructor,通过inject属性直接将依赖注入到constructor里面，依赖如果是大写开头，则注入到this是小写开头，
+         * 如SampleService => this.sampleServce, 最后调用afterInjectHook钩子函数来做注入之后的动作
+         */
         let proto = targetClass.prototype;
         targetClass = function(...args) {
             console.log(...args);
@@ -31,11 +33,13 @@ export function Component(option) {
                 this.afterInjectHook();
             }
         };
+
+        /**
+         * 将inject,as,template参数复制到prototype上，然后在module使用componentFactory函数包装成angularjs的component格式
+         */
         targetClass.prototype = proto;
         proto.inject = option.inject;
         proto.controllerAs = option.as;
-        // copyPropertiesTo(option.bindings || {}, proto.bindings);
-        // proto.bindings = option.bindings;
         proto.template = option.template;
         return targetClass;
     }

@@ -5,16 +5,57 @@ export function StandardList(options) {
     return (targetClass) => {
 
         let bindings = {
+            /**
+             * 输入到组件的id数组，用来回显list组件中回显的选择控件的状态。
+             * 单向绑定
+             * param {Array}
+             */
             inputids: '<',
+
+
+            /**
+             * 是否能够对checkbox控件进行操作
+             * 单向绑定
+             * param {Boolean}
+             */
             checkable: '<',
+
+
+            /**
+             * 组件暴露的选择的id数组，使用这个属性来获取组件中选择的id数组
+             * 双向绑定
+             * param {Array}
+             */
             checkedids: '=',
+
+
+            /**
+             * 是否使用checkbox控件
+             * 单向绑定
+             * param {Boolean}
+             */
             checktool: '<',
-            edittool: '<',
-            viewtool: '<',
-            deletetool: '<',
-            addtool: '<',
+            /**
+             * 是否使用搜索控件
+             * 单向绑定
+             * param {Boolean}
+             */
             searchtool: '<',
+
+
+            /**
+             * 是否使用页面条数更换控件
+             * 单向绑定
+             * param {Boolean}
+             */
             pagesizetool: '<',
+
+
+            /**
+             * list页面单页条数
+             * 单向绑定
+             * param {Number}
+             */
             itemsperpage: '<'
         };
 

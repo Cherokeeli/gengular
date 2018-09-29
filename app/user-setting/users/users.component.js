@@ -2,6 +2,7 @@ import template from './users.template.html';
 import { TemplateHelper } from "../../global/templateHelper.service";
 import { Component } from "../../global/decorator/Component";
 import { StandardList } from "../../global/decorator/StandardList";
+import { StandardCURD } from "../../global/decorator/StandardCURD";
 
 @Component({
     inject: ['$ngConfirm', 'Notification', '$timeout', 'UserSettingService', '$state', 'TemplateHelper'],
@@ -17,8 +18,10 @@ import { StandardList } from "../../global/decorator/StandardList";
     editState: 'user.edit',
     viewState: 'user.view',
 })
+@StandardCURD
 export class UsersController {
 
+    // 自动注入后钩子函数
     afterInjectHook() {
         this.userList = [];
         this.totalCount = this.userList.length;
@@ -26,6 +29,7 @@ export class UsersController {
         // console.error(666);
     }
 
+    // $onInit后钩子函数
     $onInitHook() {
 
     }
