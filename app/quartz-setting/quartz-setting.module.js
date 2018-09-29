@@ -1,7 +1,8 @@
 import { quartzAddState, quartzDetailState, quartzEditState, quartzState, quartzViewState } from "./quartz-setting.state";
 import { QuartzSettingService } from "./quartz-setting.service";
-import { quartz } from "./quartz/quartz.component";
+import { QuartzController } from "./quartz/quartz.component";
 import { quartzDetail } from "./quartz-detail/quartz-detail.component";
+import {componentFactory} from "../global/componentFactory";
 
 export const QUARTZ_SETTING_MODULE = angular.module('quartzsetting', [
 
@@ -16,7 +17,7 @@ QUARTZ_SETTING_MODULE.config(['$uiRouterProvider', ($uiRouterProvider) => {
     stateRegistry.register(quartzViewState);
 }]);
 
-QUARTZ_SETTING_MODULE.component('quartz',quartz);
+QUARTZ_SETTING_MODULE.component('quartz',componentFactory(QuartzController));
 QUARTZ_SETTING_MODULE.component('quartzdetail',quartzDetail);
 
 QUARTZ_SETTING_MODULE.service('QuartzSettingService', QuartzSettingService);

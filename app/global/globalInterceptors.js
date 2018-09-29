@@ -22,7 +22,7 @@ export const globalInterceptor = ['$q', 'AppConfig', '$state', ($q, AppConfig, $
                     return response.data;
                 } else {
                     if (data.relogin) {
-                        $state.go('login', {reload: true});
+                        $state.go('login', null, {reload: true});
                     } else {
                         return response.data;
                     }

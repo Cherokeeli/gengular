@@ -12,13 +12,15 @@ import { StandardCURD } from "../../global/decorator/StandardCURD";
 @StandardList({
     service: 'userSettingService',
     listModel: 'userList',
-    delete: 'deleteUser',
-    list: 'getUsers',
+    list: 'getUsers'
+
+})
+@StandardCURD({
     addState: 'user.add',
     editState: 'user.edit',
     viewState: 'user.view',
+    delete: 'deleteUser'
 })
-@StandardCURD
 export class UsersController {
 
     // 自动注入后钩子函数

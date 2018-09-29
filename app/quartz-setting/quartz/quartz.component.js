@@ -2,9 +2,28 @@ import template from './quartz.template.html';
 import style from './quartz.style.less';
 import {objectIndexOf} from "../../utils/utils";
 import {OPT_TYPE} from "../../global/global.enum";
+import {Component} from "../../global/decorator/Component";
+import {StandardList} from "../../global/decorator/StandardList";
+import {StandardCURD} from "../../global/decorator/StandardCURD";
 
-class QuartzController {
-    constructor($ngConfirm, Notification, $timeout, Store, QuartzSettingService, $state) {
+@Component({
+    inject: ['$ngConfirm', 'Notification', '$timeout', 'QuartzSettingService', '$state'],
+    as: 'quartz',
+    template: template
+})
+@StandardList({
+    service: 'quartzSettingService',
+    list: 'getTasks',
+    listModel: 'taskList'
+})
+@StandardCURD({
+    addState: 'quartz.add',
+    editState: 'quartz.edit',
+    viewState: 'quartz.view',
+    delete: 'deleteTask'
+})
+export class QuartzController {
+    /*constructor($ngConfirm, Notification, $timeout, Store, QuartzSettingService, $state) {
         this.$ngConfirm = $ngConfirm;
         this.style = style;
         this.notification = Notification;
@@ -17,9 +36,15 @@ class QuartzController {
         // this.totalCount = this.userList.length;
         this.bigCurrentPage = 1;
         console.log(this.addtool, this.checktool);
+    }*/
+
+    afterInjectHook() {
+        this.taskList = [];
+        // this.totalCount = this.userList.length;
+        this.bigCurrentPage = 1;
     }
 
-    queryPage() {
+    /*queryPage() {
         console.log(this.checkedids);
 
         let param = {
@@ -54,7 +79,7 @@ class QuartzController {
 
     tblOptView(id) {
         this.$state.go('quartz.view', {id: id, opt: OPT_TYPE.VIEW});
-    }
+    }*/
 
     tblOptDelete(id) {
         let that = this;
@@ -94,7 +119,7 @@ class QuartzController {
         });
     }
 
-    $onInit() {
+    /*$onInit() {
         this.queryPage();
     }
 
@@ -114,7 +139,7 @@ class QuartzController {
                 this.checkedids.splice(index, 1);
             }
         }
-    }
+    }*/
 
     quartzOptRun(task) {
         this.quartzSettingService.runTask(task).then(res => {
@@ -144,6 +169,7 @@ class QuartzController {
     }
 }
 
+/*
 QuartzController.$inject = ['$ngConfirm', 'Notification', '$timeout', 'Store', 'QuartzSettingService', '$state'];
 
 export const quartz = {
@@ -162,4 +188,4 @@ export const quartz = {
         itemsperpage: '<'
     },
     template: template,
-};
+};*/

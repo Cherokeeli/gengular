@@ -5,8 +5,9 @@ import {
     rolesState, roleViewState
 } from "./role-setting.state";
 import { RoleSettingService } from "./role-setting.service";
-import { roles } from "./roles/roles.component";
+import { RolesController } from "./roles/roles.component";
 import { roleDetail } from "./role-detail/role-detail.component";
+import {componentFactory} from "../global/componentFactory";
 
 export const ROLE_SETTING_MODULE = angular.module('rolesetting', [
 
@@ -32,7 +33,7 @@ ROLE_SETTING_MODULE.config(['$uiRouterProvider', function($uiRouter) {
 /**
  * 注册模块下的component
  */
-ROLE_SETTING_MODULE.component('roles', roles);
+ROLE_SETTING_MODULE.component('roles', componentFactory(RolesController));
 ROLE_SETTING_MODULE.component('roledetail', roleDetail);
 
 /**

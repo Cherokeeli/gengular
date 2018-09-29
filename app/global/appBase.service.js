@@ -35,9 +35,12 @@ export class AppBaseService {
                     // this.alertToasterService.popup("Success!", "Fetch data successfully").success();
                     return that.$q.resolve(response.data);
                 } else {
-                    this.alertToasterService.popup("Error!", response.tips).error();
-                    return this.$q.reject(response.tips);
+                    this.alertToasterService.popup("Error!", response.englishTips).error();
+                    return this.$q.reject(response.englishTips);
                 }
+            }).catch(error => {
+                this.alertToasterService.popup("Error!", error.data).error();
+                return this.$q.reject(error.data);
             });
     }
 
@@ -61,9 +64,12 @@ export class AppBaseService {
                     // this.alertToasterService.popup("Success!", "Submit data successfully").success();
                     return that.$q.resolve(response);
                 } else {
-                    this.alertToasterService.popup("Error!", response.tips).error();
-                    return this.$q.reject(response);
+                    this.alertToasterService.popup("Error!", response.englishTips).error();
+                    return this.$q.reject(response.englishTips);
                 }
+            }).catch(error => {
+                this.alertToasterService.popup("Error!", error.data).error();
+                return this.$q.reject(error.data);
             });
 
     }
@@ -85,12 +91,15 @@ export class AppBaseService {
             .then(response => {
                 pendingPop.then(pop=>pop.kill());
                 if(response.ok) {
-                    // this.alertToasterService.popup("Success!", "Update data successfully").success();
+                    this.alertToasterService.popup("Success!", "Update data successfully").success();
                     return that.$q.resolve(response.data);
                 } else {
-                    this.alertToasterService.popup("Error!", response.tips).error();
-                    return this.$q.reject(response.tips);
+                    this.alertToasterService.popup("Error!", response.englishTips).error();
+                    return this.$q.reject(response.englishTips);
                 }
+            }).catch(error => {
+                this.alertToasterService.popup("Error!", error.data).error();
+                return this.$q.reject(error.data);
             });
     }
 
@@ -112,9 +121,12 @@ export class AppBaseService {
                     // this.alertToasterService.popup("Success!", "Delete data successfully").success();
                     return this.$q.resolve(response.data);
                 } else {
-                    this.alertToasterService.popup("Error!", response.tips).error();
-                    return this.$q.reject(response.tips);
+                    this.alertToasterService.popup("Error!", response.englishTips).error();
+                    return this.$q.reject(response.englishTips);
                 }
+            }).catch(error => {
+                this.alertToasterService.popup("Error!", error.data).error();
+                return this.$q.reject(error.data);
             });
     }
 

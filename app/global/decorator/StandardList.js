@@ -67,9 +67,7 @@ export function StandardList(options) {
         let service = options.service;
         let list = options.list;
         let listModel = options.listModel;
-        let addState =  options.addState;
-        let editState = options.editState;
-        let viewState = options.viewState;
+
 
 
         let proto = targetClass.prototype;
@@ -103,18 +101,30 @@ export function StandardList(options) {
             }
         };
 
-        proto.tblOptAdd = function() {
-            // console.log(id);
-            this.$state.go(addState, {opt: OPT_TYPE.ADD});
+        proto.$onChanges = function (changes) {
+            if(changes.inputids.currentValue) {
+                this.queryPage();
+            }
+            if(angular.isFunction(this.$onChangesHook)) {
+                this.$onChangesHook();
+            }
         };
 
-        proto.tblOptEdit = function(id) {
-            // console.log(id);
-            this.$state.go(editState, {id: id, opt: OPT_TYPE.EDIT});
-        };
-
-        proto.tblOptView = function(id) {
-            this.$state.go(viewState, {id: id, opt: OPT_TYPE.VIEW});
-        };
+        proto.checkItem = function(node) {
+            console.log(this);
+            if(!Array.isArray(this.checkedids)) {
+                this.checkedids = []
+            }
+            let index = this.checkedids.indexOf(node.id);
+            if (node.checked) {
+                if (index === -1) {
+                    this.checkedids.push(node.id);
+                }
+            } else {
+                if (index > -1) {
+                    this.checkedids.splice(index, 1);
+                }
+            }
+        }
     }
 }

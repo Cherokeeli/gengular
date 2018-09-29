@@ -2,9 +2,35 @@ import style from './roles.style.less';
 import template from './roles.template.html';
 import {OPT_TYPE} from "../../global/global.enum";
 import {objectIndexOf} from "../../utils/utils";
+import {Component} from "../../global/decorator/Component";
+import {StandardList} from "../../global/decorator/StandardList";
+import {StandardCURD} from "../../global/decorator/StandardCURD";
 
-class RolesController {
-    constructor($ngConfirm, Notification, $timeout, Store, RoleSettingService, $state) {
+@Component({
+    inject: ['$ngConfirm', 'Notification', '$timeout', 'RoleSettingService', '$state'],
+    as: 'roles',
+    template: template
+})
+@StandardList({
+    service: 'roleSettingService',
+    listModel: 'roleList',
+    list: 'getRoles'
+})
+@StandardCURD({
+    addState: 'role.add',
+    editState: 'role.edit',
+    viewState: 'role.view',
+    delete: 'deleteRole'
+})
+export class RolesController {
+    afterInjectHook() {
+        this.roleList = [];
+        this.checkedids = [];
+        // this.totalCount = this.userList.length;
+        this.bigCurrentPage = 1;
+        console.log(this.addtool, this.checktool);
+    }
+    /*constructor($ngConfirm, Notification, $timeout, Store, RoleSettingService, $state) {
         this.$ngConfirm = $ngConfirm;
         this.style = style;
         this.notification = Notification;
@@ -55,8 +81,9 @@ class RolesController {
 
     tblOptView(id) {
         this.$state.go('role.view', {id: id, opt: OPT_TYPE.VIEW});
-    }
+    }*/
 
+    // TODO 删除操作封装到Component Decorators里
     tblOptDelete(id) {
         let that = this;
         this.$ngConfirm({
@@ -95,43 +122,9 @@ class RolesController {
         });
     }
 
-    $onInit() {
-        /*console.log(this);
-        this.$watch('checkedids', _ => {
-            this.queryPage();
-        });*/
-        this.queryPage();
-    }
-
-    $doCheck() {
-        // this.queryPage();
-    }
-
-    $onChanges(changes) {
-        if(changes.inputids.currentValue) {
-            this.queryPage();
-        }
-    }
-
-    checkItem(node) {
-        console.log(this);
-        if(!Array.isArray(this.checkedids)) {
-            this.checkedids = []
-        }
-        let index = this.checkedids.indexOf(node.id);
-        if (node.checked) {
-            if (index === -1) {
-                this.checkedids.push(node.id);
-            }
-        } else {
-            if (index > -1) {
-                this.checkedids.splice(index, 1);
-            }
-        }
-    }
-
 }
 
+/*
 RolesController.$inject = ['$ngConfirm', 'Notification', '$timeout', 'Store', 'RoleSettingService', '$state'];
 
 export const roles = {
@@ -151,4 +144,4 @@ export const roles = {
         itemsperpage: '<'
     },
     template: template
-};
+};*/
