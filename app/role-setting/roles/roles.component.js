@@ -1,15 +1,17 @@
 import style from './roles.style.less';
-import template from './roles.template.html';
+// import template from './roles.template.html';
 import {OPT_TYPE} from "../../global/global.enum";
 import {objectIndexOf} from "../../utils/utils";
 import {Component} from "../../global/decorator/Component";
 import {StandardList} from "../../global/decorator/StandardList";
 import {StandardCURD} from "../../global/decorator/StandardCURD";
+import * as template from '../../global/template/table.template.ejs';
+import roleConfig from '../../global/compiler/roleConfig.json';
 
 @Component({
     inject: ['$timeout', 'RoleSettingService', '$state', 'AlertToasterService'],
     as: 'roles',
-    template: template
+    template: template(roleConfig)
 })
 @StandardList({
     service: 'roleSettingService',

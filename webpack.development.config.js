@@ -40,7 +40,8 @@ module.exports = {
         new webpack.ProvidePlugin({
             "$": "jquery",
             "jQuery": "jquery",
-            "window.jQuery": "jquery"
+            "window.jQuery": "jquery",
+            _: "underscore"
         }),
 
         new webpack.HotModuleReplacementPlugin()
@@ -88,6 +89,12 @@ module.exports = {
                         // removeComments: true
                     }
                 }
+            },
+
+            // ejs解析loader
+            {
+                test: /\.ejs$/,
+                loader: 'ejs-loader'
             },
 
             // css解析loader

@@ -1,0 +1,76 @@
+<div class="dataTables_wrapper form-inline dt-bootstrap">
+    <div class="row">
+        <div class="col-sm-6">
+            <div ng-if="users.pagesizetool" class="dataTables_length" id="example1_length">
+                <label>Show <select name="example1_length" aria-controls="example1"
+                                    class="form-control input-sm">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select> entries</label>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div ng-if="users.searchtool class="dataTables_filter">
+                <label>Search:<input type="search" class="form-control input-sm" placeholder=""
+                                     aria-controls="example1"></label>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <button ng-if="users.addtool  auth-opt="sys:user:save" ng-click="users.tblOptAdd() type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>New</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-bordered table-striped dataTable" role="grid"
+                   aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                    <th>Index</th>
+                    
+                    <th>Username</th>
+                    
+                    <th>Email</th>
+                    
+                    <th>Role</th>
+                    
+                    <th>Mobile</th>
+                    
+                    <th class="col-xs-2">Operation</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="($index, user) in users.userList" role="row">
+                    <td>{{$index+1}}</td>
+                    
+                    <td>{{user.username}}</td>
+                    
+                    <td>{{user.email}}</td>
+                    
+                    <td>{{user.roleNameList.join(',')}}</td>
+                    
+                    <td>{{user.mobile}}</td>
+                    
+                    <td>
+                        <input ng-if="users.checktool" ng-disabled="!users.checkable" ng-model="user.checked" type="checkbox">
+                        <span ng-if="users.edittool" auth-opt="sys:user:update" ng-click="users.tblOptEdit(user.id)" class="table-control-btn" title="Edit"><i class="fa fa-pencil"></i></span>
+                        <span ng-if="users.viewtool" auth-opt="sys:user:info" ng-click="users.tblOptView(user.id)" class="table-control-btn" title="View"><i class="fa fa-television"></i></span>
+                        <span ng-if="users.deletetool" auth-opt="sys:user:delete" ng-click="users.tblOptDelete(user.id)" class="table-control-btn" title="Delete"><i class="fa fa-trash"></i></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            Showing {{(users.bigCurrentPage-1)*users.itemsperpage || 1}} to {{(users.bigCurrentPage)*users.itemsperpage > users.totalCount?(users.bigCurrentPage)*users.itemsperpage:users.totalCount}} of {{users.totalCount}} entries
+        </div>
+        <div ng-if="users.totalCount/users.itemsperpage > 1" class="col-sm-7">
+            <ul class="pagination pull-right" uib-pagination total-items="users.totalCount"
+                ng-model="users.bigCurrentPage" items-per-page="users.itemsperpage" class="pagination-sm"
+                ng-change="users.queryPage()"
+                boundary-link-numbers="true" rotate="true" boundary-links="true"></ul>
+        </div>
+    </div>
+</div>

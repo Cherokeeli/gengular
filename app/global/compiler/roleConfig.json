@@ -1,0 +1,25 @@
+{
+  "controllerAs": "roles",
+  "listModelName": "roleList",
+  "subModelName": "role",
+  "properties": [
+    {
+      "propName": "Role name",
+      "modelName": "roleName"
+    },
+    {
+      "propName": "Authorities",
+      "modelName": "menuIdList"
+    },
+    {
+      "propName": "Remark",
+      "modelName": "remark"
+    }
+  ],
+  "authorities": {
+    "create": "sys:user:save",
+    "update": "sys:user:update",
+    "read": "sys:user:info",
+    "delete": "sys:user:delete"
+  }
+}

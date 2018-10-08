@@ -1,13 +1,15 @@
-import template from './users.template.html';
+// import template from './users.template.html';
 import { TemplateHelper } from "../../global/templateHelper.service";
 import { Component } from "../../global/decorator/Component";
 import { StandardList } from "../../global/decorator/StandardList";
 import { StandardCURD } from "../../global/decorator/StandardCURD";
-
+import userConfig from '../../global/compiler/userConfig.json';
+import * as template from '../../global/template/table.template.ejs';
+console.log(userConfig);
 @Component({
     inject: ['$timeout', 'UserSettingService', '$state', 'TemplateHelper', 'AlertToasterService'],
     as: 'users',
-    template: template
+    template: template(userConfig)
 })
 @StandardList({
     service: 'userSettingService',
@@ -32,7 +34,7 @@ export class UsersController {
 
     // $onInit后钩子函数
     $onInitHook() {
-
+        console.log(userConfig);
     }
 
     /*tblOptDelete(id) {
