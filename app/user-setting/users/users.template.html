@@ -60,6 +60,7 @@
                     <ul class="pagination pull-right" uib-pagination total-items="users.totalCount"
                         ng-model="users.bigCurrentPage" items-per-page="users.itemsperpage" class="pagination-sm"
                         ng-change="users.queryPage(users)"
+                        max-size="5"
                         boundary-link-numbers="true" rotate="true" boundary-links="true"></ul>
                 </div>
             </div>
