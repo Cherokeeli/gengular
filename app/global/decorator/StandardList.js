@@ -75,6 +75,7 @@ export function StandardList(options) {
 
         // 这里如果用箭头函数，this会绑定成当前StandardCURD作用域，所以使用function，调用的时候this会正常指向Class
         proto.queryPage = function() {
+            this.itemsperpage = this.itemsperpage || 10;
             let param = {
                 pageNo: this.bigCurrentPage,
                 pageSize: this.itemsperpage || 10
