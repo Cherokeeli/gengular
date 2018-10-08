@@ -62,13 +62,20 @@ export const copyPropertiesTo = (source, dest, destProp) => {
     if(!source) {
         throw new Error('source properties is not exist!');
     }
-    if(!objectGetProperty(dest, destProp)) {
-        dest[destProp] = {};
+
+    if(destProp) {
+        if (!objectGetProperty(dest, destProp)) {
+            dest[destProp] = {};
+        }
     }
     if(typeof(source)==='object') {
         let keys = Object.keys(source);
         for (let key of keys) {
-            dest[destProp][key] = source[key];
+            if(destProp) {
+                dest[destProp][key] = source[key];
+            } else {
+                dest[key] = source[key];
+            }
         }
     } else {
         throw new Error('source is not an object!');
