@@ -1,5 +1,5 @@
 {
-  "controllerAs": "user",
+  "controllerAs": "users",
   "listModelName": "userList",
   "subModelName": "user",
   "properties": [
@@ -15,6 +15,10 @@
       "propName": "Role",
       "modelName": "roleNameList",
       "join": ","
+    },
+    {
+      "propName": "Mobile",
+      "modelName": "mobile"
     }
   ],
   "authorities": {
