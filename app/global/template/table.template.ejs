@@ -12,13 +12,13 @@
             </div>
         </div>
         <div class="col-sm-3">
-            <div ng-if="<%-controllerAs+".searchtool"%> class="dataTables_filter">
+            <div ng-if="<%-controllerAs+".searchtool"%>" class="dataTables_filter">
                 <label>Search:<input type="search" class="form-control input-sm" placeholder=""
                                      aria-controls="example1"></label>
             </div>
         </div>
         <div class="col-sm-3">
-            <button ng-if="<%-controllerAs+".addtool"%>  auth-opt="<%-authorities.create%>" ng-click="<%-controllerAs+".tblOptAdd()"%> type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>New</button>
+            <button ng-if="<%-controllerAs+".addtool"%>"  auth-opt="<%-authorities.create%>" ng-click="<%-controllerAs+".tblOptAdd()"%>" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>New</button>
         </div>
     </div>
     <div class="row">
