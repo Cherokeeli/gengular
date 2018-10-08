@@ -7,20 +7,20 @@ import {StandardList} from "../../global/decorator/StandardList";
 import {StandardCURD} from "../../global/decorator/StandardCURD";
 
 @Component({
-    inject: ['$ngConfirm', 'Notification', '$timeout', 'RoleSettingService', '$state'],
+    inject: ['$timeout', 'RoleSettingService', '$state', 'AlertToasterService'],
     as: 'roles',
     template: template
 })
 @StandardList({
     service: 'roleSettingService',
     listModel: 'roleList',
-    list: 'getRoles'
+    list: 'getRoles',
+    delete: 'deleteRole'
 })
 @StandardCURD({
     addState: 'role.add',
     editState: 'role.edit',
     viewState: 'role.view',
-    delete: 'deleteRole'
 })
 export class RolesController {
     afterInjectHook() {
@@ -83,7 +83,7 @@ export class RolesController {
         this.$state.go('role.view', {id: id, opt: OPT_TYPE.VIEW});
     }*/
 
-    // TODO 删除操作封装到Component Decorators里
+    /*
     tblOptDelete(id) {
         let that = this;
         this.$ngConfirm({
@@ -120,7 +120,7 @@ export class RolesController {
                 }
             }
         });
-    }
+    }*/
 
 }
 

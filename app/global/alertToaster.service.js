@@ -50,7 +50,34 @@ export class AlertToasterService {
         };
     }
 
-    dialog(type, title, content) {
+    dialog(title, content) {
+        let that = this;
+        return {
+            confirmation(confirm, cancel) {
+                that.$ngConfirm({
+                    icon: 'fa fa-warning',
+                    theme: 'material',
+                    type: 'orange',
+                    title: title || 'Delete?',
+                    animation: 'zoom',
+                    closeAnimation: 'zoom',
+                    animationSpeed: 200,
+                    content: content || 'This operation cannot be rollbacked',
+                    autoClose: 'cancel|5000',
+                    buttons: {
+                        deleteItem: {
+                            text: 'YES',
+                            btnClass: 'btn-orange',
+                            action: confirm
+                        },
+                        cancel: {
+                            text: 'NO',
+                            action:  cancel
+                        }
+                    }
+                });
+            }
+        }
 
     }
 

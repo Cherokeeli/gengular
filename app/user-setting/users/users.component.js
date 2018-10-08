@@ -5,21 +5,20 @@ import { StandardList } from "../../global/decorator/StandardList";
 import { StandardCURD } from "../../global/decorator/StandardCURD";
 
 @Component({
-    inject: ['$ngConfirm', 'Notification', '$timeout', 'UserSettingService', '$state', 'TemplateHelper'],
+    inject: ['$timeout', 'UserSettingService', '$state', 'TemplateHelper', 'AlertToasterService'],
     as: 'users',
     template: template
 })
 @StandardList({
     service: 'userSettingService',
     listModel: 'userList',
-    list: 'getUsers'
-
+    list: 'getUsers',
+    delete: 'deleteUser'
 })
 @StandardCURD({
     addState: 'user.add',
     editState: 'user.edit',
     viewState: 'user.view',
-    delete: 'deleteUser'
 })
 export class UsersController {
 
@@ -36,7 +35,7 @@ export class UsersController {
 
     }
 
-    tblOptDelete(id) {
+    /*tblOptDelete(id) {
         let that = this;
         this.$ngConfirm({
             icon: 'fa fa-warning',
@@ -72,6 +71,6 @@ export class UsersController {
                 }
             }
         });
-    }
+    }*/
 }
 

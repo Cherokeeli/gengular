@@ -7,20 +7,20 @@ import {StandardList} from "../../global/decorator/StandardList";
 import {StandardCURD} from "../../global/decorator/StandardCURD";
 
 @Component({
-    inject: ['$ngConfirm', 'Notification', '$timeout', 'QuartzSettingService', '$state'],
+    inject: ['$timeout', 'QuartzSettingService', '$state', 'AlertToasterService'],
     as: 'quartz',
     template: template
 })
 @StandardList({
     service: 'quartzSettingService',
     list: 'getTasks',
+    delete: 'deleteTask',
     listModel: 'taskList'
 })
 @StandardCURD({
     addState: 'quartz.add',
     editState: 'quartz.edit',
     viewState: 'quartz.view',
-    delete: 'deleteTask'
 })
 export class QuartzController {
     /*constructor($ngConfirm, Notification, $timeout, Store, QuartzSettingService, $state) {
@@ -81,7 +81,7 @@ export class QuartzController {
         this.$state.go('quartz.view', {id: id, opt: OPT_TYPE.VIEW});
     }*/
 
-    tblOptDelete(id) {
+/*    tblOptDelete(id) {
         let that = this;
         this.$ngConfirm({
             icon: 'fa fa-warning',
@@ -117,7 +117,7 @@ export class QuartzController {
                 }
             }
         });
-    }
+    }*/
 
     /*$onInit() {
         this.queryPage();

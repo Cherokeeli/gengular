@@ -67,6 +67,7 @@ export function StandardList(options) {
         let service = options.service;
         let list = options.list;
         let listModel = options.listModel;
+        let deleteMethod = options.delete;
 
 
 
@@ -125,6 +126,24 @@ export function StandardList(options) {
                     this.checkedids.splice(index, 1);
                 }
             }
+        };
+
+        proto.tblOptDelete = function (id) {
+            if(!id) {
+                return 0;
+            }
+            this.alertToasterService.dialog().confirmation(_ => {
+                let param = {
+                    id: id
+                };
+                this[service][deleteMethod](param).then(res => {
+                    console.log(res);
+                    this.queryPage();
+                }, err => {
+                    console.info(err);
+                });
+            })
+
         }
     }
 }
