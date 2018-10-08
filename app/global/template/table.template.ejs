@@ -1,0 +1,64 @@
+<div class="dataTables_wrapper form-inline dt-bootstrap">
+    <div class="row">
+        <div class="col-sm-6">
+            <div ng-if="<%-controllerAs+".pagesizetool"%>" class="dataTables_length" id="example1_length">
+                <label>Show <select name="example1_length" aria-controls="example1"
+                                    class="form-control input-sm">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select> entries</label>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div ng-if="<%-controllerAs+".searchtool"%> class="dataTables_filter">
+                <label>Search:<input type="search" class="form-control input-sm" placeholder=""
+                                     aria-controls="example1"></label>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <button ng-if="<%-controllerAs+".addtool"%>  auth-opt="<%-authorities.create%>" ng-click="<%-controllerAs+".tblOptAdd()"%> type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>New</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-bordered table-striped dataTable" role="grid"
+                   aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                    <th>Index</th>
+                    <% properties.forEach(function(prop) { %>
+                    <th><%-prop.propName%></th>
+                    <% }) %>
+                    <th class="col-xs-2">Operation</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="($index, <%-subModelName%>) in <%-controllerAs+"."+listModelName%>" role="row">
+                    <td>{{$index+1}}</td>
+                    <% properties.forEach(function(prop) { %>
+                    <td>{{<%-`${subModelName}.${prop.modelName}${prop.join?".join('"+prop.join+"')": ""}`%>}}</td>
+                    <% }) %>
+                    <td>
+                        <input ng-if="<%-controllerAs+".checktool"%>" ng-disabled="!<%-controllerAs+".checkable"%>" ng-model="<%-subModelName+".checked"%>" type="checkbox">
+                        <span ng-if="<%-controllerAs+".edittool"%>" auth-opt="<%-authorities.update%>" ng-click="<%-`${controllerAs}.tblOptEdit(${subModelName}.id)`%>" class="table-control-btn" title="Edit"><i class="fa fa-pencil"></i></span>
+                        <span ng-if="<%-controllerAs+".viewtool"%>" auth-opt="<%-authorities.read%>" ng-click="<%-`${controllerAs}.tblOptView(${subModelName}.id)`%>" class="table-control-btn" title="View"><i class="fa fa-television"></i></span>
+                        <span ng-if="<%-controllerAs+".deletetool"%>" auth-opt="<%-authorities.delete%>" ng-click="<%-`${controllerAs}.tblOptDelete(${subModelName}.id)`%>" class="table-control-btn" title="Delete"><i class="fa fa-trash"></i></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <%-`Showing {{(${controllerAs}.bigCurrentPage-1)*${controllerAs}.itemsperpage || 1}} to {{(${controllerAs}.bigCurrentPage)*${controllerAs}.itemsperpage > ${controllerAs}.totalCount?(${controllerAs}.bigCurrentPage)*${controllerAs}.itemsperpage:${controllerAs}.totalCount}} of {{${controllerAs}.totalCount}} entries`%>
+        </div>
+        <div ng-if="<%-`${controllerAs}.totalCount/${controllerAs}.itemsperpage > 1`%>" class="col-sm-7">
+            <ul class="pagination pull-right" uib-pagination total-items="<%-controllerAs+".totalCount"%>"
+                ng-model="<%-controllerAs+".bigCurrentPage"%>" items-per-page="<%-controllerAs+".itemsperpage"%>" class="pagination-sm"
+                ng-change="<%-controllerAs+".queryPage()"%>"
+                boundary-link-numbers="true" rotate="true" boundary-links="true"></ul>
+        </div>
+    </div>
+</div>
