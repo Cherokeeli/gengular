@@ -74,13 +74,16 @@ export function StandardList(options) {
         let proto = targetClass.prototype;
 
         // 这里如果用箭头函数，this会绑定成当前StandardCURD作用域，所以使用function，调用的时候this会正常指向Class
-        proto.queryPage = function() {
+        proto.queryPage = function(search) {
             this.itemsperpage = this.itemsperpage || 10;
             this.bigCurrentPage = this.bigCurrentPage || 1;
             let param = {
                 pageNo: this.bigCurrentPage,
                 pageSize: this.itemsperpage || 10
             };
+            if(search) {
+                copyPropertiesTo(search, param, '');
+            }
             this[service][list](param).then(res => {
                 this[listModel] = res.records;
                 if(Array.isArray(this.inputids)) {
