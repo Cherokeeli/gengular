@@ -10,9 +10,9 @@
                     <span>|</span>
                     <label class="light-label">Title：<span contenteditable="{{menuTree.editable}}" name="editName" class="editable-span" ng-model="node.name" ng-bind="node.name"></span></label>
                     <span>|</span>
-                    <label class="light-label">Href：<span contenteditable="{{menuTree.editable}}" name="editUrl" class="editable-span" ng-model="node.url" ng-bind="node.url"></span></label>
-                    <span>|</span>
-                    <label class="light-label">Icon：<span contenteditable="{{menuTree.editable}}" name="editIcon" class="editable-span" ng-model="node.icon" ng-bind="node.icon"></span></label>
+                    <label ng-show="node.type===1" class="light-label">Href：<span contenteditable="{{menuTree.editable}}" name="editUrl" class="editable-span" ng-model="node.url" ng-bind="node.url"></span></label>
+                    <span ng-show="node.type===1">|</span>
+                    <label ng-show="node.type!==2" class="light-label">Icon：<span contenteditable="{{menuTree.editable}}" name="editIcon" class="editable-span" ng-model="node.icon" ng-bind="node.icon"></span></label>
                     <div ng-if="menuTree.typetool" class="btn-group btn-group-xs btn-group-default">
                         <label class="btn btn-default" ng-model="node.type" uib-btn-radio="0">Catalog</label>
                         <label class="btn btn-default" ng-model="node.type" uib-btn-radio="1">Page</label>
