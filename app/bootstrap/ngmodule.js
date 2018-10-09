@@ -45,6 +45,8 @@ import 'angular-confirm1/dist/angular-confirm.min.css';
 // toaster插件
 import 'angular-ui-notification/dist/angular-ui-notification.min';
 import 'angular-ui-notification/dist/angular-ui-notification.min.css';
+// 文件上传插件
+import 'angular-file-upload/dist/angular-file-upload.min';
 
 // 自定义模块
 import { MAIN_MODULE } from '../main/main.module';
@@ -56,6 +58,7 @@ export const ngmodule = angular.module('App', [
     uiAngularTree,
     'ui-notification',
     'cp.ngConfirm',
+    'angularFileUpload',
     GLOBAL_MODULE.name,
     MAIN_MODULE.name,
 ]);

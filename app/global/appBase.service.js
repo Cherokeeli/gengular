@@ -3,7 +3,7 @@
  */
 
 export class AppBaseService {
-    constructor($http, $q, AppConfig, AlertToasterService) {
+    constructor($http, $q, AppConfig, AlertToasterService, FileUploader) {
         this.$http = $http;
         this.$q = $q;
         this.appConfig = AppConfig;
@@ -13,7 +13,8 @@ export class AppBaseService {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }
+        };
+        this.fileUploader = FileUploader;
     }
 
     /**
@@ -130,6 +131,65 @@ export class AppBaseService {
             });
     }
 
+    upload(url) {
+        let uploader = new this.fileUploader({
+            url: `/${this.appConfig.requestPrefix}${url}`,
+            method: 'POST',
+            removeAfterUpload: true,
+            queueLimit: 1, //文件个数
+            autoUpload: true
+        });
+        let pendingPop;
+        uploader.onProgressItem = (fileItem, progress) => {
+            pendingPop = this.alertToasterService.popup("Uploading", "Uploading data...").pending();
+            console.info('onProgressItem', fileItem, progress);
+        };
+        uploader.onSuccessItem = (fileItem, response, status, headers) => {
+            console.info('onSuccessItem', fileItem, response, status, headers);
+            if(response.ok) {
+                pendingPop.then(pop=>pop.kill());
+                this.alertToasterService.popup("Success!", "Upload file successfully").success();
+            }
+        };
+        return uploader;
+    }
+
+    downloadGet(url, param) {
+        let $iframe = document.createElement('iframe');
+        $iframe.setAttribute('id', 'down-file-iframe');
+        let $form = document.createElement('form');
+        $form.setAttribute('target', 'down-file-iframe');
+        $form.setAttribute('method', 'GET');
+        $form.setAttribute('action', `/${this.appConfig.requestPrefix}${url}`);
+        let value = "";
+        for (let key in param) {
+            value = typeof(param[key])==='object'?JSON.stringify(param[key]).replace(/"/g,"'"):param[key];
+            $form.innerHTML+= '<input type="hidden" name="' + key + '" value="' + value + '" />';
+        }
+        $iframe.appendChild($form);
+        document.body.appendChild($iframe);
+        $form.submit();
+        $iframe.remove();
+    }
+
+    downloadPost(url, param) {
+        let $iframe = document.createElement('iframe');
+        $iframe.setAttribute('id', 'down-file-iframe');
+        let $form = document.createElement('form');
+        $form.setAttribute('target', 'down-file-iframe');
+        $form.setAttribute('method', 'POST');
+        $form.setAttribute('action', `/${this.appConfig.requestPrefix}${url}`);
+        let value = "";
+        for (let key in param) {
+            value = typeof(param[key])==='object'?JSON.stringify(param[key]).replace(/"/g,"'"):param[key];
+            $form.innerHTML+= '<input type="hidden" name="' + key + '" value="' + value + '" />';
+        }
+        $iframe.appendChild($form);
+        document.body.appendChild($iframe);
+        $form.submit();
+        $iframe.remove();
+    }
+
 }
 
-AppBaseService.$inject = ['$http', '$q', 'AppConfig', 'AlertToasterService'];
+AppBaseService.$inject = ['$http', '$q', 'AppConfig', 'AlertToasterService', 'FileUploader'];

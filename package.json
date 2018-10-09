@@ -17,6 +17,7 @@
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.6.10",
     "angular-confirm1": "^1.1.0",
+    "angular-file-upload": "^2.5.0",
     "angular-ui-bootstrap": "^2.5.6",
     "angular-ui-notification": "^0.3.6",
     "angular-ui-tree": "^2.22.6",
