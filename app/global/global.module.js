@@ -9,6 +9,7 @@ import { qlIf } from "./directive/qlIf.directive";
 import { TemplateHelper } from "./templateHelper.service";
 import { dirtyAndHide } from "./directive/dirtyAndHide.directive";
 import { AlertToasterService } from "./alertToaster.service";
+import {dateParser} from "./directive/dateParser.directive";
 
 export const GLOBAL_MODULE = angular.module('global', [
     // 在这写模块依赖诶
@@ -25,6 +26,7 @@ GLOBAL_MODULE.directive('contenteditable', contenteditable);
 GLOBAL_MODULE.directive('authOpt', authOpt);
 GLOBAL_MODULE.directive('qlIf', qlIf);
 GLOBAL_MODULE.directive('dirtyAndHide', dirtyAndHide);
+GLOBAL_MODULE.directive('dateParser', dateParser);
 
 GLOBAL_MODULE.service('AppConfig', AppConfig);
 GLOBAL_MODULE.service('AppBaseService', AppBaseService);
