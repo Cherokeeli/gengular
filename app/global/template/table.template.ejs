@@ -1,42 +1,41 @@
 <div class="dataTables_wrapper form-inline dt-bootstrap">
-    <div class="row" ng-if="cash.searchtool">
+    <div class="row" ng-if="<%-controllerAs+'.searchtool'%>">
         <form class="form-inline col-xs-12">
-            <!--<div class="form-group">
-                <label>From:</label>
-                <input ng-model="cash.search.startDate" date-parser="yyyy-MM-dd" type="date" class="form-control" id="exampleInputName2" placeholder="From date">
-            </div>
-            <div class="form-group">
+            <!--<div class="form-group group-margin">
+                <label>Search:</label>
+                <input ng-model="cash.search.startDate" date-parser="yyyy-MM-dd" type="text" class="form-control" id="exampleInputName2" placeholder="From date">
+            </div>-->
+            <!--<div class="form-group group-margin">
                 <label>To:</label>
                 <input ng-model="cash.search.endDate" date-parser="yyyy-MM-dd" type="date" class="form-control" id="exampleInputEmail2" placeholder="To date">
             </div>
-            <div class="form-group">
+            <div class="form-group group-margin">
                 <label>Trader Name:</label>
                 <input ng-model="cash.search.traderName" type="email" class="form-control" id="exampleInputEmail2" placeholder="Trader name">
             </div>-->
-            <button class="btn btn-default" ng-click="<%-`${controllerAs}.queryPage(${controllerAs}.search)`%>">Search</button>
         </form>
     </div>
     <div class="row">
-        <div class="col-sm-6">
-            <div ng-if="<%-controllerAs+".pagesizetool"%>" class="dataTables_length" id="example1_length">
-                <label>Show <select ng-model="cash.itemsperpage" name="example1_length" aria-controls="example1"
-                                    class="form-control input-sm">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select> entries</label>
-            </div>
+        <div class="col-sm-12">
+            <label ng-if="<%-controllerAs+".pagesizetool"%>">Show <select ng-model="<%-`${controllerAs}.itemsperpage`%>" name="example1_length" aria-controls="example1"
+                                                                          class="form-control input-sm">
+                    <option value="">Please select</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select> entries</label>
+            <button class="btn btn-default" ng-click="<%-`${controllerAs}.queryPage(${controllerAs}.search)`%>">Search</button>
+            <button ng-if="<%-controllerAs+".addtool"%>"  auth-opt="<%-authorities.create%>" ng-click="<%-controllerAs+".tblOptAdd()"%>" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>New</button>
         </div>
-        <div class="col-sm-3">
+        <!--<div class="col-sm-3">
             <div ng-if="<%-controllerAs+".searchtool"%>" class="dataTables_filter">
-                <label>Search:<input type="search" class="form-control input-sm" placeholder=""
-                                     aria-controls="example1"></label>
+
             </div>
         </div>
         <div class="col-sm-3">
             <button ng-if="<%-controllerAs+".addtool"%>"  auth-opt="<%-authorities.create%>" ng-click="<%-controllerAs+".tblOptAdd()"%>" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>New</button>
-        </div>
+        </div>-->
     </div>
     <div class="row">
         <div class="col-sm-12">
@@ -74,7 +73,7 @@
         <div ng-if="<%-`${controllerAs}.totalCount/${controllerAs}.itemsperpage > 1`%>" class="col-sm-7">
             <ul class="pagination pull-right" uib-pagination total-items="<%-controllerAs+".totalCount"%>"
                 ng-model="<%-controllerAs+".bigCurrentPage"%>" items-per-page="<%-controllerAs+".itemsperpage"%>" class="pagination-sm"
-                ng-change="<%-controllerAs+".queryPage()"%>"
+                ng-change="<%-`${controllerAs}.queryPage(${controllerAs}.itemsperpage)`%>"
                 boundary-link-numbers="true" rotate="true" boundary-links="true"></ul>
         </div>
     </div>
