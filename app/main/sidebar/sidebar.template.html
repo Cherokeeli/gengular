@@ -27,7 +27,6 @@
             <ul class="sidebar-menu" data-widget="tree">
 
                 <li ng-class="{'header':!config.hasOwnProperty('url'),'treeview':config.list.length>0}"
-                    class="active"
                     ng-repeat="config in sidebar.menuConfig">
                     <span ng-if="!config.hasOwnProperty('url')">{{::config.name}}</span>
                     <a href="" ui-sref="{{::config.url}}" ui-sref-opts="{reload:true}" ng-if="config.hasOwnProperty('list')">
