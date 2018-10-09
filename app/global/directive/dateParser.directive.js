@@ -17,16 +17,9 @@ export function dateParser($filter) {
                     //将ngModel置为指令指定的格式
                     ctrl.$parsers.push(function (value) {
                         console.log(value);
-                        return $filter('date')(new Date(value), attr.dateParser);
+                        return value? $filter('date')(new Date(value), attr.dateParser):undefined;
                     });
                 }
-
-                //后端传来数据是timestamp，将viewModel置为date格式
-                ctrl.$formatters.push(function (value) {
-                    if(value) {
-                        return (new Date(value));
-                    }
-                });
             }
         }
     }
