@@ -3,9 +3,9 @@ export class QuartzSettingService {
         this.appBaseService = AppBaseService;
     }
 
-    getTasks() {
+    getTasks(param) {
         let url = '/sys/schedule';
-        return this.appBaseService.get(url, {});
+        return this.appBaseService.get(url, param);
     }
 
     deleteTask(param) {

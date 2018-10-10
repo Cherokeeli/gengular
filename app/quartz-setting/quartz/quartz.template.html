@@ -1,23 +1,22 @@
 <div class="dataTables_wrapper form-inline dt-bootstrap">
+    <div class="row" ng-if="quartz.searchtool">
+        <form class="form-inline col-xs-12">
+            <div class="form-group group-margin">
+                <label>Bean Name:</label>
+                <input ng-model="quartz.search.beanName" type="text" class="form-control" placeholder="Bean name">
+            </div>
+        </form>
+    </div>
     <div class="row">
-        <div class="col-sm-6">
-            <div ng-if="quartz.pagesizetool" class="dataTables_length">
-                <label>Show <select name="example1_length" aria-controls="example1"
-                                    class="form-control input-sm">
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select> entries</label>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="dataTables_filter" ng-if="quartz.searchtool">
-                <label>Search:<input type="search" class="form-control input-sm" placeholder=""
-                                     aria-controls="example1"></label>
-            </div>
-        </div>
-        <div class="col-sm-3">
+        <div class="col-sm-12">
+            <label ng-if="quartz.pagesizetool">Show <select ng-model="quartz.itemsperpage" name="example1_length" aria-controls="example1"
+                                                            class="form-control input-sm">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select> entries</label>
+            <button class="btn btn-default" ng-click="quartz.queryPage(quartz.search)">Search</button>
             <button ng-if="quartz.addtool" auth-opt="sys:schedule:save" ng-click="quartz.tblOptAdd()" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>New</button>
         </div>
     </div>
