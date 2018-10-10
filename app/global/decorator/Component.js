@@ -38,8 +38,9 @@ export function Component(option) {
          * 将inject,as,template参数复制到prototype上，然后在module使用componentFactory函数包装成angularjs的component格式
          */
         targetClass.prototype = proto;
-        copyPropertiesTo(options.bindings, targetClass.prototype, 'bindings');
-        proto.inject = option.inject;
+        if(option.bindings) {
+            copyPropertiesTo(option.bindings, targetClass.prototype, 'bindings');
+        }        proto.inject = option.inject;
         proto.controllerAs = option.as;
         proto.template = option.template;
         return targetClass;
