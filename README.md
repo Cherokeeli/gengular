@@ -28,6 +28,7 @@ npm install 过程中会需 chromedriver 下载的情况
 - angular-ui-notification   angularjs toaster插件
 - angular-confirm           angularjs 确认框插件
 - angular-file-upload       angularjs 文件上传插件
+- angular-animate           angularjs 动画插件
 
 ## 文件类型
 项目中除了标准的js,html,less,css文件名，为了标识更详尽的类型，有一下的类型
@@ -175,4 +176,6 @@ StandardCURD修饰器，添加了标准增删改查的视图行为，同时添�
 ## 指令
 
 ## TODO-List
-Server-Side-Rendering
+
+Server-Side-Rendering(服务端渲染)
+Multiframe(多窗口)
