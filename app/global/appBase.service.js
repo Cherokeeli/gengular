@@ -40,8 +40,8 @@ export class AppBaseService {
                     return this.$q.reject(response.englishTips);
                 }
             }).catch(error => {
-                this.alertToasterService.popup("Error!", error).error();
-                return this.$q.reject(error.data);
+                this.alertToasterService.popup("Error!", JSON.stringify(error)).error();
+                return this.$q.reject(error);
             });
     }
 
@@ -69,7 +69,7 @@ export class AppBaseService {
                     return this.$q.reject(response.englishTips);
                 }
             }).catch(error => {
-                this.alertToasterService.popup("Error!", error).error();
+                this.alertToasterService.popup("Error!", JSON.stringify(error)).error();
                 return this.$q.reject(error.data);
             });
 
@@ -99,7 +99,7 @@ export class AppBaseService {
                     return this.$q.reject(response.englishTips);
                 }
             }).catch(error => {
-                this.alertToasterService.popup("Error!", error).error();
+                this.alertToasterService.popup("Error!", JSON.stringify(error)).error();
                 return this.$q.reject(error.data);
             });
     }
@@ -126,7 +126,7 @@ export class AppBaseService {
                     return this.$q.reject(response.englishTips);
                 }
             }).catch(error => {
-                this.alertToasterService.popup("Error!", error).error();
+                this.alertToasterService.popup("Error!", JSON.stringify(error)).error();
                 return this.$q.reject(error.data);
             });
     }

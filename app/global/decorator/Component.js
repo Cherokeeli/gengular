@@ -5,6 +5,7 @@
  *     inject:   {Array}  注入数组
  *     as:       {String} 在template中替代$ctrl的名字
  *     template: {String} html模板
+ *     bindings: {Object} 绑定变量，使用<,@,=,&四种进行绑定
  * }
  */
 
