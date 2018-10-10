@@ -70,7 +70,7 @@ export class AppBaseService {
                 }
             }).catch(error => {
                 this.alertToasterService.popup("Error!", JSON.stringify(error)).error();
-                return this.$q.reject(error.data);
+                return this.$q.reject(error);
             });
 
     }
@@ -100,7 +100,7 @@ export class AppBaseService {
                 }
             }).catch(error => {
                 this.alertToasterService.popup("Error!", JSON.stringify(error)).error();
-                return this.$q.reject(error.data);
+                return this.$q.reject(error);
             });
     }
 
@@ -127,7 +127,7 @@ export class AppBaseService {
                 }
             }).catch(error => {
                 this.alertToasterService.popup("Error!", JSON.stringify(error)).error();
-                return this.$q.reject(error.data);
+                return this.$q.reject(error);
             });
     }
 

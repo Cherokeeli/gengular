@@ -60,7 +60,7 @@
     </div>
     <div class="row">
         <div class="col-sm-5">
-            Showing {{(quartz.bigCurrentPage-1)*quartz.itemsperpage || 1}} to {{(quartz.bigCurrentPage)*quartz.itemsperpage > quartz.totalCount?(quartz.bigCurrentPage)*quartz.itemsperpage:quartz.totalCount}} of {{quartz.totalCount}} entries
+            Showing {{(quartz.bigCurrentPage-1)*quartz.itemsperpage || 1}} to {{(quartz.bigCurrentPage)*quartz.itemsperpage > quartz.totalCount?quartz.totalCount:(quartz.bigCurrentPage)*quartz.itemsperpage}} of {{quartz.totalCount}} entries
         </div>
         <div ng-if="quartz.totalCount/quartz.itemsperpage > 1" class="col-sm-7">
             <ul class="pagination pull-right" uib-pagination total-items="quartz.totalCount"

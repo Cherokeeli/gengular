@@ -68,7 +68,7 @@
     </div>
     <div class="row">
         <div class="col-sm-5">
-            <%-`Showing {{(${controllerAs}.bigCurrentPage-1)*${controllerAs}.itemsperpage || 1}} to {{(${controllerAs}.bigCurrentPage)*${controllerAs}.itemsperpage > ${controllerAs}.totalCount?(${controllerAs}.bigCurrentPage)*${controllerAs}.itemsperpage:${controllerAs}.totalCount}} of {{${controllerAs}.totalCount}} entries`%>
+            <%-`Showing {{(${controllerAs}.bigCurrentPage-1)*${controllerAs}.itemsperpage || 1}} to {{(${controllerAs}.bigCurrentPage)*${controllerAs}.itemsperpage > ${controllerAs}.totalCount?${controllerAs}.totalCount:(${controllerAs}.bigCurrentPage)*${controllerAs}.itemsperpage}} of {{${controllerAs}.totalCount}} entries`%>
         </div>
         <div ng-if="<%-`${controllerAs}.totalCount/${controllerAs}.itemsperpage > 1`%>" class="col-sm-7">
             <ul class="pagination pull-right" uib-pagination total-items="<%-controllerAs+".totalCount"%>"
