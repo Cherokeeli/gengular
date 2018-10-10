@@ -140,4 +140,17 @@ ul.pagination {
 .row.clear-row {
   margin: 0;
 }
+
+section.content {
+  &.ng-enter {
+    transform: translateY(30px);
+    transition: all .5s ease-in-out;
+    opacity: 0;
+  }
+
+  &.ng-enter.ng-enter-active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
       
