@@ -41,6 +41,7 @@ npm install 过程中会需 chromedriver 下载的情况
 - enum:枚举
 
 ## 目录结构
+```
 |____index.html                             项目入口
 |____package.json                           npm依赖目录
 |____webpack.development.config.js          webpack开发环境编译配置
@@ -70,6 +71,7 @@ npm install 过程中会需 chromedriver 下载的情况
 | |____user-setting                         用户模块
 | |____utils                                一些utils函数
 | |____app.style.less                       全局样式
+```
 
 ## 组件化
 angularjs 1.5之后引入了MODULE.component，可以进行组件化开发了，项目中，一个标准的组件如下：
