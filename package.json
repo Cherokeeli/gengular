@@ -16,6 +16,7 @@
   "dependencies": {
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.6.10",
+    "angular-animate": "^1.6.10",
     "angular-confirm1": "^1.1.0",
     "angular-file-upload": "^2.5.0",
     "angular-ui-bootstrap": "^2.5.6",

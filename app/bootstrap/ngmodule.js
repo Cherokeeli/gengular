@@ -47,7 +47,8 @@ import 'angular-ui-notification/dist/angular-ui-notification.min';
 import 'angular-ui-notification/dist/angular-ui-notification.min.css';
 // 文件上传插件
 import 'angular-file-upload/dist/angular-file-upload.min';
-
+// 动态效果插件
+import ngAnimate from 'angular-animate';
 // 自定义模块
 import { MAIN_MODULE } from '../main/main.module';
 import { GLOBAL_MODULE } from "../global/global.module";
@@ -56,6 +57,7 @@ export const ngmodule = angular.module('App', [
     uiRouter,
     uiBootstrap,
     uiAngularTree,
+    ngAnimate,
     'ui-notification',
     'cp.ngConfirm',
     'angularFileUpload',
