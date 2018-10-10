@@ -78,7 +78,7 @@ export class AlertToasterService {
                 });
             },
 
-            viewModal(title, content) {
+            viewModal() {
                 $ngConfirm({
                     title: title,
                     theme: 'material',
