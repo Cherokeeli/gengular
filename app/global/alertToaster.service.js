@@ -78,15 +78,15 @@ export class AlertToasterService {
                 });
             },
 
-            viewModal() {
-                $ngConfirm({
+            viewModal(size) {
+                that.$ngConfirm({
                     title: title,
                     theme: 'material',
                     content: content,
+                    columnClass: size,
                     buttons: {
                         cancel: {
                             text: 'Cancel',
-                            disabled: true,
                             btnClass: 'btn-green',
                             action: function (scope) {
                             }
