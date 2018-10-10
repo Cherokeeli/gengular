@@ -1,5 +1,5 @@
 # gengular
-To develop auto-generated webpages based on json instead of writing some boring CURD webpages.
+配JSON，写页面，你也可以
 
 [TOC]
 
@@ -173,3 +173,6 @@ StandardCURD修饰器，添加了标准增删改查的视图行为，同时添�
 ## 模板编译器
 
 ## 指令
+
+## TODO-List
+Server-Side-Rendering
