@@ -16,7 +16,7 @@ export function Component(option) {
         console.log(targetClass.prototype);
         /**
          * 这段代码重写了Class的constructor,通过inject属性直接将依赖注入到constructor里面，依赖如果是大写开头，则注入到this是小写开头，
-         * 如SampleService => this.sampleServce, 最后调用afterInjectHook钩子函数来做注入之后的动作
+         * 如SampleService => this.sampleServce, 最后调用afterInjectHook钩子函数来做注入之后的动作,在class中实现afterInjectHook函数即可
          */
         let proto = targetClass.prototype;
         targetClass = function(...args) {
@@ -39,7 +39,7 @@ export function Component(option) {
          */
         targetClass.prototype = proto;
         // TODO bindings的变量必须在$onInit里面才能获取到，$onInitHook在单独写Component修饰器的时候就没有了，只在StandardList里面实现了，暂时判断如果没有实现$onInit就在此实现
-        if(angular.isFunction(proto.$onInit)) {
+        if(!angular.isFunction(proto.$onInit)) {
             proto.$onInit = function () {
                 if (angular.isFunction(this.$onInitHook)) {
                     this.$onInitHook();
