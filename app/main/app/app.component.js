@@ -1,6 +1,15 @@
 import appTemplate from './app.template.html';
+import {Component} from "../../global/decorator/Component";
 
-class AppController {
+@Component({
+    inject: [],
+    as: 'app',
+    template: appTemplate,
+    bindings: {
+        authPermission: '<'
+    }
+})
+export class AppController {
     constructor() {
         // FIX 去掉ng-include的wrapper
         angular.element(() => {
@@ -14,12 +23,3 @@ class AppController {
         this.ctrlName = "AppCtrl";
     }
 }
-
-export const app = {
-    controller: AppController,
-    bindings: {
-        authPermission: '<'
-    },
-    controllerAs: 'app',
-    template: appTemplate
-};

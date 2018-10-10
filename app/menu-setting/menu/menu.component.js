@@ -1,11 +1,15 @@
 import menuConfigTemplate from './menu.template.html';
+import {Component} from "../../global/decorator/Component";
 
-class MenuConfigController {
-    constructor($timeout, Store, AlertToasterService) {
-        this.$timeout = $timeout;
-        this.globalData = Store.data;
-        this.alertToasterService = AlertToasterService;
+@Component({
+    inject: ['$timeout', 'AlertToasterService'],
+    template: menuConfigTemplate,
+    as: 'menuConfig',
+    bindings: {
+        authPermission: '<'
     }
+})
+export class MenuConfigController {
 
     save() {
         let that = this;
@@ -23,14 +27,3 @@ class MenuConfigController {
         console.log(this.authPermission);
     }
 }
-
-MenuConfigController.$inject = ['$timeout', 'Store', 'AlertToasterService'];
-
-export const menu = {
-    controller: MenuConfigController,
-    bindings: {
-        authPermission: '<'
-    },
-    controllerAs: 'menuConfig',
-    template: menuConfigTemplate
-};

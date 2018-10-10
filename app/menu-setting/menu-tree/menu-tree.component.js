@@ -1,15 +1,27 @@
 import treeTemplate from './menu-tree.template.html';
 import * as style from './menu-tree.style.less';
 import { objectGetProperty, objectIndexOf } from "../../utils/utils";
+import {Component} from "../../global/decorator/Component";
 
+@Component({
+    inject: ['$timeout', '$ngConfirm', 'MenuSettingService', '$state'],
+    template: treeTemplate,
+    bindings: {
+        inputids: '<',
+        checkedids: '=',
+        checkable: '<',
+        editable: '<',
+        radiotool: '<',
+        addtool: '<',
+        deletetool: '<',
+        typetool: '<'
+    },
+    as: 'menuTree',
+    style: style
+})
 export class MenuTreeController {
-    constructor(Store, $timeout, $ngConfirm, MenuSettingService, $state) {
-        console.log(Store.data);
-        this.$ngConfirm = $ngConfirm;
-        this.globalData = Store.data;
-        this.menuSettingService = MenuSettingService;
-        this.$state = $state;
-        this.$timeout = $timeout;
+
+    afterInjectHook() {
         this.checkednodes = [];
         this.checkedids = [];
         this.tree = {};
@@ -36,7 +48,6 @@ export class MenuTreeController {
                 }, 0);
             }
         };
-        this.style = style;
     }
 
     queryPage() {
@@ -174,21 +185,3 @@ export class MenuTreeController {
         }
     }
 }
-
-MenuTreeController.$inject=['Store', '$timeout', '$ngConfirm', 'MenuSettingService', '$state'];
-
-export const menuTree = {
-    controller: MenuTreeController,
-    controllerAs: 'menuTree',
-    bindings: {
-        inputids: '<',
-        checkedids: '=',
-        checkable: '<',
-        editable: '<',
-        radiotool: '<',
-        addtool: '<',
-        deletetool: '<',
-        typetool: '<'
-    },
-    template: treeTemplate
-};

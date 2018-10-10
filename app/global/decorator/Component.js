@@ -30,6 +30,8 @@ export function Component(option) {
                 console.log(dep);
                 that[dep] = args[index];
             });
+            // 加入style
+            this.style = option.style;
             if(angular.isFunction(this.afterInjectHook)) {
                 this.afterInjectHook();
             }

@@ -5,13 +5,15 @@
 
 import loginTemplate from './login.template.html';
 import * as style from './login.style.less';
-
-class LoginController {
-    constructor(MainService, $state) {
-        console.info("loginController");
-        this.mainService = MainService;
-        this.style = style;
-        this.$state = $state;
+import {Component} from "../../global/decorator/Component";
+@Component({
+    inject: ['MainService', '$state'],
+    as: 'login',
+    template: loginTemplate,
+    style: style
+})
+export class LoginController {
+    afterInjectHook() {
         this.user = {};
         this.logSuccess = true;
     }
@@ -29,17 +31,4 @@ class LoginController {
             this.logSuccess = false;
         });
     }
-
-    validateFormRequired(form, formEle) {
-        return form[formEle].$dirty && form[formEle].$invalid;
-    }
 }
-
-LoginController.$inject = ['MainService', '$state'];
-
-export const login = {
-    bindings: { returnTo: '<' },
-    controller: LoginController,
-    controllerAs: 'login',
-    template: loginTemplate
-};

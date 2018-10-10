@@ -1,13 +1,14 @@
 import navbarTemplate from './navbar.template.html';
 import * as style from './navbar.style.less';
+import {Component} from "../../global/decorator/Component";
 
-class NavbarController {
-    constructor(MainService, $state) {
-        this.style = style;
-        this.mainService = MainService;
-        this.$state = $state;
-    }
-
+@Component({
+    inject: ['MainService', '$state'],
+    as: 'navbar',
+    template: navbarTemplate,
+    style: style
+})
+export class NavbarController {
     signOut() {
         this.mainService.logOut().then(res => {
             this.$state.go('login');
@@ -24,11 +25,3 @@ class NavbarController {
         })
     }
 }
-
-NavbarController.$inject = ['MainService', '$state'];
-
-export const navbar = {
-    controller: NavbarController,
-    controllerAs: 'navbar',
-    template: navbarTemplate
-};
