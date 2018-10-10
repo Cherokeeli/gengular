@@ -23,13 +23,15 @@ export function Component(option) {
         targetClass = function(...args) {
             console.log(...args);
             let that = this;
-            option.inject.forEach((dep, index) => {
-                if(dep[0].match(/[A-Z]/)) {
-                    dep = dep[0].toLowerCase()+dep.slice(1);
-                }
-                console.log(dep);
-                that[dep] = args[index];
-            });
+            if(angular.isArray(option.inject)) {
+                option.inject.forEach((dep, index) => {
+                    if (dep[0].match(/[A-Z]/)) {
+                        dep = dep[0].toLowerCase() + dep.slice(1);
+                    }
+                    console.log(dep);
+                    that[dep] = args[index];
+                });
+            }
             // 加入style
             this.style = option.style;
             if(angular.isFunction(this.afterInjectHook)) {
