@@ -38,6 +38,12 @@ export function Component(option) {
          * 将inject,as,template参数复制到prototype上，然后在module使用componentFactory函数包装成angularjs的component格式
          */
         targetClass.prototype = proto;
+        // TODO bindings的变量必须在$onInit里面才能获取到，$onInitHook在单独写Component修饰器的时候就没有了，只在StandardList里面实现了，暂时判断如果没有实现$onInit就在此实现
+        proto.$onInit = function () {
+            if(angular.isFunction(this.$onInitHook)) {
+                this.$onInitHook();
+            }
+        };
         if(option.bindings) {
             copyPropertiesTo(option.bindings, targetClass.prototype, 'bindings');
         }        proto.inject = option.inject;
