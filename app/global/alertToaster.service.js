@@ -76,6 +76,32 @@ export class AlertToasterService {
                         }
                     }
                 });
+            },
+
+            viewModal(title, content) {
+                $ngConfirm({
+                    title: title,
+                    theme: 'material',
+                    content: content,
+                    buttons: {
+                        cancel: {
+                            text: 'Cancel',
+                            disabled: true,
+                            btnClass: 'btn-green',
+                            action: function (scope) {
+                            }
+                        }
+                    },
+                    onScopeReady: function (scope) {
+                        var self = this;
+                        scope.textChange = function () {
+                            if (scope.username)
+                                self.buttons.sayMyName.setDisabled(false);
+                            else
+                                self.buttons.sayMyName.setDisabled(true);
+                        }
+                    }
+                })
             }
         }
 

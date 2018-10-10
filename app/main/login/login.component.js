@@ -23,7 +23,7 @@ class LoginController {
             // this.$state.go('dashboard', null, {reload: true});
             // TODO 进入Dashboard之后ui框架的js不执行，暂时强制刷新重新执行这些js
             window.location.href = '#/app/dashboard';
-            window.location.reload();
+            window.location.reload(true);
         }, err => {
             console.info('error:',err);
             this.logSuccess = false;
