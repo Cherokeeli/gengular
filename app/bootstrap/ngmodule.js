@@ -28,7 +28,8 @@ import '../../core/ui-framework/dist/css/AdminLTE.min.css';
 import '../../core/ui-framework/bower_components/jquery-slimscroll/jquery.slimscroll.min';
 import '../../core/ui-framework/bower_components/fastclick/lib/fastclick';
 import '../../core/ui-framework/dist/css/skins/skin-purple.min.css';
-import '../../core/ui-framework/dist/js/adminlte.min';
+// 在这里载入lte框架的js会有问题，应当在进入App后在载入框架，当前解决方案是在登录后进入dashboard的时候载入lte框架
+// import '../../core/ui-framework/dist/js/adminlte.min';
 
 
 // angularjs插件

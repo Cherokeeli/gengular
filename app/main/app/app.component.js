@@ -10,15 +10,18 @@ import {Component} from "../../global/decorator/Component";
     }
 })
 export class AppController {
-    constructor() {
+
+    afterInjectHook() {
         // FIX 去掉ng-include的wrapper
         angular.element(() => {
-            console.log('page loading completed');
+            /*console.log('page loading completed');
             let nodes = document.querySelectorAll('div[include-replace]');
             Array.prototype.forEach.call(nodes, (node) => {
                 $(node).replaceWith($(node).children());
             });
-            console.log(angular.element('.edit-url'));
+            console.log(angular.element('.edit-url'));*/
+            // uiFrame();
+
         });
         this.ctrlName = "AppCtrl";
     }

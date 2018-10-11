@@ -23,10 +23,7 @@ export class LoginController {
         console.log(this);
         this.mainService.logIn(this.user).then(res => {
             console.log(res);
-            // this.$state.go('dashboard', null, {reload: true});
-            // TODO 进入Dashboard之后ui框架的js不执行，暂时强制刷新重新执行这些js
-            window.location.href = '#/app/dashboard';
-            window.location.reload(true);
+            this.$state.go('dashboard', null, {reload: true});
         }, err => {
             console.info('error:',err);
             this.logSuccess = false;
