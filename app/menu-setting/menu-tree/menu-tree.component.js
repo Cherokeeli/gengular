@@ -31,9 +31,11 @@ export class MenuTreeController {
                 console.log(event);
                 console.log(that.menuConfig);
                 if (objectGetProperty(event.dest.nodesScope,'$parent.$modelValue.id')) {
-                    event.source.nodeScope.$modelValue.parentId = event.dest.nodesScope.$parent.$modelValue.id;
+                    if(event.source.nodeScope.$modelValue.parentId !== event.dest.nodesScope.$parent.$modelValue.id) {
+                        event.source.nodeScope.$modelValue.tempParentId = event.dest.nodesScope.$parent.$modelValue.id;
+                    }
                 } else {
-                    event.source.nodeScope.$modelValue.parentId = '0';
+                    event.source.nodeScope.$modelValue.tempParentId = '0';
                 }
                 // 通过source获取原始的hashkey，然后在在dest里获取对应的formName,这样不行，因为放下去之后form重新命名了
                 // let hashKay = event.source.nodeScope.$modelValue.$$hashKey;
@@ -104,6 +106,7 @@ export class MenuTreeController {
             url: '#',
             type: 0,
             parentId: list.id,
+            tempParentId: list.id,
             icon: '',
             isNew: true,
             children: []
@@ -132,8 +135,8 @@ export class MenuTreeController {
                         that.menuSettingService.deleteMenuItem(node).then(res => {
                             console.log(res);
                             scope.remove();
-                        }, err => {
-
+                            // 通知刷新侧边栏
+                            this.$rootScope.$emit('refreshSidebar');
                         });
 
                     }
@@ -150,9 +153,11 @@ export class MenuTreeController {
 
     saveNode(scope, formName) {
         let node = scope.$modelValue;
+        node.parentId = node.tempParentId;
         this.menuSettingService.addMenuItem(node).then(res=> {
             console.log(res);
             this[formName].$setPristine();
+            node.isNew = false;
             // 通知刷新侧边栏
             this.$rootScope.$emit('refreshSidebar');
         });
@@ -160,6 +165,7 @@ export class MenuTreeController {
 
     updateNode(scope, formName) {
         let node = scope.$modelValue;
+        node.parentId = node.tempParentId;
         this.menuSettingService.updateMenuItem(node).then(res => {
             console.log(res, this[formName]);
             this[formName].$setPristine();
