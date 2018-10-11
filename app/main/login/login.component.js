@@ -18,6 +18,7 @@ export class LoginController {
         this.logSuccess = true;
     }
 
+
     logIn() {
         console.log(this);
         this.mainService.logIn(this.user).then(res => {
