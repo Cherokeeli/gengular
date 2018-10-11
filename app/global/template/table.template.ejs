@@ -56,7 +56,7 @@
                     <td>{{<%-`${subModelName}.${prop.modelName}${prop.join?".join('"+prop.join+"')": ""}`%>}}</td>
                     <% }) %>
                     <td>
-                        <input ng-if="<%-controllerAs+".checktool"%>" ng-disabled="!<%-controllerAs+".checkable"%>" ng-model="<%-subModelName+".checked"%>" type="checkbox">
+                        <input ng-if="<%-controllerAs+".checktool"%>" ng-disabled="!<%-controllerAs+".checkable"%>" ng-click="<%-`${controllerAs}.checkItem(${subModelName})`%>" ng-model="<%-subModelName+".checked"%>" type="checkbox">
                         <span ng-if="<%-controllerAs+".edittool"%>" auth-opt="<%-authorities.update%>" ng-click="<%-`${controllerAs}.tblOptEdit(${subModelName}.id)`%>" class="table-control-btn" title="Edit"><i class="fa fa-pencil"></i></span>
                         <span ng-if="<%-controllerAs+".viewtool"%>" auth-opt="<%-authorities.read%>" ng-click="<%-`${controllerAs}.tblOptView(${subModelName}.id)`%>" class="table-control-btn" title="View"><i class="fa fa-television"></i></span>
                         <span ng-if="<%-controllerAs+".deletetool"%>" auth-opt="<%-authorities.delete%>" ng-click="<%-`${controllerAs}.tblOptDelete(${subModelName}.id)`%>" class="table-control-btn" title="Delete"><i class="fa fa-trash"></i></span>
