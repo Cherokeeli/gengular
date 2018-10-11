@@ -1,5 +1,7 @@
 import appTemplate from './app.template.html';
 import {Component} from "../../global/decorator/Component";
+import {uiFrame} from "../../../core/ui-framework/dist/js/adminlte";
+
 
 @Component({
     inject: [],
@@ -20,7 +22,7 @@ export class AppController {
                 $(node).replaceWith($(node).children());
             });
             console.log(angular.element('.edit-url'));*/
-            // uiFrame();
+            uiFrame();
 
         });
         this.ctrlName = "AppCtrl";

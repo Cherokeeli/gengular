@@ -4,7 +4,7 @@ import { objectGetProperty, objectIndexOf } from "../../utils/utils";
 import {Component} from "../../global/decorator/Component";
 
 @Component({
-    inject: ['$timeout', '$ngConfirm', 'MenuSettingService', '$state'],
+    inject: ['$timeout', '$ngConfirm', 'MenuSettingService', '$state', '$rootScope'],
     template: treeTemplate,
     bindings: {
         inputids: '<',
@@ -153,8 +153,8 @@ export class MenuTreeController {
         this.menuSettingService.addMenuItem(node).then(res=> {
             console.log(res);
             this[formName].$setPristine();
-        }, err => {
-            console.log(err);
+            // 通知刷新侧边栏
+            this.$rootScope.$emit('refreshSidebar');
         });
     }
 
@@ -163,8 +163,8 @@ export class MenuTreeController {
         this.menuSettingService.updateMenuItem(node).then(res => {
             console.log(res, this[formName]);
             this[formName].$setPristine();
-        }, err => {
-            console.log(err);
+            // 通知刷新侧边栏
+            this.$rootScope.$emit('refreshSidebar');
         });
     }
 
