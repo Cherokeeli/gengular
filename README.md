@@ -190,9 +190,8 @@ import userConfig from '../../global/compiler/userConfig.json';
 })
 ```
 ### 静态模板
-通过静态编译器生成template.html文件，然后再引入Component里，编译命令
+通过静态编译器生成template.html文件，然后再引入Component里，编译命令。运行后会自动生成到根目录下的output.overview.html
 > node app/global/compiler/staticCompiler.js --config [jsonPath] --template [templatePath]
-运行后会自动生成到根目录下的output.overview.html
 
 ## Component, Module生成器
 创建component
