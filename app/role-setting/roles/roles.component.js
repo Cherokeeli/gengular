@@ -6,7 +6,7 @@ import {Component} from "../../global/decorator/Component";
 import {StandardList} from "../../global/decorator/StandardList";
 import {StandardCURD} from "../../global/decorator/StandardCURD";
 import * as template from '../../global/template/table.template.ejs';
-import roleConfig from '../../global/compiler/roleConfig.json';
+import roleConfig from '../../global/json/roleConfig.json';
 
 @Component({
     inject: ['$timeout', 'RoleSettingService', '$state', 'AlertToasterService'],

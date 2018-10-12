@@ -3,7 +3,7 @@ import { TemplateHelper } from "../../global/templateHelper.service";
 import { Component } from "../../global/decorator/Component";
 import { StandardList } from "../../global/decorator/StandardList";
 import { StandardCURD } from "../../global/decorator/StandardCURD";
-import userConfig from '../../global/compiler/userConfig.json';
+import userConfig from '../../global/json/userConfig.json';
 import * as template from '../../global/template/table.template.ejs';
 console.log(userConfig);
 @Component({
