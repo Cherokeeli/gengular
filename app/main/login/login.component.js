@@ -29,4 +29,8 @@ export class LoginController {
             this.logSuccess = false;
         });
     }
+
+    validateFormRequired(form, formEle) {
+        return form[formEle].$dirty && form[formEle].$invalid;
+    }
 }
