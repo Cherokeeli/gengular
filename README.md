@@ -174,12 +174,32 @@ StandardCURD修饰器，添加了标准增删改查的视图行为，同时添�
 ## 指令
 
 ## 模板编译器
+项目中封装了常见的模板ejs,通过json注入相应的值来获取对应的视图。编译模板的方式分为以下两种
 ### 动态模板
+不显式的写明模板路径，代码执行的时候将相应的ejs和json结合生成视图渲染。适合典型的布局，不需要修改模板视图
+```
+import { Component } from "../../global/decorator/Component";
+import * as template from '../../global/template/table.template.ejs';
+import userConfig from '../../global/compiler/userConfig.json';
+
+@Component({
+    inject: ['$timeout', 'UserSettingService', '$state', 'TemplateHelper', 'AlertToasterService'],
+    as: 'users',
+    // webpack打包阶段会将import的ejs包装成一个函数，在注入配置json
+    template: template(userConfig)
+})
+```
 ### 静态模板
+通过静态编译器生成template.html文件，然后再引入Component里，编译命令
+> node app/global/compiler/staticCompiler.js --config [jsonPath] --template [templatePath]
+运行后会自动生成到根目录下的output.overview.html
 
 ## Component, Module生成器
-### Component
-### Module
+创建component
+> npm run generate:component -- --name [componentName] --path [path]
+
+创建module
+> npm run generate:module -- --name [moduleName] --path [path]
 
 ## TODO-List
 
