@@ -11,7 +11,9 @@
     "build:prd": "npm run clean && node_modules/.bin/webpack --config webpack.production.config.js",
     "clean": "rm -rf dist/",
     "pack:zip": "cd dist && zip -r ../dist.zip ./**",
-    "pack:tar": "cd dist && tar -cvf dist.tar ./ && mv dist.tar ../"
+    "pack:tar": "cd dist && tar -cvf dist.tar ./ && mv dist.tar ../",
+    "generate:component": "node app/global/generator/component.js --",
+    "generate:module": "node app/global/generator/module.js --"
   },
   "author": "Cherokeeli",
   "license": "ISC",
