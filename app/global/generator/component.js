@@ -1,3 +1,6 @@
+/**
+ * 组件生成器，自动生成一套component
+ */
 const fs = require('fs');
 const join = require('path').join;
 

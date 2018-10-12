@@ -1,5 +1,5 @@
 /**
- * global模块请求拦截器
+ * global模块请求拦截器，拦截所有请求
  */
 
 export const globalInterceptor = ['$q', 'AppConfig', '$state', ($q, AppConfig, $state) => {

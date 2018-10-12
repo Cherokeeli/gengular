@@ -1,3 +1,18 @@
+/**
+ * StandardList修饰器，标准list修饰器，包装了query，多选，分页等功能
+ * options:
+ * {
+ *      // 需要调用的service，
+        service: 'userSettingService',
+        // 需要命名的列表model
+        listModel: 'userList',
+        // 需要调用service中的列表方法
+        list: 'getUsers',
+        // 需要调用service的删除方法
+        delete: 'deleteUser'
+ * }
+ */
+
 import {OPT_TYPE} from "../global.enum";
 import {copyPropertiesTo, objectIndexOf} from "../../utils/utils";
 

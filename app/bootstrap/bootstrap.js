@@ -1,6 +1,6 @@
-/*
-先引入子模块，最后再引入整个模块，ngmodule
-* */
+/**
+ * bootstrap打包入口文件
+ */
 
 
 import './ngmodule';

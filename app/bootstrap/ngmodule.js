@@ -1,5 +1,5 @@
 /**
- * 全局的angular和第三方插件
+ * App模块，全局的angular和第三方插件
  */
 
 // angularjs主文件

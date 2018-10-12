@@ -11,7 +11,7 @@ export const uniqueArray = (arr) => {
 };
 
 /**
- *
+ * 嵌套对象获取相应的属性，避免property undefined
  * @param object
  * @param path
  * @param defaultValue
@@ -29,7 +29,7 @@ export const objectGetProperty = (object, path, defaultValue) => {
 };
 
 /**
- *
+ * 获取对象数组中相应的属性值的index
  * @param objectArray
  * @param keyPath
  * @param value
@@ -58,6 +58,12 @@ export const objectIndexOf = (objectArray, keyPath, value) => {
     }
 };
 
+/**
+ * 将对象的属性复制到另外的对象中
+ * @param source
+ * @param dest
+ * @param destProp
+ */
 export const copyPropertiesTo = (source, dest, destProp) => {
     if(!source) {
         throw new Error('source properties is not exist!');

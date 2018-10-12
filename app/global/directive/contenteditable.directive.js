@@ -1,3 +1,7 @@
+/**
+ * 可编辑html节点，这个指令实现了其中的值可以绑定到ngModel上
+ * @return {{require: string, link: link}}
+ */
 export function contenteditable() {
     return {
         require: '?ngModel',

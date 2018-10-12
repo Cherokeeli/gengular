@@ -18,7 +18,7 @@ export class AppBaseService {
     }
 
     /**
-     * get请求
+     * get请求，获取操作
      * @param url
      * @param params
      */
@@ -47,7 +47,7 @@ export class AppBaseService {
     }
 
     /**
-     *
+     * post请求，新增操作
      * @param url
      * @param data
      * @returns {angular.IPromise<T | never>}
@@ -78,7 +78,7 @@ export class AppBaseService {
     }
 
     /**
-     *
+     * put请求，更新操作
      * @param url
      * @param data
      * @returns {angular.IPromise<T | never>}
@@ -108,8 +108,10 @@ export class AppBaseService {
     }
 
     /**
-     *
-     * @returns {angular.IPromise<T | never>}
+     * delete请求，删除操作
+     * @param url
+     * @param data
+     * @return {Promise<T | void>}
      */
     delete(url, data) {
         let options = this._options;
@@ -135,6 +137,11 @@ export class AppBaseService {
             });
     }
 
+    /**
+     * 上传文件
+     * @param url
+     * @return {FileUploader}
+     */
     upload(url) {
         let uploader = new this.fileUploader({
             url: `/${this.appConfig.requestPrefix}${url}`,
@@ -158,6 +165,11 @@ export class AppBaseService {
         return uploader;
     }
 
+    /**
+     * get请求下载
+     * @param url
+     * @param param
+     */
     downloadGet(url, param) {
         let $iframe = document.createElement('iframe');
         $iframe.setAttribute('id', 'down-file-iframe');
@@ -176,6 +188,11 @@ export class AppBaseService {
         $iframe.remove();
     }
 
+    /**
+     * post请求下载
+     * @param url
+     * @param param
+     */
     downloadPost(url, param) {
         let $iframe = document.createElement('iframe');
         $iframe.setAttribute('id', 'down-file-iframe');

@@ -1,3 +1,7 @@
+/**
+ * 模块生成器，自动生成一套module代码
+ */
+
 const fs = require('fs');
 const join = require('path').join;
 

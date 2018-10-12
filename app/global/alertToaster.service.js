@@ -1,3 +1,7 @@
+/**
+ * 提示框和确认框封装
+ */
+
 export class AlertToasterService {
     constructor($ngConfirm, Notification) {
         this.$ngConfirm = $ngConfirm;
@@ -93,13 +97,7 @@ export class AlertToasterService {
                         }
                     },
                     onScopeReady: function (scope) {
-                        var self = this;
-                        scope.textChange = function () {
-                            if (scope.username)
-                                self.buttons.sayMyName.setDisabled(false);
-                            else
-                                self.buttons.sayMyName.setDisabled(true);
-                        }
+
                     }
                 })
             }
