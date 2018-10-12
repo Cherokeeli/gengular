@@ -3,6 +3,5 @@
 /dist
 package-lock.json
 /.git
-/.DS_Store
-/core/.DS_Store
 dist.zip
+**/.DS_Store
