@@ -82,7 +82,7 @@ export class MenuTreeController {
             this.menuConfig = Array.from(dict.values());
             this.$timeout(_ => {
                 let expand_dom = document.querySelector('.expand-start');
-                expand_dom.style.maxHeight = `${expand_dom.firstElementChild.clientHeight}px`;
+                expand_dom.style.maxHeight = `${expand_dom.firstElementChild.offsetHeight}px`;
             });
             // this.globalData.menuConfig = this.menuConfig;
 

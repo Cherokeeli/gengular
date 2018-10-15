@@ -112,7 +112,7 @@ export function StandardList(options) {
                 this.totalCount = res.total;
                 this.$timeout(_ => {
                     let expand_dom = document.querySelector('.expand-start');
-                    expand_dom.style.maxHeight = `${expand_dom.firstElementChild.clientHeight}px`;
+                    expand_dom.style.maxHeight = `${expand_dom.firstElementChild.offsetHeight}px`;
                 });
             });
         };
