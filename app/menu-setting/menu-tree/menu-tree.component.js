@@ -174,8 +174,9 @@ export class MenuTreeController {
         });
     }
 
-    checkItem(node) {
-        console.log(this);
+    checkItem(scope) {
+        console.log(scope.$parent.$parent.$parent.$parent.$modelValue);
+        let node = scope.$modelValue;
         if(!Array.isArray(this.checkedids)) {
             this.checkedids = []
         }
