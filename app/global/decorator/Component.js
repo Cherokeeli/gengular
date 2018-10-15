@@ -9,7 +9,7 @@
  * }
  */
 
-import {copyPropertiesTo} from "../../utils/utils";
+import {copyPropertiesTo, uniqueArray} from "../../utils/utils";
 
 
 export function Component(option) {
@@ -24,6 +24,8 @@ export function Component(option) {
             console.log(...args);
             let that = this;
             if(angular.isArray(option.inject)) {
+                option.push('$timeout', '$state');
+                option.inject = uniqueArray(option.inject);
                 option.inject.forEach((dep, index) => {
                     if (dep[0].match(/[A-Z]/)) {
                         dep = dep[0].toLowerCase() + dep.slice(1);

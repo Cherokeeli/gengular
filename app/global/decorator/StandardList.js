@@ -110,9 +110,10 @@ export function StandardList(options) {
                     });
                 }
                 this.totalCount = res.total;
-                angular.element('.expand-start').addClass('expand-end');
-            }, err => {
-                console.info(err);
+                this.$timeout(_ => {
+                    let expand_dom = document.querySelector('.expand-start');
+                    expand_dom.style.maxHeight = `${expand_dom.firstElementChild.clientHeight}px`;
+                });
             });
         };
 

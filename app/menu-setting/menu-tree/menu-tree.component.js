@@ -80,7 +80,10 @@ export class MenuTreeController {
             });
 
             this.menuConfig = Array.from(dict.values());
-            angular.element('.expand-start').addClass('expand-end');
+            this.$timeout(_ => {
+                let expand_dom = document.querySelector('.expand-start');
+                expand_dom.style.maxHeight = `${expand_dom.firstElementChild.clientHeight}px`;
+            });
             // this.globalData.menuConfig = this.menuConfig;
 
         }, err => {

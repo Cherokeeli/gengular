@@ -7,7 +7,12 @@
  * @param arr
  */
 export const uniqueArray = (arr) => {
-
+    return arr.reduce((accum, current) => {
+        if(accum.indexOf(current) === -1) {
+            accum.push(current);
+        }
+        return accum;
+    }, []);
 };
 
 /**
