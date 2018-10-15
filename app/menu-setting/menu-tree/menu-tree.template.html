@@ -42,7 +42,7 @@
             </li>
         </ol>
     </script>
-    <div ui-tree="menuTree.menuTreeOption" class="angular-ui-tree" ng-init="formName='NodeForm'">
+    <div ui-tree="menuTree.menuTreeOption" class="angular-ui-tree expand-start" ng-init="formName='NodeForm'">
         <ol class="angular-ui-tree-nodes" ui-tree-nodes="" ng-model="menuTree.menuConfig" id="tree-root">
             <li class="angular-ui-tree-node" ng-if="node.hasOwnProperty('url')" ng-repeat="($nodeIndex,node) in menuTree.menuConfig" ui-tree-node ng-include="'nodes_renderer'"></li>
         </ol>

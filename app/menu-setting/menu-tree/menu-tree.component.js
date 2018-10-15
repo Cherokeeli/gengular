@@ -80,6 +80,7 @@ export class MenuTreeController {
             });
 
             this.menuConfig = Array.from(dict.values());
+            angular.element('.expand-start').addClass('expand-end');
             // this.globalData.menuConfig = this.menuConfig;
 
         }, err => {

@@ -110,6 +110,7 @@ export function StandardList(options) {
                     });
                 }
                 this.totalCount = res.total;
+                angular.element('.expand-start').addClass('expand-end');
             }, err => {
                 console.info(err);
             });
