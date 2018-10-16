@@ -96,6 +96,8 @@ export function StandardList(options) {
                 pageNo: this.bigCurrentPage,
                 pageSize: this.itemsperpage || 10
             };
+            let expand_dom = document.querySelector('.expand-start');
+            expand_dom.style.maxHeight = '0px';
             if(search) {
                 copyPropertiesTo(search, param, '');
             }
@@ -111,9 +113,8 @@ export function StandardList(options) {
                 }
                 this.totalCount = res.total;
                 this.$timeout(_ => {
-                    let expand_dom = document.querySelector('.expand-start');
-                    expand_dom.style.maxHeight = `${expand_dom.firstElementChild.offsetHeight}px`;
-                });
+                    expand_dom.style.maxHeight = `${expand_dom.firstElementChild.offsetHeight+20}px`;
+                }, 500);
             });
         };
 

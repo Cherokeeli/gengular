@@ -74,7 +74,7 @@
             <ul class="pagination pull-right" uib-pagination total-items="<%-controllerAs+".totalCount"%>"
                 ng-model="<%-controllerAs+".bigCurrentPage"%>" items-per-page="<%-controllerAs+".itemsperpage"%>" class="pagination-sm"
                 max-size="5"
-                ng-change="<%-`${controllerAs}.queryPage(${controllerAs}.itemsperpage)`%>"
+                ng-change="<%-`${controllerAs}.queryPage(${controllerAs}.search)`%>"
                 boundary-link-numbers="true" rotate="true" boundary-links="true"></ul>
         </div>
     </div>
