@@ -80,10 +80,11 @@ export class MenuTreeController {
             });
 
             this.menuConfig = Array.from(dict.values());
-            this.$timeout(_ => {
+            /* menu tree组件加入expand效果后有问题，所以暂时使用效果*/
+            /*this.$timeout(_ => {
                 let expand_dom = document.querySelector('.expand-start');
                 expand_dom.style.maxHeight = `${expand_dom.firstElementChild.offsetHeight}px`;
-            });
+            });*/
             // this.globalData.menuConfig = this.menuConfig;
 
         }, err => {
