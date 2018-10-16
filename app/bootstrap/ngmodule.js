@@ -77,11 +77,16 @@ ngmodule.config(['$uiRouterProvider', '$locationProvider', 'NotificationProvider
 }]);
 
 ngmodule.run(['$transitions','AuthService', 'AuthStore', ($transitions, AuthService, AuthStore) => {
-    $transitions.onStart({ }, function(trans) {
-        AuthService.getPermissions().then(res => {
-            console.info('permission:',res);
-            AuthStore.data.auths = res;
-            return res;
-        });
+
+    // 除了登录前的login state, 其余每次state切换的时候都会调用请求权限的api，来获取最新的api
+    $transitions.onStart({}, function(trans) {
+        console.log(trans.to());
+        if(trans.to().name !== `login`) {
+            AuthService.getPermissions().then(res => {
+                console.info('permission:', res);
+                AuthStore.data.auths = res;
+                return res;
+            });
+        }
     });
 }]);
