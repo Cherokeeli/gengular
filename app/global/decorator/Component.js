@@ -14,14 +14,13 @@ import {copyPropertiesTo, uniqueArray} from "../../utils/utils";
 
 export function Component(option) {
     return (targetClass) => {
-        console.log(targetClass.prototype);
         /**
          * 这段代码重写了Class的constructor,通过inject属性直接将依赖注入到constructor里面，依赖如果是大写开头，则注入到this是小写开头，
          * 如SampleService => this.sampleServce, 最后调用afterInjectHook钩子函数来做注入之后的动作,在class中实现afterInjectHook函数即可
          */
         let proto = targetClass.prototype;
         targetClass = function(...args) {
-            console.log(...args);
+            // console.log(...args);
             let that = this;
             if(angular.isArray(option.inject)) {
                 option.inject.push('$timeout', '$state');
@@ -30,7 +29,7 @@ export function Component(option) {
                     if (dep[0].match(/[A-Z]/)) {
                         dep = dep[0].toLowerCase() + dep.slice(1);
                     }
-                    console.log(dep);
+                    // console.log(dep);
                     that[dep] = args[index];
                 });
             }

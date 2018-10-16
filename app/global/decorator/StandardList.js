@@ -135,7 +135,7 @@ export function StandardList(options) {
         };
 
         proto.checkItem = function(node) {
-            console.log(this);
+            // console.log(this);
             if(!Array.isArray(this.checkedids)) {
                 this.checkedids = []
             }

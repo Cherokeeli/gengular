@@ -5,7 +5,7 @@
 export const globalInterceptor = ['$q', 'AppConfig', '$state', ($q, AppConfig, $state) => {
     return {
         request(config) {
-            console.log(config);
+            // console.log(config);
             return config;
         },
 

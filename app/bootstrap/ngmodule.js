@@ -7,7 +7,7 @@ import * as angular from 'angular';
 
 import '../app.style.less';
 
-// jquery主文件
+// jquery主文件 不需要在这里导入，webpack已经处理好
 // import 'jquery';
 
 // htmlt-boilerplate
@@ -67,9 +67,21 @@ export const ngmodule = angular.module('App', [
 ]);
 
 ngmodule.config(['$uiRouterProvider', '$locationProvider', 'NotificationProvider', ($uiRouterProvider, $locationProvider, NotificationProvider) => {
-    $locationProvider.hashPrefix('');
+    // 设置请求的prefix
+    // $locationProvider.hashPrefix('');
+    // 设置通知框的出现位置
     NotificationProvider.setOptions({
         positionX: 'right',
         positionY: 'bottom'
+    });
+}]);
+
+ngmodule.run(['$transitions','AuthService', 'AuthStore', ($transitions, AuthService, AuthStore) => {
+    $transitions.onStart({ }, function(trans) {
+        AuthService.getPermissions().then(res => {
+            console.info('permission:',res);
+            AuthStore.data.auths = res;
+            return res;
+        });
     });
 }]);
