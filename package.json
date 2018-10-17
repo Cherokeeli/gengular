@@ -14,7 +14,6 @@
     "pack:tar": "cd dist && tar -cvf dist.tar ./ && mv dist.tar ../",
     "generate:component": "node app/global/generator/component.js --",
     "generate:module": "node app/global/generator/module.js --"
-    "generate:module": "node app/global/generator/module.js --"
   },
   "author": "Cherokeeli",
   "license": "ISC",
