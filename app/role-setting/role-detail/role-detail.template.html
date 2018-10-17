@@ -34,7 +34,7 @@
 
                 <div ng-class="{active: tabIndex==2}" class="tab-pane">
                     <form class="form-horizontal">
-                        <div class="box-body">
+                        <div class="box-body" ng-if="tabIndex==2">
                             <menutree inputids="roleDetail.role.menuIdList" checkedids="roleDetail.role.menuIdList" radiotool="true" checkable="!roleDetail.uneditable"></menutree>
                         </div>
                         <!-- /.box-body -->
