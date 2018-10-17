@@ -63,13 +63,17 @@ export class MenuTreeController {
 
             if(Array.isArray(this.inputids)) {
                 this.inputids.map(id => {
-                    dict.get(id).checked = true;
+                    if(dict.get(id)) {
+                        dict.get(id).checked = true;
+                    }
                 });
             }
 
             res.forEach(item => {
                 if(item.parentId !== '0') {
-                    dict.get(item.parentId).children.push(item);
+                    if(dict.get(item.parentId)) {
+                        dict.get(item.parentId).children.push(item);
+                    }
                 }
             });
 
