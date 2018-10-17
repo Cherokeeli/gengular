@@ -107,7 +107,7 @@ export class MenuTreeController {
         let list = scope.$modelValue;
         // 新增的节点加入一个isNew字段判断之后调用保存还是更新方法
         list.children.unshift({
-            title: 'New node',
+            name: 'New node',
             url: '#',
             type: 0,
             parentId: list.id,
