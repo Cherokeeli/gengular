@@ -19,12 +19,15 @@ export function Component(option) {
          * 如SampleService => this.sampleServce, 最后调用afterInjectHook钩子函数来做注入之后的动作,在class中实现afterInjectHook函数即可
          */
         let proto = targetClass.prototype;
+        if(!angular.isArray(option.inject)) {
+            option.inject = [];
+        }
+        option.inject.push('$timeout', '$state');
+        option.inject = uniqueArray(option.inject);
         targetClass = function(...args) {
             // console.log(...args);
             let that = this;
             if(angular.isArray(option.inject)) {
-                option.inject.push('$timeout', '$state');
-                option.inject = uniqueArray(option.inject);
                 option.inject.forEach((dep, index) => {
                     if (dep[0].match(/[A-Z]/)) {
                         dep = dep[0].toLowerCase() + dep.slice(1);
