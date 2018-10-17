@@ -23,9 +23,9 @@ export const globalInterceptor = ['$q', 'AppConfig', '$state', ($q, AppConfig, $
                 } else {
                     if (data.relogin) {
                         $state.go('login', null, {reload: true});
-                    } else {
-                        return response.data;
                     }
+
+                    return response.data;
                     // throw new Error("response is not ok");
                 }
             } else {
