@@ -97,7 +97,9 @@ export function StandardList(options) {
                 pageSize: this.itemsperpage || 10
             };
             let expand_dom = document.querySelector('.expand-start');
-            expand_dom.style.maxHeight = '0px';
+            if(expand_dom) {
+                expand_dom.style.maxHeight = '0px';
+            }
             if(search) {
                 copyPropertiesTo(search, param, '');
             }
