@@ -10,7 +10,7 @@
     "start:dev:host": "node_modules/.bin/webpack-dev-server --config webpack.development.config.js --host 0.0.0.0",
     "build:prd": "npm run clean && node_modules/.bin/webpack --config webpack.production.config.js",
     "clean": "rm -rf dist/",
-    "pack:zip": "cd dist && zip -r ../dist.zip ./**",
+    "pack:zip": "zip -r ./dist.zip ./dist/**",
     "pack:tar": "cd dist && tar -cvf dist.tar ./ && mv dist.tar ../",
     "generate:component": "node app/global/generator/component.js --",
     "generate:module": "node app/global/generator/module.js --"

@@ -118,7 +118,8 @@ export function StandardList(options) {
             });
         };
 
-        proto.$onInit = function () {
+        proto.$onInit = function (...arg) {
+            console.log(...arg);
             this.queryPage();
             if(angular.isFunction(this.$onInitHook)) {
                 this.$onInitHook();
