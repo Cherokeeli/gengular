@@ -19,7 +19,9 @@
                         <label class="btn btn-default" ng-model="node.type" uib-btn-radio="2">Feature</label>
                     </div>
                     <div class="pull-right {{menuTree[formName+$nodeIndex]}} {{menuTree[formName+$nodeIndex].$dirty}} {{node.isNew}}">
-                        <input ng-if="menuTree.radiotool" ng-disabled="!menuTree.checkable" ng-click="menuTree.checkItem(this)" type="checkbox" ng-checked="this.$parent.$parent.$parent.$parent.$modelValue.checked || node.checked" ng-model="node.checked">
+                        <!--TODO ng-checked回显的时候逻辑有问题，待修复-->
+                        <!--<input ng-if="menuTree.radiotool" ng-disabled="!menuTree.checkable" ng-click="menuTree.checkItem(this)" type="checkbox" ng-checked="this.$parent.$parent.$parent.$parent.$modelValue.checked || node.checked" ng-model="node.checked">-->
+                        <input ng-if="menuTree.radiotool" ng-disabled="!menuTree.checkable" ng-click="menuTree.checkItem(this)" type="checkbox" ng-model="node.checked">
                         <span ng-if="node.isNew" ng-click="menuTree.saveNode(this, formName+$nodeIndex)" auth-opt="sys:menu:save" class="icon-button" title="Save">
                             <i class="fa fa-save"></i>
                         </span>

@@ -17,9 +17,9 @@
     }
   ],
   "authorities": {
-    "create": "sys:user:save",
-    "update": "sys:user:update",
-    "read": "sys:user:info",
-    "delete": "sys:user:delete"
+    "create": "sys:role:save",
+    "update": "sys:role:update",
+    "read": "sys:role:info",
+    "delete": "sys:role:delete"
   }
 }
