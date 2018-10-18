@@ -82,7 +82,8 @@ ngmodule.run(['$transitions','AuthService', 'AuthStore', ($transitions, AuthServ
     $transitions.onStart({}, function(trans) {
         console.log(trans.to());
         if(trans.to().name !== `login`) {
-            AuthService.getPermissions().then(res => {
+            // return promise，当数据resolve的时候就会继续transition
+            return AuthService.getPermissions().then(res => {
                 console.info('permission:', res);
                 AuthStore.data.auths = res;
                 return res;
