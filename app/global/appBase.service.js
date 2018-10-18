@@ -23,15 +23,22 @@ export class AppBaseService {
      * @param params
      */
     get(url, params) {
+        let exceptionUrl = ['/sysUsers/authorities'];
         let options = this._options;
         let that = this;
+        let pendingPop;
         options.url = `/${this.appConfig.requestPrefix}${url}`;
         options.params = params;
         options.method = 'GET';
-        let pendingPop = this.alertToasterService.popup("Fetching", "Fetching data...").pending();
+        // 一些要频繁请求的接口设为例外，不显示fetching
+        if (exceptionUrl.indexOf(url) === -1) {
+            pendingPop = this.alertToasterService.popup("Fetching", "Fetching data...").pending();
+        }
         return this.$http(options)
             .then(response => {
-                pendingPop.then(pop=>pop.kill());
+                if (pendingPop) {
+                    pendingPop.then(pop => pop.kill());
+                }
                 if(response.ok) {
                     // this.alertToasterService.popup("Success!", "Fetch data successfully").success();
                     return that.$q.resolve(response.data);
