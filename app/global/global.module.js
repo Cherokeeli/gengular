@@ -7,7 +7,7 @@ import { authOpt } from "./directive/authOpt.directive";
 import { TemplateHelper } from "./templateHelper.service";
 import { AlertToasterService } from "./alertToaster.service";
 import {dateParser} from "./directive/dateParser.directive";
-import {laydatePicker} from "./directive/laydate.directive";
+import {laydatePicker} from "./directive/laydatePicker.directive";
 
 export const GLOBAL_MODULE = angular.module('global', [
     // 在这写模块依赖诶
