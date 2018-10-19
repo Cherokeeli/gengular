@@ -208,3 +208,4 @@ import userConfig from '../../global/compiler/userConfig.json';
 
 - Server-Side-Rendering(服务端渲染)
 - Multiframe(多窗口)
+- 过渡效果
