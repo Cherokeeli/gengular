@@ -204,8 +204,10 @@ import userConfig from '../../global/compiler/userConfig.json';
 创建module
 > npm run generate:module -- --name [moduleName] --path [path]
 
-## TODO-List
+## 已知Bugs
+- 树形菜单ng-checked联动在回显的时候有问题，暂时取消联动功能
 
+## TODO-List
 - Server-Side-Rendering(服务端渲染)
 - Multiframe(多窗口)
-- 过渡效果
+- ~~过渡效果~~
