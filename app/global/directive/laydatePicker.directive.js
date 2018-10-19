@@ -5,27 +5,22 @@
  * [date-type]          这个属性用于描述数据类型，有year, month, date, time, datetime
  * [date-format]        这个用于描述日期格式，你懂得
  */
-export function laydatePicker() {
+
+// laydate日期插件
+import laydate from 'layui-laydate/dist/laydate';
+import 'layui-laydate/dist/theme/default/laydate.css';
+
+export function laydatePicker($filter) {
     return {
         restrict: "A",
         require: "?ngModel",
         replace: false,
         link: function (scope, element, attrs, ctrl) {
-            ctrl.$parsers.unshift(function (value) {
-                if(attrs.utcFormat && typeof(value)!=='undefined' && value!="") {
-                    return new Date(value);
-                }
-                if(attrs.formatToTimestamp && typeof(value)!=='undefined' && value!="") {
-                    return Date.parse(new Date(value));
-                }
-                return value;
-            });
             ctrl.$formatters.unshift(function (value) {
                 if(attrs.dateFormat && typeof(value)!=='undefined' && value!="") {
-                    return $filter('date')(new Date(value), attrs.dateFormat);
-                }
-                if(attrs.timestampToFormat && typeof(value)!=='undefined' && value!="") {
-                    return $filter('date')(value, attrs.timestampToFormat);
+                    ctrl.$setViewValue($filter('date')(value, attrs.dateFormat));
+                    ctrl.$render();
+                    return $filter('date')(value, attrs.dateFormat);
                 }
                 return value;
             });
@@ -57,3 +52,5 @@ export function laydatePicker() {
         }
     }
 }
+
+laydatePicker.$inject = ['$filter'];
