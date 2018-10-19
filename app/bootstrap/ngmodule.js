@@ -50,6 +50,8 @@ import 'angular-ui-notification/dist/angular-ui-notification.min.css';
 import 'angular-file-upload/dist/angular-file-upload.min';
 // 动态效果插件
 import ngAnimate from 'angular-animate';
+// laydate日期插件
+import 'layui-laydate/dist/laydate';
 // 自定义模块
 import { MAIN_MODULE } from '../main/main.module';
 import { GLOBAL_MODULE } from "../global/global.module";
