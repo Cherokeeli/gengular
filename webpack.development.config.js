@@ -61,10 +61,12 @@ module.exports = {
                 test: /\.js$/,
                 use: ["source-map-loader"],
                 enforce: "pre",
-                exclude: [/@uirouter/]
+                include: [/app/],
+                exclude: [/@uirouter/, /(node_modules)/]
             },
             {
                 test: /\.js$/,
+                include: [/app/],
                 exclude: /(node_modules)/,
                 use: {
                     loader: 'babel-loader',

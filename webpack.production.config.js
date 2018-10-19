@@ -45,7 +45,7 @@ module.exports = {
                 test: /\.js$/,
                 use: ["source-map-loader"],
                 enforce: "pre",
-                exclude: [/@uirouter/]
+                exclude: [/@uirouter/, /(node_modules)/]
             },
             {
                 test: /\.js$/,

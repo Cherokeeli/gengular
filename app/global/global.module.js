@@ -7,6 +7,7 @@ import { authOpt } from "./directive/authOpt.directive";
 import { TemplateHelper } from "./templateHelper.service";
 import { AlertToasterService } from "./alertToaster.service";
 import {dateParser} from "./directive/dateParser.directive";
+import {laydatePicker} from "./directive/laydate.directive";
 
 export const GLOBAL_MODULE = angular.module('global', [
     // 在这写模块依赖诶
@@ -21,6 +22,7 @@ GLOBAL_MODULE.config(['$httpProvider', ($httpProvider) => {
 GLOBAL_MODULE.directive('contenteditable', contenteditable);
 GLOBAL_MODULE.directive('authOpt', authOpt);
 GLOBAL_MODULE.directive('dateParser', dateParser);
+GLOBAL_MODULE.directive('laydatePicker', laydatePicker);
 
 GLOBAL_MODULE.service('AppConfig', AppConfig);
 GLOBAL_MODULE.service('AppBaseService', AppBaseService);
