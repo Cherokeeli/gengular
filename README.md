@@ -29,6 +29,7 @@ npm install 过程中会需 chromedriver 下载的情况
 - angular-confirm           angularjs 确认框插件
 - angular-file-upload       angularjs 文件上传插件
 - angular-animate           angularjs 动画插件
+- laydate                   laydate日期插件，封装了directive
 
 ## 文件类型
 项目中除了标准的js,html,less,css文件名，为了标识更详尽的类型，有一下的类型
@@ -47,17 +48,19 @@ npm install 过程中会需 chromedriver 下载的情况
 |____package.json                           npm依赖目录
 |____webpack.development.config.js          webpack开发环境编译配置
 |____webpack.production.config.js           webpack生产环境编译配置
-|____core                                   ui框架
-|____dist                                   编译路径
-|____app                                    代码主目录
-| |____bootstrap                            应用主目录
+|____core/                                  ui框架
+|____dist/                                  编译路径
+|____app/                                   代码主目录
+| |____bootstrap/                           应用主目录
 | | |____bootstrap.js                       webpack打包入口文件
 | | |____ngmodule.js                        App模块
-| |____global                               全局模块目录
-| | |____compiler                           模板编译器，可编译静态模板供定制，通过json文件
-| | |____decorator                          修饰器，主要有Component,StandardList, StandardCURD等修饰器
-| | |____directive                          里面有各种angularjs指令
-| | |____template                           供模板编译器编译的原始模板文件
+| |____global/                              全局模块目录
+| | |____compiler/                          模板编译器，可编译静态模板供定制，通过json文件
+| | |____decorator/                         修饰器，主要有Component,StandardList, StandardCURD等修饰器
+| | |____directive/                         里面有各种angularjs指令
+| | |____generator/                         代码生成器，可生成Component, Module
+| | |____json/                              供模板编译器编译配置json文件
+| | |____template/                          供模板编译器编译的原始模板文件
 | | |____alertToaster.service.js            封装的确认框和提示框service
 | | |____appBase.service.js                 封装get,post,put,delete,upload,downloadGet,downloadPost函数
 | | |____appConfig.service.js               应用的全局变量定义
@@ -66,11 +69,11 @@ npm install 过程中会需 chromedriver 下载的情况
 | | |____global.enum.js                     全局枚举
 | | |____global.module.js                   global模块
 | | |____globalInterceptors.js              global请求拦截器
-| |____main                                 Main模块，整个界面的结构在此，包含了登录，导航栏，侧边栏，dashboard
-| |____menu-setting                         菜单模块
-| |____role-setting                         角色模块
-| |____user-setting                         用户模块
-| |____utils                                一些utils函数
+| |____main/                                Main模块，整个界面的结构在此，包含了登录，导航栏，侧边栏，dashboard
+| |____menu-setting/                        菜单模块
+| |____role-setting/                        角色模块
+| |____user-setting/                        用户模块
+| |____utils/                               一些utils函数
 | |____app.style.less                       全局样式
 ```
 
