@@ -4,6 +4,6 @@
 export class AppConfig {
     constructor() {
         this.requestTimeout = 20000;
-        this.requestPrefix = "oshoms";
+        this.requestPrefix = "oshoms-release";
     }
 }

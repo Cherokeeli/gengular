@@ -21,7 +21,7 @@ import {uiFrame} from "../../../core/ui-framework/dist/js/adminlte";
 export class DashboardController {
 
     afterInjectHook() {
-        uiFrame();
+        // uiFrame();
     }
 
     $onInitHook() {
