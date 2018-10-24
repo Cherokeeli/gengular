@@ -23,7 +23,10 @@ export class LoginController {
         console.log(this);
         this.mainService.logIn(this.user).then(res => {
             console.log(res);
-            this.$state.go('dashboard', null, {reload: true});
+            // this.$state.go('dashboard', null, {reload: true});
+            // TODO 登录成功的时候reload一下，不然min-height的js不执行，待看
+            window.location.href = '#!/app/dashboard';
+            window.location.reload();
         }, err => {
             console.info('error:',err);
             this.logSuccess = false;
