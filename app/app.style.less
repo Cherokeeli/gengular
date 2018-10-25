@@ -162,4 +162,25 @@ section.content {
   max-height: 0;
   transition: max-height .8s cubic-bezier(0.36, 0.55, 0.19, 1);
 }
+
+/* fixed布局修复折叠侧边栏的时候不能push出菜单 */
+.fixed-with-pushmenu .main-header, .fixed-with-pushmenu .main-sidebar {
+  position: fixed;
+}
+
+.fixed-with-pushmenu .main-header {
+  top:0;left: 0;right: 0
+}
+
+.fixed-with-pushmenu .content-wrapper,
+.fixed-with-pushmenu .right-side {
+  margin-top: 50px;
+}
+
+@media (max-width: 767px) {
+  .fixed-with-pushmenu .content-wrapper,
+  .fixed-with-pushmenu .right-side {
+    margin-top: 100px;
+  }
+}
       
