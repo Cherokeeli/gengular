@@ -6,7 +6,7 @@
             <!-- search form -->
             <form method="get" class="sidebar-form">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <input ng-change="sidebar.searchSidebar(sidebar.searchSidebarQuery)"  ng-model="sidebar.searchSidebarQuery" type="text" name="sidebarQuery" class="form-control" placeholder="Search...">
                     <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
@@ -17,7 +17,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li ng-class="{'header':!config.hasOwnProperty('url'),'treeview':config.list.length>0}"
-                    ng-repeat="config in sidebar.menuConfig" ng-include="'sidebar_item'">
+                    ng-repeat="config in sidebar.menuConfig track by config.id" ng-include="'sidebar_item'">
                 </li>
             </ul>
         </section>
@@ -35,7 +35,7 @@
     <ul class="treeview-menu" ng-if="config.list.length>0" ng-init="subSidebarConfig=config.list">
         <li ng-include="'sidebar_item'"
             ng-class="{'header':config.hasOwnProperty('sectionHeader'),'treeview':config.list.length>0}"
-            ng-repeat="config in subSidebarConfig">
+            ng-repeat="config in subSidebarConfig track by config.id">
         </li>
     </ul>
 </script>
