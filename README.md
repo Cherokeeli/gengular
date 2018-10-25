@@ -52,7 +52,7 @@ npm install 过程中会需 chromedriver 下载的情况
 |____dist/                                  编译路径
 |____app/                                   代码主目录
 | |____bootstrap/                           应用主目录
-| | |____bootstrap.js                       webpack打包入口文件
+| | |____bootstrap.js                       webpack打包入口文件，新增的.module.js需要在这里import进来
 | | |____ngmodule.js                        App模块
 | |____global/                              全局模块目录
 | | |____compiler/                          模板编译器，可编译静态模板供定制，通过json文件
