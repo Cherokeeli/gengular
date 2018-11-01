@@ -34,3 +34,53 @@ export const loginState = {
     url: '/login',
     component: 'login'
 };
+
+// 按需加载
+
+export const menuModuleState = {
+    name: 'menuConfig.**',
+    url: '/menu_config',
+    parent: 'app',
+    lazyLoad: (transition) => {
+        const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+        return import('../menu-setting/menu-setting.module.js').then(mod => {
+            $ocLazyLoad.load(mod.MENU_SETTING_MODULE);
+        })
+    }
+};
+
+export const roleModuleState = {
+    name: 'roles.**',
+    parent: 'app',
+    url: '/roles',
+    lazyLoad: (transition) => {
+        const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+        return import('../role-setting/role-setting.module.js').then(mod => {
+            $ocLazyLoad.load(mod.ROLE_SETTING_MODULE);
+        })
+    }
+};
+
+export const userModuleState = {
+    name: 'users.**',
+    parent: 'app',
+    url: '/users',
+    lazyLoad: (transition) => {
+        const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+        return import('../user-setting/user-setting.module.js').then(mod => {
+            $ocLazyLoad.load(mod.USER_SETTING_MODULE);
+        })
+    }
+};
+
+export const quartzModuleState = {
+    name: 'quartzes.**',
+    parent: 'app',
+    url: '/quartzes',
+    lazyLoad: (transition) => {
+        const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+        return import('../quartz-setting/quartz-setting.module.js').then(mod => {
+            $ocLazyLoad.load(mod.QUARTZ_SETTING_MODULE);
+        })
+    }
+};
