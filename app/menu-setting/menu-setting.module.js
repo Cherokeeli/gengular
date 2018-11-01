@@ -3,8 +3,12 @@ import {MenuConfigController} from "./menu/menu.component";
 import { MenuSettingService } from "./menu-setting.service";
 import {MenuTreeController} from "./menu-tree/menu-tree.component";
 import {componentFactory} from "../global/componentFactory";
+// angularjs树形结构插件
+import 'angular-ui-tree/dist/angular-ui-tree.css';
+import uiAngularTree from 'angular-ui-tree';
 
 export const MENU_SETTING_MODULE = angular.module('menuSetting', [
+    uiAngularTree
 ]);
 
 /**

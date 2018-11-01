@@ -55,7 +55,8 @@ module.exports = {
                     options: {
                         plugins: [
                             // 得用legacy，不然decorator function只能获取class的descriptors
-                            ['@babel/plugin-proposal-decorators', {"legacy": true}]
+                            ['@babel/plugin-proposal-decorators', {"legacy": true}],
+                            '@babel/plugin-syntax-dynamic-import'
                         ]
                     }
                 },
