@@ -57,7 +57,10 @@ export const roleModuleState = {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
         return import('../role-setting/role-setting.module.js').then(mod => {
             $ocLazyLoad.load(mod.ROLE_SETTING_MODULE);
-        })
+            return import('../menu-setting/menu-setting.module.js').then(mod => {
+                $ocLazyLoad.load(mod.MENU_SETTING_MODULE);
+            });
+        });
     }
 };
 
@@ -69,6 +72,12 @@ export const userModuleState = {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
         return import('../user-setting/user-setting.module.js').then(mod => {
             $ocLazyLoad.load(mod.USER_SETTING_MODULE);
+            import('../role-setting/role-setting.module.js').then(mod => {
+                $ocLazyLoad.load(mod.ROLE_SETTING_MODULE);
+                return import('../menu-setting/menu-setting.module.js').then(mod => {
+                    $ocLazyLoad.load(mod.MENU_SETTING_MODULE);
+                });
+            });
         })
     }
 };
