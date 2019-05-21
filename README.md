@@ -1,7 +1,7 @@
 # gengular
-AngularJs脚手架
-配JSON，写页面，你也可以
-ui框架用了AdminLTE
+AngularJs脚手架  
+配JSON，写页面，你也可以  
+ui框架：AdminLTE
 
 ## 项目插件
 项目中集成了以下6种常用插件，可直接注入然后使用
