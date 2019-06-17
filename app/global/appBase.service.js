@@ -21,13 +21,14 @@ export class AppBaseService {
      * get请求，获取操作
      * @param url
      * @param params
+     * @param isMock
      */
-    get(url, params) {
+    get(url, params, isMock) {
         let exceptionUrl = ['/sysUsers/authorities'];
         let options = this._options;
         let that = this;
         let pendingPop;
-        options.url = `/${this.appConfig.requestPrefix}${url}`;
+        options.url = !isMock?`/${this.appConfig.requestPrefix}${url}`:url;
         options.params = params;
         options.method = 'GET';
         // 一些要频繁请求的接口设为例外，不显示fetching
@@ -57,12 +58,13 @@ export class AppBaseService {
      * post请求，新增操作
      * @param url
      * @param data
+     * @param isMock
      * @returns {angular.IPromise<T | never>}
      */
-    post(url, data) {
+    post(url, data, isMock) {
         let options = this._options;
         let that = this;
-        options.url = `/${this.appConfig.requestPrefix}${url}`;
+        options.url = !isMock?`/${this.appConfig.requestPrefix}${url}`:url;
         options.data = data;
         options.method = 'POST';
         let pendingPop = this.alertToasterService.popup("Submitting", "Submitting data...").pending();

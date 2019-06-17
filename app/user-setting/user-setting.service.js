@@ -5,8 +5,8 @@ export class UserSettingService {
     }
 
     getUsers(param) {
-        let url = '/sysUsers';
-        return this.appBaseService.get(url, param);
+        let url = 'https://www.easy-mock.com/mock/5d06ec6fe95b861a02e2d50e/gengular/sysUsers';
+        return this.appBaseService.get(url, param, true);
     }
 
 

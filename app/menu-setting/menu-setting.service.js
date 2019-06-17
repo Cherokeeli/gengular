@@ -5,8 +5,8 @@ export class MenuSettingService {
     }
 
     getMenuList() {
-        let url = '/sysMenu/list';
-        return this.appBaseService.get(url);
+        let url = 'https://www.easy-mock.com/mock/5d06ec6fe95b861a02e2d50e/gengular/sysMenu';
+        return this.appBaseService.get(url, {}, true);
     }
 
     addMenuItem(param) {
